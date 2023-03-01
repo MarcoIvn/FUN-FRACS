@@ -20,7 +20,7 @@
 
 ## El equipo <a name = "Nosotros"></a>
 
-This is the repository of _Team Mancuerna_, composed of
+Repositorio equipo 5, compuesto por:
 <table>
   <tr>
     <th> Alumnos <th>
@@ -107,7 +107,7 @@ Ciclo 3. Entrega final.  El producto final contiene la totalidad de los flujos d
 ## Professors <a name = "Profesores"></a>
 <table>
 <tr>
-  <th> <a href="https://github.com/kabartsjc" rel="noopener">Alexandre Barreto [@kabartsjc]</a> </th>
+  <th> <a href="https://github.com/sruizl" rel="noopener">Sergio Ruiz Loza [@sruizl]</a> </th>
 </tr>
 
 <tr>
@@ -115,10 +115,7 @@ Ciclo 3. Entrega final.  El producto final contiene la totalidad de los flujos d
 </tr>
 
 <tr>
-  <th> <a href="https://www.researchgate.net/profile/Luis-Yepez-Perez" rel="noopener">Luis Yépez Pérez</a> </th>
+  <th> <a href="" rel="noopener">Christian Rolando Vallejo Villamil</a> </th>
 </tr>
 
-<tr>
-  <th> <a href="https://github.com/cmarcond" rel="noopener">Cesar A. C. Marcondes [@cmarcond]</a> </th>
-</tr>
 </table>
