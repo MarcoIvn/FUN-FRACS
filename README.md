@@ -5,11 +5,11 @@
 
 <h2 align="center">Space Fracs</h2>
 
-<div align="center">Last updated: 02-12-2022
+<div align="center">Last updated: 01-03-2023
 </div>
 
 
-## Table of Contents
+## Tabla de contenidos
 
 - [El equipo](#Nosotros)
 - [Escenario](#scenario_desc)
