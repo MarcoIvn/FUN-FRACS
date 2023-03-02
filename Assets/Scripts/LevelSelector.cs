@@ -26,6 +26,7 @@ public class LevelSelector : MonoBehaviour
     }
     private void Awake()
     {
+        startClicked = false;
         //No level still choiced
         levelChoice = "";
         //Reference Planet Menu
@@ -61,7 +62,7 @@ public class LevelSelector : MonoBehaviour
             planetMenu.SetActive(true);
             mainMenu.SetActive(false);
             changePlanetText(currentLevel);
-            startClicked = false;
+            //startClicked = false;
         }
         if(difficultyClicked == true)
         {
@@ -71,14 +72,14 @@ public class LevelSelector : MonoBehaviour
 
         if (levels.Count == 0)
             return;
-        if (Input.GetKeyDown(KeyCode.RightArrow) || raClicked == true)
+        if ((Input.GetKeyDown(KeyCode.RightArrow) || raClicked == true) && startClicked == true)
         {
             SelectNextLevel();
             planetMenu.SetActive(true);
             changePlanetText(currentLevel);
             raClicked = false;
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) || laClicked == true)
+        else if ((Input.GetKeyDown(KeyCode.LeftArrow) || laClicked == true) && startClicked == true)
         {
             SelectPreviousLevel();
             planetMenu.SetActive(true);
