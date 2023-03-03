@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Planet
+  - Section1
+  - Section2
+  - Section1Area
+  - Section2Area
   layers:
   - Default
   - TransparentFX
