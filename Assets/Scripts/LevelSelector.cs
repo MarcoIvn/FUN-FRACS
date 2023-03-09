@@ -13,12 +13,12 @@ public class LevelSelector : MonoBehaviour
     private GameObject currentLevel => levels[currentIndex];
     private GameObject planetMenu, mainMenu;
     private int currentIndex = 0;
-    private bool laClicked, raClicked,startClicked, difficultyClicked;
+    private bool laClicked, raClicked,startClicked, difficultyClicked, returnClicked;
     public TMP_Text planetText;
     public GameObject generalView;
-    public Button leftArrow, rightArrow, startButton, easyBtn, mediumBtn, hardBtn;
+    public Button leftArrow, rightArrow, startButton, easyBtn, mediumBtn, hardBtn, returnBtn;
     private string levelChoice;
-
+   
 
     // Start is called before the first frame update
     private void Start()
@@ -29,7 +29,7 @@ public class LevelSelector : MonoBehaviour
         startClicked = false;
         //No level still choiced
         levelChoice = "";
-        //Reference Planet Menu
+        //Reference Planet and Main menu
         mainMenu = canvasObject.transform.Find("Main Menu").gameObject;
         planetMenu = canvasObject.transform.Find("Planet Menu").gameObject;
         //Add function when right of left arrow is clicked
@@ -39,6 +39,7 @@ public class LevelSelector : MonoBehaviour
         easyBtn.onClick.AddListener(taskOnClickEasy);
         mediumBtn.onClick.AddListener(taskOnClickMedium);
         hardBtn.onClick.AddListener(taskOnClickHard);
+        returnBtn.onClick.AddListener(taskOnClickReturn);
         //Add all children of the level container to the list of elements
         for (int i = 0; i < levelContainer.childCount; i++)
             levels.Add(levelContainer.GetChild(i).gameObject);
@@ -56,30 +57,44 @@ public class LevelSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startClicked == true) //Change this in the future
+        if (startClicked) //Change this in the future
         { 
             generalView.SetActive(false);
             planetMenu.SetActive(true);
             mainMenu.SetActive(false);
             changePlanetText(currentLevel);
-            //startClicked = false;
+            if (levels.Count > 0)
+            {
+                currentIndex = 0;
+                currentLevel.SetActive(true);
+            }
+            startClicked = false;
         }
-        if(difficultyClicked == true)
+        if(difficultyClicked)
         {
             difficultyClicked = false;
             LoadLevel(currentLevel, levelChoice);
         }
+        if (returnClicked)
+        {
+            currentLevel.SetActive(false);
+            generalView.SetActive(true);
+            planetMenu.SetActive(false);
+            mainMenu.SetActive(true);
+            returnClicked = false;
+            currentIndex = 0;
+        }
 
         if (levels.Count == 0)
             return;
-        if ((Input.GetKeyDown(KeyCode.RightArrow) || raClicked == true) && startClicked == true)
+        if ((Input.GetKeyDown(KeyCode.RightArrow) || raClicked == true) && planetMenu.activeSelf)
         {
             SelectNextLevel();
             planetMenu.SetActive(true);
             changePlanetText(currentLevel);
             raClicked = false;
         }
-        else if ((Input.GetKeyDown(KeyCode.LeftArrow) || laClicked == true) && startClicked == true)
+        else if ((Input.GetKeyDown(KeyCode.LeftArrow) || laClicked == true) && planetMenu.activeSelf)
         {
             SelectPreviousLevel();
             planetMenu.SetActive(true);
@@ -190,6 +205,11 @@ public class LevelSelector : MonoBehaviour
     private void taskOnClickStart()
     {
         startClicked = true;
+    }
+
+    private void taskOnClickReturn()
+    {
+        returnClicked = true;
     }
 
     private void taskOnClickEasy()
