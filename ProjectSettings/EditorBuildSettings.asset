@@ -80,4 +80,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VenusLevels/VenusMedium.unity
     guid: 72f47b38a55ac94438c9fe1bc70e1006
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: d7951d168243e2849a90c587cd0fe8d9
   m_configObjects: {}

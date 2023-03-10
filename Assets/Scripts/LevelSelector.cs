@@ -11,12 +11,12 @@ public class LevelSelector : MonoBehaviour
     List<GameObject> levels = new List<GameObject>();
     public GameObject canvasObject;
     private GameObject currentLevel => levels[currentIndex];
-    private GameObject planetMenu, mainMenu;
+    private GameObject planetMenu, mainMenu, settingsMenu;
     private int currentIndex = 0;
-    private bool laClicked, raClicked,startClicked, difficultyClicked, returnClicked;
+    private bool laClicked, raClicked,startClicked, settingsClicked , difficultyClicked, returnClicked;
     public TMP_Text planetText;
     public GameObject generalView;
-    public Button leftArrow, rightArrow, startButton, easyBtn, mediumBtn, hardBtn, returnBtn;
+    public Button leftArrow, rightArrow, startButton, settingsbutton, easyBtn, mediumBtn, hardBtn, returnBtn;
     private string levelChoice;
    
 
@@ -32,10 +32,13 @@ public class LevelSelector : MonoBehaviour
         //Reference Planet and Main menu
         mainMenu = canvasObject.transform.Find("Main Menu").gameObject;
         planetMenu = canvasObject.transform.Find("Planet Menu").gameObject;
+        settingsMenu = canvasObject.transform.Find("Settings Menu").gameObject;
+
         //Add function when right of left arrow is clicked
         leftArrow.onClick.AddListener(taskOnClickla);
         rightArrow.onClick.AddListener(taskOnClickra);
         startButton.onClick.AddListener(taskOnClickStart);
+        settingsbutton.onClick.AddListener(taskOnClickSettings);
         easyBtn.onClick.AddListener(taskOnClickEasy);
         mediumBtn.onClick.AddListener(taskOnClickMedium);
         hardBtn.onClick.AddListener(taskOnClickHard);
@@ -57,7 +60,7 @@ public class LevelSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startClicked) //Change this in the future
+        if (startClicked) 
         { 
             generalView.SetActive(false);
             planetMenu.SetActive(true);
@@ -70,7 +73,15 @@ public class LevelSelector : MonoBehaviour
             }
             startClicked = false;
         }
-        if(difficultyClicked)
+        if (settingsClicked) 
+        {
+            planetMenu.SetActive(false);
+            mainMenu.SetActive(false);
+            //settingsMenu.SetActive(true);
+            SceneManager.LoadScene("Assets/Scenes/Settings.unity", LoadSceneMode.Single);
+            settingsClicked = true;
+        }
+        if (difficultyClicked)
         {
             difficultyClicked = false;
             LoadLevel(currentLevel, levelChoice);
@@ -206,6 +217,10 @@ public class LevelSelector : MonoBehaviour
     {
         startClicked = true;
     }
+    private void taskOnClickSettings()
+    {
+        settingsClicked = true;
+    }
 
     private void taskOnClickReturn()
     {
@@ -229,4 +244,5 @@ public class LevelSelector : MonoBehaviour
         levelChoice = "Hard";
         difficultyClicked = true;
     }
+
 }

@@ -357,6 +357,7 @@ MonoBehaviour:
   leftArrow: {fileID: 116974871}
   rightArrow: {fileID: 1586215109}
   startButton: {fileID: 571541976}
+  settingsbutton: {fileID: 1362506461}
   easyBtn: {fileID: 1360405520}
   mediumBtn: {fileID: 662335511}
   hardBtn: {fileID: 872179886}
