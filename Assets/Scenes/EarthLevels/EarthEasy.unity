@@ -1313,6 +1313,7 @@ GameObject:
   - component: {fileID: 1010657431}
   - component: {fileID: 1010657430}
   - component: {fileID: 1010657429}
+  - component: {fileID: 1010657432}
   m_Layer: 0
   m_Name: section1
   m_TagString: Section1Area
@@ -1344,10 +1345,10 @@ SphereCollider:
   m_GameObject: {fileID: 1010657427}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.45189586
+  m_Center: {x: 0, y: -5.2237988, z: 0}
 --- !u!23 &1010657430
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1398,6 +1399,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010657427}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1010657432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010657427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!4 &1041400078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4564889997644380, guid: 7ebc3741ac6927149872ca7c601b09d4, type: 3}
@@ -2349,10 +2363,10 @@ SphereCollider:
   m_GameObject: {fileID: 1949831923}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.44954216
+  m_Center: {x: 0, y: -5.479374, z: 0}
 --- !u!23 &1949831925
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2946,6 +2960,7 @@ GameObject:
   - component: {fileID: 494462149}
   - component: {fileID: 9198251450317314212}
   - component: {fileID: 9198251450317314213}
+  - component: {fileID: 9198251450317314214}
   m_Layer: 0
   m_Name: Earth-Like_Design1
   m_TagString: Section1
@@ -3122,3 +3137,19 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &9198251450317314214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5331585953594370736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2941c1c74c9094e9113bd4a12143ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  section1: {fileID: 1010657427}
+  section2: {fileID: 0}
+  section3: {fileID: 0}
+  section4: {fileID: 0}

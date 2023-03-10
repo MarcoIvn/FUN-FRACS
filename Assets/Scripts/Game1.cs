@@ -5,6 +5,7 @@ using UnityEngine;
 public class Game1 : MonoBehaviour
 {
     public GameObject border, section1,section2;
+    float s1Points, s2Points, s3Points, s4Points;
     // Start is called before the first frame update
     void Start()
     {
