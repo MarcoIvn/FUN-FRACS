@@ -1632,6 +1632,8 @@ MonoBehaviour:
   border: {fileID: 157016349}
   section1: {fileID: 1010657427}
   section2: {fileID: 1949831923}
+  section3: {fileID: 0}
+  section4: {fileID: 0}
 --- !u!4 &1223379642
 Transform:
   m_ObjectHideFlags: 0
@@ -3149,7 +3151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2941c1c74c9094e9113bd4a12143ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: {fileID: 0}
   section1: {fileID: 1010657427}
-  section2: {fileID: 0}
+  section2: {fileID: 1949831923}
   section3: {fileID: 0}
   section4: {fileID: 0}

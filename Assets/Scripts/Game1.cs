@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Game1 : MonoBehaviour
 {
-    public GameObject border, section1,section2;
-    float s1Points, s2Points, s3Points, s4Points;
+    public GameObject border, section1, section2, section3, section4;
+    float s1Points, s2Points;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +18,6 @@ public class Game1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    
     }
 }
