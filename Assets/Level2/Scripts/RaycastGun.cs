@@ -11,6 +11,8 @@ public class RaycastGun : MonoBehaviour
     public float fireRate = 0.4f;
     public float laserDuration = 3f;
     public int asteroidsToDestroy = 5; // Nuevo: cantidad de asteroides a destruir para ganar
+    public AudioSource audioLaser;
+    public AudioSource audioExplosion;
 
     LineRenderer laserLine;
     float fireTimer;
@@ -26,6 +28,8 @@ public class RaycastGun : MonoBehaviour
         fireTimer += Time.deltaTime;
         if (Input.GetButtonDown("Fire1") && fireTimer > fireRate)
         {
+            audioLaser.Play(); //laser
+            audioLaser.volume = 0.2f;
             fireTimer = 0;
             laserLine.SetPosition(0, laserOrigin.position);
             Vector3 rayOring = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
@@ -42,6 +46,8 @@ public class RaycastGun : MonoBehaviour
                     }
                 }
                 Destroy(hit.transform.gameObject);
+                audioExplosion.Play(); //explosion
+                audioExplosion.volume = 1f;
             }
             else
             {
