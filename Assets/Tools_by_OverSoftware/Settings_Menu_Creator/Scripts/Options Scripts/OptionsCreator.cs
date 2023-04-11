@@ -214,16 +214,8 @@ public class OptionsCreator : MonoBehaviour
             
 
         });
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ResetAndHideMenuWithBackButton();
 
-            SceneManager.LoadScene("LevelSelector");
-
-            Debug.Log("Esc pressed...");
-        }
-        
-       ChangeBackButtonTextColorToUnfocused(goBackButton.GetComponent<Text>());
+        ChangeBackButtonTextColorToUnfocused(goBackButton.GetComponent<Text>());
         
         listOptions.Add(goBackButton);
 

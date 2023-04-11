@@ -16,6 +16,8 @@ public class TitleCreator : MonoBehaviour
     float fTitlePositionY = 400f;
     [SerializeField]    
     GameObject goCanvasMenu;
+    [SerializeField]
+    GameObject font;
 
     public void BuildTitle(){
         GameObject goNewTitle = Instantiate(goTitle, goCanvasMenu.transform);
