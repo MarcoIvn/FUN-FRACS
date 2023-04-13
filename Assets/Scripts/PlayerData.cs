@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    public string listNumber, group;
+    public Player player;
     // Start is called before the first frame update
     void Start()
     {

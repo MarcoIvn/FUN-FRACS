@@ -65,8 +65,8 @@ public class InputUser : MonoBehaviour
                 }
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
-                pd.group = ms.group;
-                pd.listNumber = ms.listNumber;
+                pd.player.group = ms.group;
+                pd.player.listNumber = ms.listNumber;
                 SceneManager.LoadScene("Assets/Scenes/LevelSelector.unity");
             }
         }

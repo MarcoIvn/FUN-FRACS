@@ -21,10 +21,7 @@ public class SendToServer : MonoBehaviour
     {
         GameObject px = GameObject.Find("PlayerX");
         PlayerData pd = px.GetComponent<PlayerData>();
-        Player p = new Player();
-        p.group = pd.group;
-        p.listNumber = pd.listNumber;
-        string message = JsonUtility.ToJson(p);
+        string message = JsonUtility.ToJson(pd.player);
         StartCoroutine(SendPlayerData(message));
     }
 
@@ -32,7 +29,7 @@ public class SendToServer : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("player", data);
-        using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.8.238:8000/logout", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://40.76.234.232:8000/logout", form))
         {
             yield return www.SendWebRequest();
             if(www.result != UnityWebRequest.Result.Success)
