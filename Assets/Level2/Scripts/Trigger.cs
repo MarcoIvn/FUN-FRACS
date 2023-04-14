@@ -6,6 +6,9 @@ public class Trigger : MonoBehaviour
 {
     private bool activated = false;
 
+    public GameObject win;
+    public GameObject lose;
+
     public RaycastGun gunScript; // agregar una referencia a RaycastGun
 
     // Start is called before the first frame update
@@ -33,11 +36,13 @@ public class Trigger : MonoBehaviour
                 {
                     Debug.Log("Asteroids destruidos: " + gunScript.asteroidsDestroyed);
                     Debug.Log("You Win");
+                    win.SetActive(true);
                 }
                 else  // "You lose" en la consola
                 {
                     Debug.Log("Asteroids destruidos: " + gunScript.asteroidsDestroyed);
                     Debug.Log("You lose");
+                    lose.SetActive(true);
                 }
             }
         }
