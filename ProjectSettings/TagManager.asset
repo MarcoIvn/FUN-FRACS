@@ -9,6 +9,7 @@ TagManager:
   - Section2
   - Section1Area
   - Section2Area
+  - source
   layers:
   - Default
   - TransparentFX
