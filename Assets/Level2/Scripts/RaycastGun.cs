@@ -28,35 +28,7 @@ public class RaycastGun : MonoBehaviour
 
     void Start()
     {
-        // Generate random numbers
-        num1 = Random.Range(1, 11);
-        num2 = Random.Range(1, 11);
-
-        // Generate random operation
-        int opIndex = Random.Range(0, 4);
-        switch (opIndex)
-        {
-            case 0:
-                operation = "+";
-                asteroidsToDestroy = num1 + num2;
-                break;
-            case 1:
-                operation = "-";
-                asteroidsToDestroy = num1 - num2;
-                break;
-            case 2:
-                operation = "*";
-                asteroidsToDestroy = num1 * num2;
-                break;
-            case 3:
-                operation = "/";
-                num1 *= num2; // multiply num1 to get a divisible number
-                asteroidsToDestroy = num1 / num2;
-                break;
-        }
-
-        // Print the math problem
-        // Debug.Log(num1 + " " + operation + " " + num2 + " = ? " + asteroidsToDestroy);
+        GenerateMathProblem();
     }
 
     void Awake()
@@ -93,6 +65,39 @@ public class RaycastGun : MonoBehaviour
             }
             StartCoroutine(ShoorLaser());
         }
+    }
+
+    public void GenerateMathProblem()
+    {
+        // Generate random numbers
+        num1 = Random.Range(1, 11);
+        num2 = Random.Range(1, 11);
+
+        // Generate random operation
+        int opIndex = Random.Range(0, 4);
+        switch (opIndex)
+        {
+            case 0:
+                operation = "+";
+                asteroidsToDestroy = num1 + num2;
+                break;
+            case 1:
+                operation = "-";
+                asteroidsToDestroy = num1 - num2;
+                break;
+            case 2:
+                operation = "*";
+                asteroidsToDestroy = num1 * num2;
+                break;
+            case 3:
+                operation = "/";
+                num1 *= num2; // multiply num1 to get a divisible number
+                asteroidsToDestroy = num1 / num2;
+                break;
+        }
+
+        // Print the math problem
+        // Debug.Log(num1 + " " + operation + " " + num2 + " = ? " + asteroidsToDestroy);
     }
 
     IEnumerator ShoorLaser()
