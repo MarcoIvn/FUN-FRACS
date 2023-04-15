@@ -10,6 +10,8 @@ TagManager:
   - Section1Area
   - Section2Area
   - source
+  - Asteroid
+  - Cube
   layers:
   - Default
   - TransparentFX

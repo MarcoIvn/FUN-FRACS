@@ -21,6 +21,44 @@ public class RaycastGun : MonoBehaviour
     //Win-Lose
     private bool activated = false;
 
+    // Operaciones 
+    public int num1;
+    public int num2;
+    public string operation;
+
+    void Start()
+    {
+        // Generate random numbers
+        num1 = Random.Range(1, 11);
+        num2 = Random.Range(1, 11);
+
+        // Generate random operation
+        int opIndex = Random.Range(0, 4);
+        switch (opIndex)
+        {
+            case 0:
+                operation = "+";
+                asteroidsToDestroy = num1 + num2;
+                break;
+            case 1:
+                operation = "-";
+                asteroidsToDestroy = num1 - num2;
+                break;
+            case 2:
+                operation = "*";
+                asteroidsToDestroy = num1 * num2;
+                break;
+            case 3:
+                operation = "/";
+                num1 *= num2; // multiply num1 to get a divisible number
+                asteroidsToDestroy = num1 / num2;
+                break;
+        }
+
+        // Print the math problem
+        // Debug.Log(num1 + " " + operation + " " + num2 + " = ? " + asteroidsToDestroy);
+    }
+
     void Awake()
     {
         laserLine = GetComponent<LineRenderer>();
@@ -40,20 +78,14 @@ public class RaycastGun : MonoBehaviour
             if (Physics.Raycast(rayOring, playerCamera.transform.forward, out hit, gunRange))
             {
                 laserLine.SetPosition(1, hit.point);
-                Destroy(hit.transform.gameObject);
-                asteroidsDestroyed++;
-                /*
-                if (asteroidsDestroyed >= asteroidsToDestroy) // Nuevo: si se han destruido suficientes asteroides, imprimir "You Win" en la consola
+                if (hit.transform.gameObject.CompareTag("Asteroid")) // Destruir asteroides
                 {
-                    Debug.Log("You Win");
+                    Destroy(hit.transform.gameObject);
+                    asteroidsDestroyed++;
+                    audioExplosion.Play(); //explosion
+                    audioExplosion.volume = 1f;
                 }
-                else  // Nuevo: si se han destruido suficientes asteroides, imprimir "You Win" en la consola
-                {
-                    Debug.Log("You lose");
-                }
-                */
-                audioExplosion.Play(); //explosion
-                audioExplosion.volume = 1f;
+                
             }
             else
             {
@@ -70,3 +102,4 @@ public class RaycastGun : MonoBehaviour
         laserLine.enabled = false;
     }
 }
+
