@@ -17,7 +17,8 @@ public class DialogueScriptM : MonoBehaviour
     void Start()
     {
         showText = FindObjectOfType<RaycastGunM>();
-        lines = new string[] { "El planeta Knowhere necesita que destruyas: " 
+        lines = new string[] { "¡Has superado el anterior nivel!",
+            "Ahora, el planeta Knowhere necesita que destruyas: " 
             + showText.num1 + " " + showText.operation + " " + showText.num2 +  " asteroides ",   // Operación 
             "Dirígete al centro espacial al terminar la misión."};
         dialougueText.text = string.Empty;

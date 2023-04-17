@@ -39,15 +39,26 @@ public class TriggerM : MonoBehaviour
                     Debug.Log("Asteroids destruidos: " + gunScript.asteroidsDestroyed);
                     Debug.Log("You Win");
                     win.SetActive(true);
+                    Invoke("CargarNuevaEscena", 5.0f);
                 }
                 else  // "You lose" en la consola
                 {
                     Debug.Log("Asteroids destruidos: " + gunScript.asteroidsDestroyed);
                     Debug.Log("You lose");
                     lose.SetActive(true);
+                    Invoke("CargarMismaEscena", 5.0f);
                 }
             }
         }
     }
-    
+
+    private void CargarNuevaEscena()
+    {
+        SceneManager.LoadScene("VenusHard");
+    }
+
+    private void CargarMismaEscena()
+    {
+        SceneManager.LoadScene("VenusMedium");
+    }
 }
