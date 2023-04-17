@@ -54,7 +54,7 @@ public class TriggerH : MonoBehaviour
 
     private void CargarNuevaEscena()
     {
-        SceneManager.LoadScene("VenusHard");
+        SceneManager.LoadScene("LevelSelector");
     }
 
     private void CargarMismaEscena()
