@@ -37,7 +37,7 @@ public class InputUser : MonoBehaviour
         form.AddField("listNumber", nl);
         form.AddField("group", gr);
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.8.238:8000/login?group=2&listNumber=1", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.8.238:8000/api/dologin", form))
         {
             yield return www.SendWebRequest();
             if(www.result != UnityWebRequest.Result.Success)
@@ -54,7 +54,7 @@ public class InputUser : MonoBehaviour
                 Debug.Log("group: " + ms.group);
                 Debug.Log("list number: " + ms.listNumber);
                 int i = -1;
-                foreach(History h in ms.history)
+                /*foreach(History h in ms.history)
                 {
                     i++;
                     Debug.Log("index: "+ i);
@@ -62,7 +62,7 @@ public class InputUser : MonoBehaviour
                     Debug.Log("score: " + h.score);
                     if (h.score == "-1")
                         Debug.Log("El estudiante esta en el nivel " + ms.history[i-1].level);
-                }
+                }*/
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.group = ms.group;

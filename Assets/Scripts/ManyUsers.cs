@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class History
 {
-    public string level,score;
+    //public string level,score;
 }
 
 [System.Serializable]
 
 public class Player
 {
-    public List<History> history;
+    //public List<History> history;
     public string group, listNumber;
 }
 
