@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class SpaceshipMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    /*public float speed = 6;
+    public float speed = 6;
     public float turnspeed = 10;
     private Vector2 input;
     private float angle;
     private Quaternion rotation;
-    private Transform cam;*/
+    private Transform cam;
     //test
     
 
@@ -23,14 +22,14 @@ public class SpaceshipMovement : MonoBehaviour
 
     private void Update()
     {
-        /*input.x = Input.GetAxisRaw("Horizontal");
+        input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
         if (Mathf.Abs(input.x) < 1 && Mathf.Abs(input.y) < 1) return;
         GetDirection();
         Rotate();
-        Move();*/
+        Move();
     } 
-    /*void GetDirection()
+    void GetDirection()
     {
         angle = Mathf.Atan2(input.x, input.y);
         angle = Mathf.Rad2Deg * angle;
@@ -46,5 +45,5 @@ public class SpaceshipMovement : MonoBehaviour
     void Move()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
-    }*/
+    }
 }

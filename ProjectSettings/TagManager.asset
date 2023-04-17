@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Planet
-  - Section1
-  - Section2
-  - Section1Area
-  - Section2Area
   - source
+  - Asteroid
+  - Star
+  - Coin
+  - Rocket
+  - Ufo
+  - Alien
   layers:
   - Default
   - TransparentFX
