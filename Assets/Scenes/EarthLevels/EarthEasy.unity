@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.02495846, g: 0.02274444, b: 0.07047759, a: 1}
+  m_IndirectSpecularColor: {r: 0.024967156, g: 0.022754043, b: 0.070475414, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 116847404}
   - component: {fileID: 116847403}
   - component: {fileID: 116847402}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: -16}
+  m_AnchoredPosition: {x: -8, y: -28}
   m_SizeDelta: {x: 736.3228, y: 516.2888}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &116847402
@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 91.07, y: 134.76, z: 111, w: 115.78}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -598,7 +598,7 @@ Transform:
   - {fileID: 41288212}
   - {fileID: 1125745305}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &289041899
 GameObject:
@@ -1047,7 +1047,7 @@ GameObject:
   - component: {fileID: 654203128}
   - component: {fileID: 654203127}
   - component: {fileID: 654203126}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1071,7 +1071,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: -275}
+  m_AnchoredPosition: {x: -8, y: -305}
   m_SizeDelta: {x: 736.3228, y: 516.2888}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &654203126
@@ -1145,7 +1145,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 90.38, y: 132.44, z: 112.27, w: 114.28}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1255,7 +1255,7 @@ GameObject:
   - component: {fileID: 681720952}
   - component: {fileID: 681720954}
   - component: {fileID: 681720953}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2167,7 +2167,7 @@ Transform:
   m_Children:
   - {fileID: 1359539866}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1091538998
 GameObject:
@@ -2403,7 +2403,7 @@ GameObject:
   - component: {fileID: 1199111937}
   - component: {fileID: 1199111936}
   - component: {fileID: 1199111939}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2491,7 +2491,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1199111939
 MonoBehaviour:
@@ -3142,7 +3142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1634189162}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pausa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3156,14 +3156,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634189161}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 908.3781, y: 551.1243, z: -42.91606}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1199111935}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1697274786
 PrefabInstance:
@@ -3358,7 +3358,7 @@ GameObject:
   - component: {fileID: 1755799540}
   - component: {fileID: 1755799539}
   - component: {fileID: 1755799538}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Resume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3382,7 +3382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: 226}
+  m_AnchoredPosition: {x: -8, y: 259}
   m_SizeDelta: {x: 736.3228, y: 516.2888}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1755799538
@@ -3456,7 +3456,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 96.27, y: 136.9, z: 111.05, w: 114.31}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4038,7 +4038,7 @@ GameObject:
   - component: {fileID: 2085610229}
   - component: {fileID: 2085610228}
   - component: {fileID: 2085610227}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4791,7 +4791,7 @@ Transform:
   - {fileID: 501112021}
   - {fileID: 1418640653}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &788902341048933654
 Transform:
@@ -15530,7 +15530,7 @@ RectTransform:
   - {fileID: 7629483983363148678}
   - {fileID: 322230230}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
