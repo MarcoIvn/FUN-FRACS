@@ -7,12 +7,20 @@ public class DialogueScript : MonoBehaviour
 {
     public TextMeshProUGUI dialougueText;
     public string[] lines;
-    public float textSpeed = 0.1f;
+    public float textSpeed = 0.01f;
     int index;
+
+    public RaycastGun showText; // Mostrar operacion
 
     // Start is called before the first frame update
     void Start()
     {
+        showText = FindObjectOfType<RaycastGun>();
+        lines = new string[] { "Bienvenido a este nuevo nivel. (Preciona L para continuar)",
+            "Para este nivel necesitas disparar a los asteroides. (Click izquierdo)",
+            "Puedes moverte con: a, w, s, d, z, space, q, e.",
+            "El planeta Knowhere necesita que destruyas: " + showText.num1 + " " + showText.operation + " " + showText.num2 + " asteroides ",   // Operación 
+            "Dirígete al centro espacial al terminar la misión."};
         dialougueText.text = string.Empty;
         startDialougue();
     }
@@ -20,7 +28,7 @@ public class DialogueScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             if (dialougueText.text == lines[index])
             {

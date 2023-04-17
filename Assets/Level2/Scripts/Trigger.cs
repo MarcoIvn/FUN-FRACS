@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Trigger : MonoBehaviour
 {
@@ -37,15 +38,26 @@ public class Trigger : MonoBehaviour
                     Debug.Log("Asteroids destruidos: " + gunScript.asteroidsDestroyed);
                     Debug.Log("You Win");
                     win.SetActive(true);
+                    Invoke("CargarSiguienteEscena", 5.0f);
                 }
                 else  // "You lose" en la consola
                 {
                     Debug.Log("Asteroids destruidos: " + gunScript.asteroidsDestroyed);
                     Debug.Log("You lose");
                     lose.SetActive(true);
+                    Invoke("CargarMismaEscena", 5.0f);
                 }
             }
         }
     }
-    
+
+    private void CargarSiguienteEscena()
+    {
+        SceneManager.LoadScene("VenusMedium");
+    }
+
+    private void CargarMismaEscena()
+    {
+        SceneManager.LoadScene("VenusEasy");
+    }
 }

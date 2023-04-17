@@ -14,6 +14,8 @@ public class ShipController : MonoBehaviour
     private float rollInput;
     private float rollSpeed = 90f, rollAccelearion = 3.5f;
 
+    public bool isColliding = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +47,25 @@ public class ShipController : MonoBehaviour
         activeStrafeSpeed = Mathf.Lerp(activeStrafeSpeed, Input.GetAxisRaw("Horizontal") * strafeSpeed, strafeAcceleration * Time.deltaTime);
         activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, Input.GetAxisRaw("Hover") * hoverSpeed, hoverAcceleration * Time.deltaTime);
 
-        transform.position += transform.forward * activeForwardSpeed * Time.deltaTime;
-        transform.position += (transform.right * activeStrafeSpeed * Time.deltaTime) + (transform.up * activeHoverSpeed * Time.deltaTime);
+        // Realizar un raycast para detectar si hay un objeto en la dirección del movimiento de la nave
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, activeForwardSpeed * Time.deltaTime))
+        {
+            if (hit.collider.gameObject.tag == "Cube" || hit.collider.gameObject.tag == "Asteroid")
+            {
+                isColliding = true;
+            }
+        }
+        else
+        {
+            isColliding = false;
+        }
+
+        //Mover la nave solo si no está colisionando con un objeto
+        if (!isColliding)
+        {
+            transform.position += transform.forward * activeForwardSpeed * Time.deltaTime;
+            transform.position += (transform.right * activeStrafeSpeed * Time.deltaTime) + (transform.up * activeHoverSpeed * Time.deltaTime);
+        }
     }
 }
