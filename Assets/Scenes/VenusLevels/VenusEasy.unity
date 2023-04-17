@@ -5041,7 +5041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a755d78b9623ec349af30beb2daddb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoMaximo: 50
+  tiempoMaximo: 60
   slider: {fileID: 1474459988}
   tiempoActual: 0
 --- !u!4 &2141178366

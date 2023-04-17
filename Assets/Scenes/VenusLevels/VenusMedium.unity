@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 3311aa6ef205e894d9e80890c20fc5ce, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: d1c0deaa33a7ad04a8b1fcc6dfa226dd, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.016685195, g: 0.005284769, b: 0.02400422, a: 1}
+  m_IndirectSpecularColor: {r: 0.00046902965, g: 0.0015777061, b: 0.004653603, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1786,8 +1786,8 @@ GameObject:
   - component: {fileID: 1175022614}
   - component: {fileID: 1175022613}
   - component: {fileID: 1175022616}
-  - component: {fileID: 1175022615}
   - component: {fileID: 1175022617}
+  - component: {fileID: 1175022618}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Untagged
@@ -1829,30 +1829,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1175022615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1175022612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b343923aac33984aa279b66320c14bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCamera: {fileID: 1841912447}
-  laserOrigin: {fileID: 1938439230}
-  gunRange: 100
-  fireRate: 0.1
-  laserDuration: 0.05
-  asteroidsToDestroy: 7
-  audioLaser: {fileID: 1094222810}
-  audioExplosion: {fileID: 1665001885}
-  asteroidsDestroyed: 0
-  num1: 0
-  num2: 0
-  operation: 
 --- !u!120 &1175022616
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1917,8 +1893,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0, a: 1}
-      key1: {r: 1, g: 0, b: 0, a: 1}
+      key0: {r: 0.70433617, g: 0, b: 1, a: 1}
+      key1: {r: 1, g: 0, b: 0.8137307, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1965,6 +1941,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 909335919}
+--- !u!114 &1175022618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175022612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c4cdeb1dd6937488b9816f1d7062bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 1841912447}
+  laserOrigin: {fileID: 1938439230}
+  gunRange: 100
+  fireRate: 0.1
+  laserDuration: 0.05
+  asteroidsToDestroy: 0
+  audioLaser: {fileID: 1094222810}
+  audioExplosion: {fileID: 1665001885}
+  asteroidsDestroyed: 0
+  num1: 0
+  num2: 0
+  operation: 
 --- !u!1001 &1264279773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2604,7 +2604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.7102146, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2934,7 +2934,7 @@ GameObject:
   - component: {fileID: 1594978351}
   - component: {fileID: 1594978353}
   - component: {fileID: 1594978352}
-  - component: {fileID: 1594978354}
+  - component: {fileID: 1594978355}
   m_Layer: 5
   m_Name: DialoguePanel
   m_TagString: Untagged
@@ -3001,7 +3001,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594978350}
   m_CullTransparentMesh: 1
---- !u!114 &1594978354
+--- !u!114 &1594978355
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3010,7 +3010,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1594978350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db7ef6c587fd61543a2c9d178d2cea0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e31e1784b390a740a7fd35d95bcaa09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialougueText: {fileID: 1036915403}
@@ -3288,21 +3288,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 71e6930540ff9a04291e06d7ea559e24, type: 3}
   m_PrefabInstance: {fileID: 1264279773}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1714857996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714857994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46f275174441ec544a3eec930c3b9b2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  win: {fileID: 1358833435}
-  lose: {fileID: 377044997}
-  gunScript: {fileID: 0}
 --- !u!54 &1714857997
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3345,6 +3330,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlarTimpo: {fileID: 2141178365}
+--- !u!114 &1714858002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714857994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50b3592eca5bb440ba0ab51d1aa8919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  win: {fileID: 1358833435}
+  lose: {fileID: 377044997}
+  gunScript: {fileID: 0}
 --- !u!1 &1769493267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4364,7 +4364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a755d78b9623ec349af30beb2daddb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoMaximo: 50
+  tiempoMaximo: 120
   slider: {fileID: 1474459988}
   tiempoActual: 0
 --- !u!4 &2141178366
