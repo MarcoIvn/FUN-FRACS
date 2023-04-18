@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4661157239680125264}
   - component: {fileID: 7443102842657652123}
   - component: {fileID: 7443102842657652120}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PurpleCoin
-  m_TagString: Coin
+  m_TagString: Coin_Purple
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

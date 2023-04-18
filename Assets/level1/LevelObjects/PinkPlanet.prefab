@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2577481849725448787}
   - component: {fileID: 2577481849725448788}
   - component: {fileID: 2577481849725448789}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PinkPlanet
-  m_TagString: Planet
+  m_TagString: Planet_Pink
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

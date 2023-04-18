@@ -12,8 +12,12 @@ PrefabInstance:
       value: AlienBlue
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 0e53b97781207de43a1d14e1beea922d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0e53b97781207de43a1d14e1beea922d, type: 3}
       propertyPath: m_TagString
-      value: Alien
+      value: Alien_Blue
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0e53b97781207de43a1d14e1beea922d, type: 3}
       propertyPath: m_RootOrder

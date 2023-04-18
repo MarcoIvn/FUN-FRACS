@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 293760379402951847}
   - component: {fileID: 1428256961578514468}
   - component: {fileID: 2591631146122307690}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: YellowStar
-  m_TagString: Star
+  m_TagString: Star_Yellow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

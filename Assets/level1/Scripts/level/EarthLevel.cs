@@ -22,9 +22,9 @@ public class EarthLevel : MonoBehaviour
     private string[] spriteArrays = {"","","","","",""};
     public GameObject objectsUI;
 
-    private int checkAmount = 0;
     private int indexGame = 0;
-
+    public static int currObjAmount;
+    public static string currObj;
     private void Start()
     {
         int listSize = Random.Range(minListSize, maxListSize + 1);
@@ -102,87 +102,35 @@ public class EarthLevel : MonoBehaviour
                 }
                 newSprite += c;
             }
-            Debug.Log(newSprite);
             spriteArrays[ind] = newSprite;
             child.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(newSprite);
             child.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = objects[ind][objects[ind].Length - 1].ToString();
             ind++;
+            currObjAmount = objects[indexGame][objects[indexGame].Length - 1] - 48;
+            currObj = spriteArrays[indexGame];
+            Debug.Log("Current Object: " + currObj);
+            Debug.Log(objects.Count);
         }
     }
 
     private void Update()
     {
-        int currObjAmount = objects[indexGame][objects[indexGame].Length - 1];
-        Debug.Log(currObjAmount);
-        string currObj = spriteArrays[indexGame];
-        if (currObj == "Asteroid_Gray")
-        {
-            checkAmount = PortalEarthLevel.asteroidCount;
-            PortalEarthLevel.blueAlienCount= 0;
-            PortalEarthLevel.pinkPlanetCount = 0;
-            PortalEarthLevel.yellowStarCount= 0;
-            PortalEarthLevel.pinkPlanetCount= 0;
-            PortalEarthLevel.purpleCoinCount= 0;
-        }
-        else if (currObj == "Planet_Blue")
-        {
-            checkAmount = PortalEarthLevel.bluePlanetCount;
-            PortalEarthLevel.blueAlienCount = 0;
-            PortalEarthLevel.pinkPlanetCount = 0;
-            PortalEarthLevel.yellowStarCount = 0;
-            PortalEarthLevel.pinkPlanetCount = 0;
-            PortalEarthLevel.purpleCoinCount = 0;
-        }
- 
-        else if (currObj == "Planet_Pink")
-        {
-            checkAmount = PortalEarthLevel.pinkPlanetCount;
-            PortalEarthLevel.blueAlienCount = 0;
-            PortalEarthLevel.asteroidCount = 0;
-            PortalEarthLevel.yellowStarCount = 0;
-            PortalEarthLevel.pinkPlanetCount = 0;
-            PortalEarthLevel.purpleCoinCount = 0;
-        }
-   
-        else if (currObj == "Star_Yellow")
-        {
-            checkAmount = PortalEarthLevel.yellowStarCount;
-            PortalEarthLevel.blueAlienCount = 0;
-            PortalEarthLevel.pinkPlanetCount = 0;
-            PortalEarthLevel.asteroidCount = 0;
-            PortalEarthLevel.pinkPlanetCount = 0;
-            PortalEarthLevel.purpleCoinCount = 0;
-        }
-        
-        else if (currObj == "Coin_purple")
-        {
-            checkAmount = PortalEarthLevel.purpleCoinCount;
-            PortalEarthLevel.blueAlienCount = 0;
-            PortalEarthLevel.pinkPlanetCount = 0;
-            PortalEarthLevel.yellowStarCount = 0;
-            PortalEarthLevel.pinkPlanetCount = 0;
-            PortalEarthLevel.asteroidCount = 0;
-        }
-
-        else if (currObj == "Alien_Blue")
-        {
-            checkAmount = PortalEarthLevel.blueAlienCount;
-            PortalEarthLevel.asteroidCount = 0;
-            PortalEarthLevel.pinkPlanetCount = 0;
-            PortalEarthLevel.yellowStarCount = 0;
-            PortalEarthLevel.pinkPlanetCount = 0;
-            PortalEarthLevel.purpleCoinCount = 0;
-        }
-        if(currObjAmount != 0)
-        {
-            currObjAmount -= checkAmount;
-            objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currObjAmount.ToString();
-            if(checkAmount == 1)
-                checkAmount = 0;
-        }
-        else
+        objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currObjAmount.ToString();
+        Debug.Log("Current object amount: " + currObjAmount);
+        if (currObjAmount == 0)
         {
             indexGame++;
+            /*if(indexGame > 5)
+            {
+                Debug.Log("YOU WIN");
+            }
+            else
+            {*/
+                currObjAmount = objects[indexGame][objects[indexGame].Length - 1] - 48;
+                currObj = spriteArrays[indexGame];
+                Debug.Log("New Current object: " + currObj);
+                Debug.Log("New current object amount: " + currObjAmount);
+            //}
         }
     }
 

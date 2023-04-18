@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 2435258981799525894}
   - component: {fileID: 6804103208498561639}
   - component: {fileID: 6804103208498561638}
-  - component: {fileID: 6804103208498561637}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BluePlanet
-  m_TagString: Planet
+  m_TagString: Planet_Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,17 +135,3 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &6804103208498561637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7509292823216255091}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c2941c1c74c9094e9113bd4a12143ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  level: {fileID: 0}
-  section1: {fileID: 0}
