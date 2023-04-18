@@ -14,6 +14,9 @@ public class RaycastGun : MonoBehaviour
     public AudioSource audioLaser;
     public AudioSource audioExplosion;
 
+    public GameObject explosion;
+    float explosionTime = 0f;
+
     LineRenderer laserLine;
     float fireTimer;
     public int asteroidsDestroyed = 0; // Nuevo: contador de asteroides destruidos
@@ -29,6 +32,7 @@ public class RaycastGun : MonoBehaviour
     void Start()
     {
         GenerateMathProblem();
+
     }
 
     void Awake()
@@ -56,14 +60,47 @@ public class RaycastGun : MonoBehaviour
                     asteroidsDestroyed++;
                     audioExplosion.Play(); //explosion
                     audioExplosion.volume = 1f;
+                    if (explosionTime <= 0) // Si no hay una explosión activa, crea una nueva
+                    {
+                        Instantiate(explosion, hit.transform.position, Quaternion.identity);
+                        explosionTime = Time.time + 1f; // El tiempo de vida de la explosión será de 2 segundos
+                    }
                 }
-                
+                if (hit.transform.gameObject.CompareTag("AsteroidPlus")) // Destruir planetas
+                {
+                    Destroy(hit.transform.gameObject);
+                    asteroidsDestroyed += 5;
+                    audioExplosion.Play(); //explosion
+                    audioExplosion.volume = 1f;
+                    if (explosionTime <= 0) // Si no hay una explosión activa, crea una nueva
+                    {
+                        Instantiate(explosion, hit.transform.position, Quaternion.identity);
+                        explosionTime = Time.time + 1f; // El tiempo de vida de la explosión será de 2 segundos
+                    }
+                }
+                if (hit.transform.gameObject.CompareTag("AsteroidSad")) // Destruir planetas
+                {
+                    Destroy(hit.transform.gameObject);
+                    asteroidsDestroyed -= 5;
+                    audioExplosion.Play(); //explosion
+                    audioExplosion.volume = 1f;
+                    if (explosionTime <= 0) // Si no hay una explosión activa, crea una nueva
+                    {
+                        Instantiate(explosion, hit.transform.position, Quaternion.identity);
+                        explosionTime = Time.time + 1f; // El tiempo de vida de la explosión será de 2 segundos
+                    }
+                }
             }
             else
             {
                 laserLine.SetPosition(1, rayOring + (playerCamera.transform.forward * gunRange));
             }
             StartCoroutine(ShoorLaser());
+        }
+        if (explosionTime > 0 && Time.time >= explosionTime) // Si hay una explosión activa, destrúyela después de un tiempo
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Explosion"));
+            explosionTime = 0f;
         }
     }
 
@@ -82,6 +119,12 @@ public class RaycastGun : MonoBehaviour
                 asteroidsToDestroy = num1 + num2;
                 break;
             case 1:
+                if (num1 < num2)
+                {
+                    int temp = num1;
+                    num1 = num2;
+                    num2 = temp;
+                }
                 operation = "-";
                 asteroidsToDestroy = num1 - num2;
                 break;
@@ -99,6 +142,19 @@ public class RaycastGun : MonoBehaviour
         // Print the math problem
         // Debug.Log(num1 + " " + operation + " " + num2 + " = ? " + asteroidsToDestroy);
     }
+
+    void OnGUI()
+    {
+        GUI.skin.label.fontSize = 34;
+        float labelWidth = 250;
+        float labelHeight = 80;
+        GUI.Label(new Rect(10, Screen.height - labelHeight - 10, labelWidth, labelHeight), "Asteroides destruidos: " + asteroidsDestroyed);
+        GUI.skin.label.alignment = TextAnchor.LowerCenter;
+        GUI.Label(new Rect(Screen.width / 2 - labelWidth / 2, Screen.height - labelHeight - 10, labelWidth, labelHeight), "Operación:                        " + num1 + " " + operation + " " + num2 + " = ?");
+    }
+
+
+
 
     IEnumerator ShoorLaser()
     {
