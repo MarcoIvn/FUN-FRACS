@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.02495846, g: 0.02274444, b: 0.07047759, a: 1}
+  m_IndirectSpecularColor: {r: 0.024967156, g: 0.022754043, b: 0.070475414, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -894,8 +894,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322230229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.8587}
+  m_LocalScale: {x: 0.49514842, y: 0.49514842, z: 0.49514842}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 810048246}
@@ -906,7 +906,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8, y: 3}
+  m_AnchoredPosition: {x: 13, y: -46}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &501112020
@@ -953,7 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e84bb50f162feb459ee844c73e388f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastDistance: 5000
+  raycastDistance: 600
   objectDistance: 130
   layerMask:
     serializedVersion: 2
@@ -1556,7 +1556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 849023258562233313, guid: b14b25bfe7363d7469265dbab286baf9, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4678816163861216126, guid: b14b25bfe7363d7469265dbab286baf9, type: 3}
       propertyPath: m_Enabled
@@ -1621,6 +1621,10 @@ PrefabInstance:
     - target: {fileID: 6624376081273199275, guid: b14b25bfe7363d7469265dbab286baf9, type: 3}
       propertyPath: m_Name
       value: Spaceship Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624376081273199275, guid: b14b25bfe7363d7469265dbab286baf9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6624376081273199275, guid: b14b25bfe7363d7469265dbab286baf9, type: 3}
       propertyPath: m_TagString
@@ -1824,7 +1828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -109, y: -4}
+  m_AnchoredPosition: {x: 19, y: 176}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &948453280
@@ -5117,7 +5121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuelBar: {fileID: 2017724713}
   fuelText: {fileID: 310726617}
-  fuelConsuption: 0.03
+  fuelConsuption: 0.01
 --- !u!96 &839068622743569822
 TrailRenderer:
   serializedVersion: 2
@@ -15466,7 +15470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

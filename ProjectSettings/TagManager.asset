@@ -13,11 +13,17 @@ TagManager:
   - Ufo
   - Alien
   - opciones
+  - Alien_Blue
+  - Planet_Blue
+  - Star_Yellow
+  - Coin_Purple
+  - Planet_Pink
+  - Asteroid_Gray
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - GrabObject
   - Water
   - UI
   - Player

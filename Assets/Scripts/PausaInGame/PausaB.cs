@@ -10,7 +10,7 @@ public class PausaB : MonoBehaviour
 
     [SerializeField] private GameObject menuPausa;
 
-    private bool juegoPausado = false;
+    public static bool juegoPausado = false;
 
 
     void Update()
@@ -30,7 +30,7 @@ public class PausaB : MonoBehaviour
     }
     public void Reanudar()
     {
-        juegoPausado = true;
+        juegoPausado = false;
         Time.timeScale = 1f;
         botonPausa.SetActive(true);
         menuPausa.SetActive(false);

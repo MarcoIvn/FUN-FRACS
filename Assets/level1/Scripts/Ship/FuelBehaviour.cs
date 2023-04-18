@@ -21,16 +21,19 @@ public class FuelBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Fuel bar : 380width - 100% power
-        currentSpeed = Ship.PlayerShip.Velocity.magnitude;
-        float fuelToConsume = (currentSpeed * fuelConsuption) / 195f;
-        if(fuelToConsume> 0)
+        if(PausaB.juegoPausado == false)
         {
-            fuelBar.rectTransform.sizeDelta = new Vector2(fuelBar.rectTransform.sizeDelta.x - (fuelToConsume * 380f / 100f), fuelBar.rectTransform.sizeDelta.y);
-            fuelSubs = (fuelBar.rectTransform.sizeDelta.x - (fuelToConsume * 380f / 100f)) * 100 / 380;
+            //Fuel bar : 380width - 100% power
+            currentSpeed = Ship.PlayerShip.Velocity.magnitude;
+            float fuelToConsume = (currentSpeed * fuelConsuption) / 195f;
+            if (fuelToConsume > 0)
+            {
+                fuelBar.rectTransform.sizeDelta = new Vector2(fuelBar.rectTransform.sizeDelta.x - (fuelToConsume * 380f / 100f), fuelBar.rectTransform.sizeDelta.y);
+                fuelSubs = (fuelBar.rectTransform.sizeDelta.x - (fuelToConsume * 380f / 100f)) * 100 / 380;
+            }
+            fuelText.text = Math.Round(fuelSubs, 0).ToString() + " %";
+            if (fuelBar.rectTransform.sizeDelta.x < 0)
+                Debug.Log("OUT OF FUEL");
         }
-        fuelText.text = Math.Round(fuelSubs, 0).ToString() + " %";
-        if (fuelBar.rectTransform.sizeDelta.x < 0)
-            Debug.Log("OUT OF FUEL");
     }
 }
