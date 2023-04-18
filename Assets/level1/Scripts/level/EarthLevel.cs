@@ -115,22 +115,23 @@ public class EarthLevel : MonoBehaviour
 
     private void Update()
     {
-        objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currObjAmount.ToString();
+        if(indexGame <= objects.Count -1)
+            objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currObjAmount.ToString();
         Debug.Log("Current object amount: " + currObjAmount);
         if (currObjAmount == 0)
         {
             indexGame++;
-            /*if(indexGame > 5)
+            if(indexGame > objects.Count-1)
             {
                 Debug.Log("YOU WIN");
             }
             else
-            {*/
+            {
                 currObjAmount = objects[indexGame][objects[indexGame].Length - 1] - 48;
                 currObj = spriteArrays[indexGame];
                 Debug.Log("New Current object: " + currObj);
                 Debug.Log("New current object amount: " + currObjAmount);
-            //}
+            }
         }
     }
 
