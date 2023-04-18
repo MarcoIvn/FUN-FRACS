@@ -28,8 +28,6 @@ public class EarthLevel : MonoBehaviour
     private void Start()
     {
         int listSize = Random.Range(minListSize, maxListSize + 1);
-        
-
         switch (difficultyLevel)
         {
             case DifficultyLevel.Easy:
@@ -115,9 +113,11 @@ public class EarthLevel : MonoBehaviour
 
     private void Update()
     {
-        if(indexGame <= objects.Count -1)
+        if (PausaB.juegoPausado == false)
+            Cursor.visible = false;
+        if (indexGame <= objects.Count -1)
             objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currObjAmount.ToString();
-        Debug.Log("Current object amount: " + currObjAmount);
+        //Debug.Log("Current object amount: " + currObjAmount);
         if (currObjAmount == 0)
         {
             indexGame++;
@@ -129,8 +129,8 @@ public class EarthLevel : MonoBehaviour
             {
                 currObjAmount = objects[indexGame][objects[indexGame].Length - 1] - 48;
                 currObj = spriteArrays[indexGame];
-                Debug.Log("New Current object: " + currObj);
-                Debug.Log("New current object amount: " + currObjAmount);
+                /*Debug.Log("New Current object: " + currObj);
+                Debug.Log("New current object amount: " + currObjAmount);*/
             }
         }
     }

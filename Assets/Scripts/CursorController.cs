@@ -5,7 +5,7 @@ using UnityEngine;
 public class CursorController : MonoBehaviour
 {
     public static CursorController instance;
-    public Texture2D shooter;
+    public static Texture2D shooter;
 
     public void Awake()
     {
@@ -23,8 +23,13 @@ public class CursorController : MonoBehaviour
         
     }
 
-    public void setShootCursor()
+    public static void setShootCursor()
     {
         Cursor.SetCursor(shooter, new Vector2(shooter.width/2,shooter.height/2), CursorMode.ForceSoftware); 
+    }
+
+    public static void setDefaultCursor()
+    {
+        Cursor.SetCursor(null, Vector3.zero, CursorMode.ForceSoftware);
     }
 }

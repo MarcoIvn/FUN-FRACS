@@ -18,7 +18,7 @@ namespace FLFlight.UI
 
         private void Update()
         {
-            if (crosshair != null && Ship.PlayerShip != null)
+            if (crosshair != null && Ship.PlayerShip != null && PausaB.juegoPausado == false)
             {
                 crosshair.transform.position = Input.mousePosition;
                 Cursor.visible = false;

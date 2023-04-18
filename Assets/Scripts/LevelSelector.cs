@@ -13,10 +13,10 @@ public class LevelSelector : MonoBehaviour
     private GameObject currentLevel => levels[currentIndex];
     private GameObject planetMenu, mainMenu, settingsMenu;
     private int currentIndex = 0;
-    private bool laClicked, raClicked,startClicked, settingsClicked , difficultyClicked, returnClicked;
+    private bool laClicked, raClicked,startClicked, settingsClicked , difficultyClicked, returnClicked,quitClicked;
     public TMP_Text planetText;
     public GameObject generalView;
-    public Button leftArrow, rightArrow, startButton, settingsbutton, easyBtn, mediumBtn, hardBtn, returnBtn;
+    public Button leftArrow, rightArrow, startButton, settingsbutton, easyBtn, mediumBtn, hardBtn, returnBtn,quitBtn;
     private string levelChoice;
    
 
@@ -26,6 +26,9 @@ public class LevelSelector : MonoBehaviour
     }
     private void Awake()
     {
+        CursorController.setDefaultCursor();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         startClicked = false;
         //No level still choiced
         levelChoice = "";
@@ -39,6 +42,7 @@ public class LevelSelector : MonoBehaviour
         rightArrow.onClick.AddListener(taskOnClickra);
         startButton.onClick.AddListener(taskOnClickStart);
         //settingsbutton.onClick.AddListener(taskOnClickSettings);
+        quitBtn.onClick.AddListener(taskOnClickquit);
         easyBtn.onClick.AddListener(taskOnClickEasy);
         mediumBtn.onClick.AddListener(taskOnClickMedium);
         hardBtn.onClick.AddListener(taskOnClickHard);
@@ -66,8 +70,10 @@ public class LevelSelector : MonoBehaviour
             planetMenu.SetActive(true);
             mainMenu.SetActive(false);
             changePlanetText(currentLevel);
+            
             if (levels.Count > 0)
             {
+                
                 currentIndex = 0;
                 currentLevel.SetActive(true);
             }
@@ -82,6 +88,12 @@ public class LevelSelector : MonoBehaviour
             SceneManager.LoadScene("Assets/Scenes/Settings.unity", LoadSceneMode.Single);
             settingsClicked = true;
         }*/
+        if (quitClicked) 
+        {
+            Debug.Log("salir del juego");
+            Application.Quit();
+            quitClicked = false;
+        }
         if (difficultyClicked)
         {
             difficultyClicked = false;
@@ -223,7 +235,11 @@ public class LevelSelector : MonoBehaviour
     {
         settingsClicked = true;
     }*/
-
+    private void taskOnClickquit()
+    {
+        quitClicked = true;
+    
+    }
     private void taskOnClickReturn()
     {
         returnClicked = true;
