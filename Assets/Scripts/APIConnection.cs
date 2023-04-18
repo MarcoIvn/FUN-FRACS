@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class APIConnection : MonoBehaviour
 {
+    public const string baseURL = "http://20.83.162.38/";
+    private const string LOGIN_URL = baseURL + "api/dologin/"; // Replace with your actual login URL
     public TMP_InputField group, numberList;
 
     void Start(){}
@@ -37,7 +39,6 @@ public class APIConnection : MonoBehaviour
         StartCoroutine(SendLoginData(gr, nl));
     }
     
-    private const string LOGIN_URL = "http://127.0.0.1:8000/api/dologin/"; // Replace with your actual login URL
 
     [System.Serializable]
     public class JugadorData{

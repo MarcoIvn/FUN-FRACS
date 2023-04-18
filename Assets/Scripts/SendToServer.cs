@@ -17,6 +17,10 @@ public class SendToServer : MonoBehaviour
         
     }
 
+    public const string baseURL = "http://20.83.162.38/";
+    private const string LOGOUT_URL = baseURL + "api/dologout/"; // Replace with your actual login URL
+    private const string LVLCOMP_URL = baseURL + "api/lvlcomplete/"; // Replace with your actual login URL
+
     public void SendToServerF()
     {
         GameObject px = GameObject.Find("PlayerX");
@@ -41,7 +45,7 @@ public class SendToServer : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("player", data);
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8000/api/dologout/", form))
+        using (UnityWebRequest www = UnityWebRequest.Post(LOGOUT_URL, form))
         {
             yield return www.SendWebRequest();
             if(www.result != UnityWebRequest.Result.Success)
@@ -62,7 +66,7 @@ public class SendToServer : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("player", data);
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8000/api/lvlcomplete/", form))
+        using (UnityWebRequest www = UnityWebRequest.Post(LVLCOMP_URL, form))
         {
             yield return www.SendWebRequest();
             if(www.result != UnityWebRequest.Result.Success)
