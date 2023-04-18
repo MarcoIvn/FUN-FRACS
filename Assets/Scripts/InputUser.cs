@@ -10,7 +10,7 @@ public class InputUser : MonoBehaviour
 {
     //public string numberList, group;
 
-    public TMP_InputField group, numberList;
+    public TMP_InputField grupo, numLista;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +25,8 @@ public class InputUser : MonoBehaviour
 
     public void submitUser()
     {
-        string g = group.text;
-        string n = numberList.text;
+        string g = grupo.text;
+        string n = numLista.text;
         StartCoroutine(SendLoginData(g, n));
         Debug.Log("Enter Pressed");
     }
@@ -34,8 +34,8 @@ public class InputUser : MonoBehaviour
     IEnumerator SendLoginData(string gr, string nl)
     {
         WWWForm form = new WWWForm();
-        form.AddField("listNumber", nl);
-        form.AddField("group", gr);
+        form.AddField("numList", nl);
+        form.AddField("grupo", gr);
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.8.238:8000/api/dologin", form))
         {
@@ -51,8 +51,8 @@ public class InputUser : MonoBehaviour
                 txt = txt.Substring(1);
                 txt = txt.Substring(0, txt.Length - 2);
                 Player ms = JsonUtility.FromJson<Player>(txt);
-                Debug.Log("group: " + ms.group);
-                Debug.Log("list number: " + ms.listNumber);
+                Debug.Log("group: " + ms.grupo);
+                Debug.Log("list number: " + ms.numLista);
                 int i = -1;
                 /*foreach(History h in ms.history)
                 {
@@ -65,8 +65,8 @@ public class InputUser : MonoBehaviour
                 }*/
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
-                pd.player.group = ms.group;
-                pd.player.listNumber = ms.listNumber;
+                pd.player.grupo = ms.grupo;
+                pd.player.numLista = ms.numLista;
                 SceneManager.LoadScene("Assets/Scenes/LevelSelector.unity");
             }
         }

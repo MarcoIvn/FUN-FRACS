@@ -22,19 +22,52 @@ public class SendToServer : MonoBehaviour
         GameObject px = GameObject.Find("PlayerX");
         PlayerData pd = px.GetComponent<PlayerData>();
         string message = JsonUtility.ToJson(pd.player);
-        StartCoroutine(SendPlayerData(message));
+        Debug.Log(message);
+        StartCoroutine(SendLogoutData(message));
+
+    }
+    public void LevelComplete()
+    {
+        GameObject px = GameObject.Find("PlayerX");
+        PlayerData pd = px.GetComponent<PlayerData>();
+        string message = JsonUtility.ToJson(pd.player);
+        Debug.Log(message);
+        StartCoroutine(SendLevelComplete(message));
+
     }
 
-    IEnumerator SendPlayerData(string data)
+    IEnumerator SendLogoutData(string data)
     {
         WWWForm form = new WWWForm();
         form.AddField("player", data);
-        using (UnityWebRequest www = UnityWebRequest.Post("http://40.76.234.232:8000/logout", form))
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8000/api/dologout/", form))
         {
             yield return www.SendWebRequest();
             if(www.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log(www.error);
+                Debug.LogError(www.error);
+            }
+            else
+            {
+                string txt = www.downloadHandler.text;
+                Debug.Log(txt);
+                Application.Quit();
+            }
+        }
+    }
+
+    IEnumerator SendLevelComplete(string data)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("player", data);
+
+        using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8000/api/lvlcomplete/", form))
+        {
+            yield return www.SendWebRequest();
+            if(www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError(www.error);
             }
             else
             {

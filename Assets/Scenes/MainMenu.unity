@@ -352,52 +352,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &653432512
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 653432514}
-  - component: {fileID: 653432513}
-  m_Layer: 0
-  m_Name: SystemForinput
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &653432513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653432512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b4f3e1a5fd68a14aabc2c27f61f64c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: {fileID: 0}
-  numberList: {fileID: 0}
---- !u!4 &653432514
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653432512}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960.0017, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &653440719
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 808030806}
-  - component: {fileID: 808030805}
+  - component: {fileID: 808030807}
   m_Layer: 0
   m_Name: InputSystem
   m_TagString: Untagged
@@ -495,20 +449,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &808030805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808030804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32051ebf201d3a47ba0d21ebc44a8e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  group: {fileID: 1911958951}
-  numberList: {fileID: 2078749894}
 --- !u!4 &808030806
 Transform:
   m_ObjectHideFlags: 0
@@ -524,6 +464,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &808030807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808030804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4f3e1a5fd68a14aabc2c27f61f64c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  group: {fileID: 1911958951}
+  numberList: {fileID: 2078749894}
 --- !u!1 &819750207
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,8 +749,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player:
-    group: 
-    listNumber: 
+    group: 0
+    listNumber: 0
+    calificacion: 0
+    id_session: 0
+    nivel: 
+    dificultad: 
 --- !u!4 &1434811735
 Transform:
   m_ObjectHideFlags: 0
@@ -1171,9 +1129,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 2b4f3e1a5fd68a14aabc2c27f61f64c1, type: 3}
-        m_TargetAssemblyTypeName: InputUser, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 808030807}
+        m_TargetAssemblyTypeName: APIConnection, Assembly-CSharp
+        m_MethodName: submitUser
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1552,7 +1510,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 808030805}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InputUser, Assembly-CSharp
         m_MethodName: inputGroup
         m_Mode: 0
@@ -1980,7 +1938,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 808030805}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InputUser, Assembly-CSharp
         m_MethodName: inputNL
         m_Mode: 0

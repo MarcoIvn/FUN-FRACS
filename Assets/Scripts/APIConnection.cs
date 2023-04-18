@@ -36,14 +36,20 @@ public class APIConnection : MonoBehaviour
         int nl = int_ify(n);
         StartCoroutine(SendLoginData(gr, nl));
     }
+    
     private const string LOGIN_URL = "http://127.0.0.1:8000/api/dologin/"; // Replace with your actual login URL
 
     [System.Serializable]
     public class JugadorData{
         public int grupo;
         public int numLista;
-
     }   
+
+    [System.Serializable]
+    public class Session{
+        public string message;
+        public int id_session;
+    }
     // public IEnumerator SendLoginData(string grupo, string numLista)
     public IEnumerator SendLoginData(int grupo, int numLista)
     {
@@ -51,7 +57,7 @@ public class APIConnection : MonoBehaviour
         JugadorData jugadorData = new JugadorData();
         jugadorData.grupo = grupo;
         jugadorData.numLista = numLista;
-        // Hacerlo Json
+        // Hacerlo Json 
         string player = JsonUtility.ToJson(jugadorData);
         Debug.Log("player" + player);
 
@@ -64,13 +70,32 @@ public class APIConnection : MonoBehaviour
             yield return www.SendWebRequest();
             if(www.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log(www.error);
+                Debug.LogError(www.error);
             }
             else
             {
                 string txt = www.downloadHandler.text;
                 Debug.Log(txt);
+
+                Session ms = JsonUtility.FromJson<Session>(txt);
+                Debug.Log("ID de Sesion = " + ms.id_session);
+                /* 
+                Debug.Log("group: " + ms.grupo);
+                Debug.Log("list number: " + ms.numLista);
+                */
+                GameObject po = GameObject.Find("PlayerX");
+                PlayerData pd = po.GetComponent<PlayerData>();
+                pd.player.grupo = grupo;
+                pd.player.numLista = numLista;
+                pd.player.id_session = ms.id_session;
+                SceneManager.LoadScene("Assets/Scenes/LevelSelector.unity");
             }
         }
+    }
+    
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
     }
 }
