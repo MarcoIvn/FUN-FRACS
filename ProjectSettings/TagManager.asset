@@ -12,6 +12,7 @@ TagManager:
   - Rocket
   - Ufo
   - Alien
+  - opciones
   layers:
   - Default
   - TransparentFX
