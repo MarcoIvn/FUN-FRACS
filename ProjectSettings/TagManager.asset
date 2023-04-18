@@ -4,41 +4,20 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - source
-  - Cube
-  - Explosion
-  - AsteroidPlus
-  - AsteroidSad
-  - Planet_Blue
-  - Planet_Pink
-  - Planet_Orange
-  - Planet_Purple
-  - Asteroid_Gray
-  - Alien_Blue
-  - Alien_Orange
-  - Alien_Purple
-  - Alien_Green
-  - Alien_Pink
-  - Coin_Purple
-  - Coin_Green
-  - Coin_Orange
-  - Star_Yellow
-  - Star_Purple
-  - Star_Green
-  - Star_Blue
-  - Ufo_Green
-  - Ufo_Blue
-  - Ufo_Purple
-  - Rocket_Yellow
-  - Rocket_Green
-  - Rocket_Purple
-  - Undefined
   - Planet
+  - source
+  - Asteroid
+  - Star
+  - Coin
+  - Rocket
+  - Ufo
+  - Alien
+  - opciones
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - GrabObject
+  - 
   - Water
   - UI
   - Player

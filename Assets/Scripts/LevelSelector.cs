@@ -38,7 +38,7 @@ public class LevelSelector : MonoBehaviour
         leftArrow.onClick.AddListener(taskOnClickla);
         rightArrow.onClick.AddListener(taskOnClickra);
         startButton.onClick.AddListener(taskOnClickStart);
-        settingsbutton.onClick.AddListener(taskOnClickSettings);
+        //settingsbutton.onClick.AddListener(taskOnClickSettings);
         easyBtn.onClick.AddListener(taskOnClickEasy);
         mediumBtn.onClick.AddListener(taskOnClickMedium);
         hardBtn.onClick.AddListener(taskOnClickHard);
@@ -73,6 +73,7 @@ public class LevelSelector : MonoBehaviour
             }
             startClicked = false;
         }
+        /*
         if (settingsClicked) 
         {
             planetMenu.SetActive(false);
@@ -80,7 +81,7 @@ public class LevelSelector : MonoBehaviour
             //settingsMenu.SetActive(true);
             SceneManager.LoadScene("Assets/Scenes/Settings.unity", LoadSceneMode.Single);
             settingsClicked = true;
-        }
+        }*/
         if (difficultyClicked)
         {
             difficultyClicked = false;
@@ -217,10 +218,11 @@ public class LevelSelector : MonoBehaviour
     {
         startClicked = true;
     }
+    /*
     private void taskOnClickSettings()
     {
         settingsClicked = true;
-    }
+    }*/
 
     private void taskOnClickReturn()
     {
