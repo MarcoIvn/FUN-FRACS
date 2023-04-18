@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class EarthLevel : MonoBehaviour
 {
+    [SerializeField] private ControladorTiempo controlarTiempo;
     public enum DifficultyLevel { Easy, Medium, Hard }
 
     public DifficultyLevel difficultyLevel;
@@ -19,14 +20,18 @@ public class EarthLevel : MonoBehaviour
     private readonly int[] maxCounts = { 6, 5, 4, 4, 4 }; // max count for each tag
 
     private List<string> objects = new List<string>();
+    private List<GameObject> errors = new List<GameObject>();
     private string[] spriteArrays = {"","","","","",""};
     public GameObject objectsUI;
+    public GameObject errorUI;
+    public static int calificación;
 
     private int indexGame = 0;
     public static int currObjAmount;
     public static string currObj;
     private void Start()
     {
+        controlarTiempo.ActivarTemporizador();
         int listSize = Random.Range(minListSize, maxListSize + 1);
         switch (difficultyLevel)
         {
@@ -109,6 +114,10 @@ public class EarthLevel : MonoBehaviour
             Debug.Log("Current Object: " + currObj);
             Debug.Log(objects.Count);
         }
+        foreach (Transform child in errorUI.transform)
+        {
+            errors.Add(child.gameObject);
+        }
     }
 
     private void Update()
@@ -130,6 +139,21 @@ public class EarthLevel : MonoBehaviour
                 /*Debug.Log("New Current object: " + currObj);
                 Debug.Log("New current object amount: " + currObjAmount);*/
             }
+        }
+        if(PortalEarthLevel.errorCount == 1)
+        {
+            errorUI.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
+            errorUI.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
+        }
+        else if(PortalEarthLevel.errorCount == 2)
+        {
+            errorUI.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(true);
+            errorUI.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
+        }
+        else if(PortalEarthLevel.errorCount == 3)
+        {
+            errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
+            errorUI.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
         }
     }
 

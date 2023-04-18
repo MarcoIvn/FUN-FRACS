@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Final : MonoBehaviour
 {
-    [SerializeField] private ControladorTiempo controlarTimpo;
+    [SerializeField] private ControladorTiempo controlarTiempo;
 
 
     // Start is called before the first frame update
@@ -12,7 +12,7 @@ public class Final : MonoBehaviour
     {
         if (other.CompareTag("source"))
         {
-            controlarTimpo.DesactivarTemporizador();
+            controlarTiempo.DesactivarTemporizador();
         }
     }
 }
