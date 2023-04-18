@@ -113,8 +113,6 @@ public class EarthLevel : MonoBehaviour
 
     private void Update()
     {
-        if (PausaB.juegoPausado == false)
-            Cursor.visible = false;
         if (indexGame <= objects.Count -1)
             objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currObjAmount.ToString();
         //Debug.Log("Current object amount: " + currObjAmount);
