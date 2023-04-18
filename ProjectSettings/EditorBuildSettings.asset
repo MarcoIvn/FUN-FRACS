@@ -75,12 +75,9 @@ EditorBuildSettings:
     path: Assets/Scenes/VenusLevels/VenusEasy.unity
     guid: 9dfe5b3c8e295194a94677e84594116d
   - enabled: 1
-    path: Assets/Scenes/VenusLevels/VenusHard.unity
-    guid: e9e56835e8732964a96e1df750e6c70d
-  - enabled: 1
     path: Assets/Scenes/VenusLevels/VenusMedium.unity
-    guid: 72f47b38a55ac94438c9fe1bc70e1006
+    guid: 4b9fb074b8a0eff42a6c3d10e78873b4
   - enabled: 1
-    path: Assets/Scenes/Settings.unity
-    guid: d7951d168243e2849a90c587cd0fe8d9
+    path: Assets/Scenes/VenusLevels/VenusHard.unity
+    guid: ec4af8d4f2d29594089d287a0e0f1bef
   m_configObjects: {}

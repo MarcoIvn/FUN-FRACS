@@ -26,15 +26,16 @@ public class PausaB : MonoBehaviour
         Time.timeScale = 0f;
         botonPausa.SetActive(false);
         menuPausa.SetActive(true);
-
+        CursorController.setDefaultCursor();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void Reanudar()
     {
-        juegoPausado = false;
         Time.timeScale = 1f;
+        juegoPausado = false;
         botonPausa.SetActive(true);
         menuPausa.SetActive(false);
-
     }
     public void Restart()
     {
