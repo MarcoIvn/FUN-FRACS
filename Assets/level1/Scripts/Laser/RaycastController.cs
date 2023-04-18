@@ -44,8 +44,8 @@ public class RaycastController : MonoBehaviour
             {
                 Debug.DrawLine(transform.position, hit.point, Color.red); // Dibuja el raycast
                                                                           // Comprueba la etiqueta del objeto colisionado
-                if (hit.collider.gameObject.CompareTag("Planet") || hit.collider.CompareTag("Asteroid") || hit.collider.CompareTag("Star") || hit.collider.CompareTag("Coin") || hit.collider.CompareTag("Rocket") || hit.collider.CompareTag("Ufo") || hit.collider.CompareTag("Alien"))
-                {
+                //if (hit.collider.gameObject.CompareTag("Planet") || hit.collider.CompareTag("Asteroid") || hit.collider.CompareTag("Star") || hit.collider.CompareTag("Coin") || hit.collider.CompareTag("Rocket") || hit.collider.CompareTag("Ufo") || hit.collider.CompareTag("Alien"))
+                //{
                     currentObject = hit.collider.gameObject;
                     // Calcula la dirección y la velocidad a la que se moverá el objeto
                     Vector3 objectDirection = hit.point - transform.position;
@@ -64,7 +64,7 @@ public class RaycastController : MonoBehaviour
                     // Actualiza la posición del objeto para que siempre esté a una distancia constante de la nave
                     Vector3 objectPosition = transform.position + transform.forward * objectDistance;
                     currentObject.transform.position = objectPosition;
-                }
+                //}
             }
             else
             {
