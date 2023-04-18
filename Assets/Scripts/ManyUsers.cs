@@ -10,7 +10,6 @@ public class History
 }
 
 [System.Serializable]
-
 public class Player
 {
     //public List<History> history;
