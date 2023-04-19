@@ -14,7 +14,7 @@ public class Player
 {
     //public List<History> history;
     public int grupo, numLista, calificacion, id_session;
-    public string nivel, dificultad;
+    public int nivel, dificultad;
 }
 
 

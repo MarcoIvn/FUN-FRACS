@@ -11,14 +11,13 @@ public class LevelSelector : MonoBehaviour
     List<GameObject> levels = new List<GameObject>();
     public GameObject canvasObject;
     private GameObject currentLevel => levels[currentIndex];
-    private GameObject planetMenu, mainMenu, settingsMenu;
+    private GameObject planetMenu, mainMenu;  /*settingsMenu;*/
     private int currentIndex = 0;
     private bool laClicked, raClicked,startClicked, settingsClicked , difficultyClicked, returnClicked,quitClicked;
     public TMP_Text planetText;
     public GameObject generalView;
     public Button leftArrow, rightArrow, startButton, settingsbutton, easyBtn, mediumBtn, hardBtn, returnBtn,quitBtn;
     private string levelChoice;
-   
 
     // Start is called before the first frame update
     private void Start()
@@ -35,7 +34,7 @@ public class LevelSelector : MonoBehaviour
         //Reference Planet and Main menu
         mainMenu = canvasObject.transform.Find("Main Menu").gameObject;
         planetMenu = canvasObject.transform.Find("Planet Menu").gameObject;
-        settingsMenu = canvasObject.transform.Find("Settings Menu").gameObject;
+        //settingsMenu = canvasObject.transform.Find("PlayerSettings").gameObject;
 
         //Add function when right of left arrow is clicked
         leftArrow.onClick.AddListener(taskOnClickla);
@@ -82,11 +81,10 @@ public class LevelSelector : MonoBehaviour
         /*
         if (settingsClicked) 
         {
+            Debug.Log("SETTINGS CLICKED");
             planetMenu.SetActive(false);
             mainMenu.SetActive(false);
-            //settingsMenu.SetActive(true);
-            SceneManager.LoadScene("Assets/Scenes/Settings.unity", LoadSceneMode.Single);
-            settingsClicked = true;
+            settingsMenu.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(true);
         }*/
         if (quitClicked) 
         {
@@ -230,6 +228,7 @@ public class LevelSelector : MonoBehaviour
     {
         startClicked = true;
     }
+
     /*
     private void taskOnClickSettings()
     {
