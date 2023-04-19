@@ -53,18 +53,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NeptuneLevels/NeptuneMedium.unity
     guid: 7ee0a9ae512edbd47afac6bb509709c4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SaturnLevels/SaturnEasy.unity
     guid: d2039ba380938fe478adab94e865597a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SaturnLevels/SaturnHard.unity
     guid: e2959d90226f6b04185ae1e1b3be69d1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SaturnLevels/SaturnMedium.unity
     guid: 289e412d2d1a48f469964a9604bed7a3
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 2b42f1aa65cfc384ea68a56f8049ce8a
   - enabled: 0
     path: Assets/Scenes/UranLevels/UranEasy.unity
     guid: 83fbf36820ec2b14a8c551246f043ce1
@@ -74,13 +71,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/UranLevels/UranMedium.unity
     guid: 2efc78fec46a5324a93ce90a0ca595f4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/VenusLevels/VenusEasy.unity
     guid: 9dfe5b3c8e295194a94677e84594116d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/VenusLevels/VenusMedium.unity
     guid: 4b9fb074b8a0eff42a6c3d10e78873b4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/VenusLevels/VenusHard.unity
     guid: ec4af8d4f2d29594089d287a0e0f1bef
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2b42f1aa65cfc384ea68a56f8049ce8a
   m_configObjects: {}

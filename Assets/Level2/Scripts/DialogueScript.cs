@@ -16,10 +16,10 @@ public class DialogueScript : MonoBehaviour
     void Start()
     {
         showText = FindObjectOfType<RaycastGun>();
-        lines = new string[] { "Bienvenido a este nuevo nivel. (Preciona L para continuar)",
-            "Para este nivel necesitas disparar a los asteroides. (Click izquierdo)",
+        lines = new string[] { "Bienvenido a este nuevo nivel. (Presiona L para continuar)",
+            "El planeta Knowhere necesita que destruyas los asteroides que bloquean su orbita. (Click izquierdo)",
             "Puedes moverte con: a, w, s, d, z, space, q, e.",
-            "El planeta Knowhere necesita que destruyas: " + showText.num1 + " " + showText.operation + " " + showText.num2 + " asteroides ",   // Operación 
+            "Para esta primera misión debes destruir: " + showText.num1 + " " + showText.operation + " " + showText.num2 + " asteroides ",   // Operación 
             "Dirígete al centro espacial al terminar la misión."};
         dialougueText.text = string.Empty;
         startDialougue();

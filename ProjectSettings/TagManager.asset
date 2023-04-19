@@ -3,7 +3,28 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Planet_Orange
+  - Star_Purple
+  - Coin_Green
+  - Rocket_Purple
+  - Alien_Blue
+  - Alien_Orange
+  - Star_Green
+  - Alien_Green
+  - Ufo_Purple
+  - Ufo_Blue
+  - Ufo_Green
+  - Planet_Purple
+  - Rocket_Yellow
+  - Star_Orange
+  - Star_Pink
+  - Alien_Purple
+  - Coin_Purple
+  - Alien_Pink
+  - Coin_Orange
+  - Undefined
+  - opciones
   layers:
   - Default
   - TransparentFX
