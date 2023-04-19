@@ -175,9 +175,9 @@ public class LevelSelector : MonoBehaviour
             sceneToLoad = "Assets/Scenes/EarthLevels/" + "Earth" + levelChoice +".unity";
             SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
         }
-        else if (currentLevel.name == "Venus2")
+        else if (currentLevel.name == "Mercury2")
         {
-            sceneToLoad = "Assets/Scenes/VenusLevels/" + "Venus" + levelChoice + ".unity";
+            sceneToLoad = "Assets/Scenes/MercuryLevels/" + "Mercury" + levelChoice + ".unity";
             SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
         }
             
@@ -186,9 +186,9 @@ public class LevelSelector : MonoBehaviour
             sceneToLoad = "Assets/Scenes/MarsLevels/" + "Mars" + levelChoice + ".unity";
             SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
         }
-        else if (currentLevel.name == "Mercury4")
+        else if (currentLevel.name == "Venus4")
         {
-            sceneToLoad = "Assets/Scenes/MercuryLevels/" + "Mercury" + levelChoice + ".unity";
+            sceneToLoad = "Assets/Scenes/VenusLevels/" + "Venus" + levelChoice + ".unity";
             SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
         }
         else if (currentLevel.name == "Uran5")
