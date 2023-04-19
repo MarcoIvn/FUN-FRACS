@@ -13,6 +13,8 @@ public class FuelBehaviour : MonoBehaviour
     public TextMeshProUGUI fuelText;
     public float fuelConsuption = 0.05f;
     private float currentSpeed, fuelSubs;
+    public static double currFuel;
+    public static bool outOfFuel = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +33,10 @@ public class FuelBehaviour : MonoBehaviour
                 fuelBar.rectTransform.sizeDelta = new Vector2(fuelBar.rectTransform.sizeDelta.x - (fuelToConsume * 380f / 100f), fuelBar.rectTransform.sizeDelta.y);
                 fuelSubs = (fuelBar.rectTransform.sizeDelta.x - (fuelToConsume * 380f / 100f)) * 100 / 380;
             }
+            currFuel = Math.Round(fuelSubs, 0);
             fuelText.text = Math.Round(fuelSubs, 0).ToString() + " %";
             if (fuelBar.rectTransform.sizeDelta.x < 0)
-                Debug.Log("OUT OF FUEL");
+                outOfFuel = true;
         }
     }
 }
