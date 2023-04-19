@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialougueText: {fileID: 1233259457839361448}
   lines: []
-  textSpeed: 0.1
+  textSpeed: 0.01
   showText: {fileID: 0}
 --- !u!1 &1233259457839361450
 GameObject:
