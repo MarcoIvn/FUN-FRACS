@@ -53,16 +53,7 @@ public class InputUser : MonoBehaviour
                 Player ms = JsonUtility.FromJson<Player>(txt);
                 Debug.Log("group: " + ms.grupo);
                 Debug.Log("list number: " + ms.numLista);
-                int i = -1;
-                /*foreach(History h in ms.history)
-                {
-                    i++;
-                    Debug.Log("index: "+ i);
-                    Debug.Log("level: " + h.level);
-                    Debug.Log("score: " + h.score);
-                    if (h.score == "-1")
-                        Debug.Log("El estudiante esta en el nivel " + ms.history[i-1].level);
-                }*/
+                
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.grupo = ms.grupo;
