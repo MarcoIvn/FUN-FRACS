@@ -17,7 +17,7 @@ public class DialogueScriptM : MonoBehaviour
     void Start()
     {
         showText = FindObjectOfType<RaycastGunM>();
-        lines = new string[] {
+        lines = new string[] { 
             "En esta nueva misión, el planeta Knowhere necesita que destruyas: " 
             + showText.num1 + " " + showText.operation + " " + showText.num2 +  " asteroides ",   // Operación 
             "Dirígete al centro espacial al terminar la misión."};
