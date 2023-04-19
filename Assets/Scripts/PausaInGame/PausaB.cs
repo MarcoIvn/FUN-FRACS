@@ -8,10 +8,14 @@ public class PausaB : MonoBehaviour
 {
     [SerializeField] private GameObject botonPausa;
 
+    [SerializeField] private GameObject botonControles;
+
     [SerializeField] private GameObject menuPausa;
 
+    [SerializeField] private GameObject menuControles;
+
     public static bool juegoPausado = false;
-    public GameObject test;
+    
 
     void Update()
     {
@@ -30,12 +34,24 @@ public class PausaB : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
+    public void Controles()
+    {
+        juegoPausado = true;
+        Time.timeScale = 0f;
+        botonControles.SetActive(false);
+        menuControles.SetActive(true);
+        CursorController.setDefaultCursor();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
     public void Reanudar()
     {
         Time.timeScale = 1f;
         juegoPausado = false;
         botonPausa.SetActive(true);
+        botonControles.SetActive(true);
         menuPausa.SetActive(false);
+        menuControles.SetActive(false);
     }
     public void Restart()
     {
