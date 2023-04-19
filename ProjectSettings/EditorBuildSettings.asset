@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 2b42f1aa65cfc384ea68a56f8049ce8a
-  - enabled: 1
     path: Assets/Scenes/LevelSelector.unity
     guid: 36896d525d0c73442b5bac3cece0105a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/EarthLevels/EarthEasy.unity
     guid: f072a42684e5a26439d948e39575ac1f
   - enabled: 0
@@ -56,15 +53,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NeptuneLevels/NeptuneMedium.unity
     guid: 7ee0a9ae512edbd47afac6bb509709c4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SaturnLevels/SaturnEasy.unity
     guid: d2039ba380938fe478adab94e865597a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SaturnLevels/SaturnHard.unity
     guid: e2959d90226f6b04185ae1e1b3be69d1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SaturnLevels/SaturnMedium.unity
     guid: 289e412d2d1a48f469964a9604bed7a3
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2b42f1aa65cfc384ea68a56f8049ce8a
   - enabled: 0
     path: Assets/Scenes/UranLevels/UranEasy.unity
     guid: 83fbf36820ec2b14a8c551246f043ce1

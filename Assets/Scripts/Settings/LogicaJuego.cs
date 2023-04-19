@@ -20,6 +20,6 @@ public class LogicaJuego : MonoBehaviour
     public void CambiarEscena()
     {
 
-        panelopciones.pantallaOpciones.SetActive(false);
+        //panelopciones.pantallaOpciones.SetActive(false);
     }
 }

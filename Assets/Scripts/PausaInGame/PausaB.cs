@@ -11,7 +11,7 @@ public class PausaB : MonoBehaviour
     [SerializeField] private GameObject menuPausa;
 
     public static bool juegoPausado = false;
-
+    public GameObject test;
 
     void Update()
     {
@@ -45,11 +45,17 @@ public class PausaB : MonoBehaviour
 
 
     }
+    public void Settings() { 
+        
+    
+    }
     public void Quit()
     {
+        juegoPausado = false;
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene("LevelSelector");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Destroy(GameObject.FindWithTag("opciones"));
+        SceneManager.LoadScene(0);
 
 
 
