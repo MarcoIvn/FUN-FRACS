@@ -744,7 +744,7 @@ GameObject:
   - component: {fileID: 686724770}
   m_Layer: 0
   m_Name: PlayerSettings
-  m_TagString: opciones
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -903,7 +903,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5904e-41, y: 5.2861e+20, z: 4.5904e-41, w: 9.403955e-38}
+  m_BoundingSphereOverride: {x: 0, y: 9e-44, z: 0, w: 0.0000000043743107}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -5252,8 +5252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e7e77e19b378244952cca8a29cbbb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelopciones: {fileID: 0}
-  home: {fileID: 1722924344}
 --- !u!1 &2047601616
 GameObject:
   m_ObjectHideFlags: 0

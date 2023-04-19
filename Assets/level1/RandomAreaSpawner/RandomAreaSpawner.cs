@@ -102,4 +102,13 @@ public class RandomAreaSpawner : MonoBehaviour
     {
         CreateAsteroid();
     }
+
+    public void callCreateAsteroid()
+    {
+        if (prefab != null)
+        {
+            for (int i = 0; i < asteroidCount; i++)
+                CreateAsteroid();
+        }
+    }
 }

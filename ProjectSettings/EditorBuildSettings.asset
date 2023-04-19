@@ -6,20 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 2b42f1aa65cfc384ea68a56f8049ce8a
-  - enabled: 1
     path: Assets/Scenes/LevelSelector.unity
     guid: 36896d525d0c73442b5bac3cece0105a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/EarthLevels/EarthEasy.unity
     guid: f072a42684e5a26439d948e39575ac1f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/EarthLevels/EarthHard.unity
-    guid: ca725901286512a4b98dd139a1ae466d
-  - enabled: 0
+    guid: 2b9f23fd7a00bd144a52ece6ae0836e1
+  - enabled: 1
     path: Assets/Scenes/EarthLevels/EarthMedium.unity
-    guid: bd560ad0a5095ed49af1a3753c5d79e7
+    guid: 62e0dbcd5cb8308478795d64e308f0bb
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/JupiterLevels/JupiterEasy.unity
     guid: 86f86ed64a4d58342adaa370d014458b
@@ -74,13 +77,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/UranLevels/UranMedium.unity
     guid: 2efc78fec46a5324a93ce90a0ca595f4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/VenusLevels/VenusEasy.unity
     guid: 9dfe5b3c8e295194a94677e84594116d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/VenusLevels/VenusMedium.unity
     guid: 4b9fb074b8a0eff42a6c3d10e78873b4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/VenusLevels/VenusHard.unity
     guid: ec4af8d4f2d29594089d287a0e0f1bef
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2b42f1aa65cfc384ea68a56f8049ce8a
   m_configObjects: {}
