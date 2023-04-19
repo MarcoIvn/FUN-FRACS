@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class APIConnection : MonoBehaviour
 {
-    public const string baseURL = "http://20.83.162.38:8000/";
+    public const string baseURL = "http://127.0.0.1:8000/";
     private const string LOGIN_URL = baseURL + "api/dologin/"; // Replace with your actual login URL
     public TMP_InputField group, numberList;
 
@@ -18,7 +18,7 @@ public class APIConnection : MonoBehaviour
     void Update(){}
 
     private int int_ify(string str){
-        int strToInt = -1;  
+        int strToInt = -1;
         if (int.TryParse(str, out strToInt)) {
             // Conversion was successful
             Debug.Log("Conversion successful! idToInt = " + strToInt);
@@ -67,11 +67,8 @@ public class APIConnection : MonoBehaviour
         form.AddField("player", player);
         // Create a UnityWebRequest using the PUT method
         using (UnityWebRequest www = UnityWebRequest.Post(LOGIN_URL, form))
-        {   
-            Debug.Log("Sending form...");
+        {
             yield return www.SendWebRequest();
-            Debug.Log("Done!");
-
             if(www.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError(www.error);
@@ -83,8 +80,11 @@ public class APIConnection : MonoBehaviour
 
                 Session ms = JsonUtility.FromJson<Session>(txt);
                 Debug.Log("ID de Sesion = " + ms.id_session);
+                /* 
+                Debug.Log("group: " + ms.grupo);
+                Debug.Log("list number: " + ms.numLista);
+                */
                 GameObject po = GameObject.Find("PlayerX");
-
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.grupo = grupo;
                 pd.player.numLista = numLista;
