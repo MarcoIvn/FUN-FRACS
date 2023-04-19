@@ -19,6 +19,11 @@ TagManager:
   - Coin_Purple
   - Planet_Pink
   - Asteroid_Gray
+  - Cube
+  - Explosion
+  - AsteroidPlus
+  - AsteroidSad
+  - portals
   layers:
   - Default
   - TransparentFX
