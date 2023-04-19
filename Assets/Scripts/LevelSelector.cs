@@ -149,12 +149,12 @@ public class LevelSelector : MonoBehaviour
     {
         if (currentLevel.name == "Earth1")
             planetText.text = "Tierra";
-        else if (currentLevel.name == "Mercury2")
-            planetText.text = "Mercurio";
+        else if (currentLevel.name == "Venus2")
+            planetText.text = "Venus";
         else if (currentLevel.name == "Mars3")
             planetText.text = "Marte";
-        else if (currentLevel.name == "Venus4")
-            planetText.text = "Venus";
+        else if (currentLevel.name == "Mercury4")
+            planetText.text = "Mercurio";
         else if (currentLevel.name == "Uran5")
             planetText.text = "Urano";
         else if (currentLevel.name == "Jupiter6")
