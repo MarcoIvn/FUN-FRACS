@@ -26,82 +26,24 @@ public class PortalEarthLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if(ControladorTiempo.tiempoActivado == true)
         {
-            /*cam.transform.position = spawnPoint.position;
-            other.transform.parent.position = spawnPoint.position;*/
-        }else if (other.CompareTag(EarthLevel.currObj))
-        {
-            EarthLevel.currObjAmount--;
-            Destroy(other.gameObject);
-        }
-        else
-        {
-            errorCount++;
-            Destroy(other.gameObject);
-        }
-
-        /*else if (other.CompareTag("Asteroid"))
-        {
-            if(EarthLevel.currObj == "Asteroid_Gray") {
+            if (other.CompareTag("Player"))
+            {
+                /*cam.transform.position = spawnPoint.position;
+                other.transform.parent.position = spawnPoint.position;*/
+            }
+            else if (other.CompareTag(EarthLevel.currObj))
+            {
                 EarthLevel.currObjAmount--;
                 Destroy(other.gameObject);
-                Debug.Log("Asteroid Found");
             }
             else
             {
-                Debug.Log("ERROR");
+                errorCount++;
                 Destroy(other.gameObject);
             }
-            
-        }else if (other.CompareTag("Planet"))
-        {
-            if(other.name == "BluePlanet(Clone)")
-            {
-                if(EarthLevel.currObj == "Planet_Blue")
-                {
-                    EarthLevel.currObjAmount--;
-                    Destroy(other.gameObject);
-                }
-                else
-                {
-                    Debug.Log("ERROR");
-                    Destroy(other.gameObject);
-                }
-
-            }    
-            else if(other.name == "PinkPlanet(Clone)" )
-                if(EarthLevel.currObj == "Planet_Pink")
-                {
-                    EarthLevel.currObjAmount--;
-                    Destroy(other.gameObject);
-                }
-                else
-                {
-                    Debug.Log("ERROR");
-                    Destroy(other.gameObject);
-                }
-            Debug.Log("Planet Found");
         }
-        else if (other.CompareTag("Star") && EarthLevel.currObj == "Star_Yellow")
-        {
-            if()
-            EarthLevel.currObjAmount--;
-            Destroy(other.gameObject);
-            Debug.Log("Star Found");
-        }
-        else if (other.CompareTag("Alien") && EarthLevel.currObj == "Alien_Blue")
-        {
-            EarthLevel.currObjAmount--;
-            Destroy(other.gameObject);
-            Debug.Log("Alien Found");
-        }
-        else if (other.CompareTag("Coin") && EarthLevel.currObj == "Coin_Purple")
-        {
-            EarthLevel.currObjAmount--;
-            Destroy(other.gameObject);
-            Debug.Log("Coin Found");
-        }*/
     }
 
     /*private void OnCollisionEnter(Collision collision)

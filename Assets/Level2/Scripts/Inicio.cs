@@ -10,7 +10,7 @@ public class Inicio : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("source"))
+        if (other.CompareTag("source") || other.CompareTag("Player"))
         {
             controlarTimpo.ActivarTemporizador();
         }

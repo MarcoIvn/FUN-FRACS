@@ -9,7 +9,7 @@ public class ControladorTiempo : MonoBehaviour
     [SerializeField] private float tiempoMaximo;
     [SerializeField] private Slider slider;
     public float tiempoActual;
-    private bool tiempoActivado = false;
+    public static bool tiempoActivado = false;
 
     /*
     private void Start()

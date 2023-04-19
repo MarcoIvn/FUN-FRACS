@@ -19,6 +19,29 @@ TagManager:
   - Coin_Purple
   - Planet_Pink
   - Asteroid_Gray
+  - Cube
+  - Rocket_Purple
+  - Rocket_Yellow
+  - Ufo_Green
+  - Ufo_Purple
+  - Ufo_Blue
+  - Planet_Orange
+  - Planet_Purple
+  - Coin_Yellow
+  - Coin_Green
+  - Star_Orange
+  - Star_Green
+  - Star_Pink
+  - Alien_Pink
+  - Alien_Orange
+  - Alien_Green
+  - Alien_Purple
+  - Coin_Orange
+  - Star_Purple
+  - Explosion
+  - AsteroidPlus
+  - AsteroidSad
+  - Start
   layers:
   - Default
   - TransparentFX

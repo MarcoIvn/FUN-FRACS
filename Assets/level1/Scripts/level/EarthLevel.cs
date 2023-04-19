@@ -8,22 +8,46 @@ using UnityEngine.UI;
 
 public class EarthLevel : MonoBehaviour
 {
-    [SerializeField] private ControladorTiempo controlarTiempo;
+    [SerializeField] private static ControladorTiempo controlarTiempo;
     public enum DifficultyLevel { Easy, Medium, Hard }
 
     public DifficultyLevel difficultyLevel;
     public int minListSize;
     public int maxListSize;
 
-    private readonly string[] tags = { "Asteroid", "Planet", "Star", "Coin", "Alien" };
-    private readonly string[] colors = { "Green", "Orange", "Blue", "Pink", "Yellow", "Purple" };
-    private readonly int[] maxCounts = { 6, 5, 4, 4, 4 }; // max count for each tag
+    // List of tags
+    private readonly List<string> tags = new List<string> { "Asteroid", "Planet", "Star", "Coin", "Alien", "Ufo", "Rocket" };
+    private readonly Dictionary<string, int> maxCounts = new Dictionary<string, int>
+{
+    { "Asteroid", 6 },
+    { "Planet", 5 },
+    { "Star", 4 },
+    { "Coin", 3 },
+    { "Alien", 6 },
+    { "Ufo", 4 },
+    { "Rocket", 3 }
+};
+
+    // Dictionary to store the colors for each object type
+    private readonly Dictionary<string, string[]> objectColors = new Dictionary<string, string[]>
+{
+    { "Asteroid", new string[] { "Gray" } },
+    { "Planet", new string[] { "Blue", "Pink", "Orange" } },
+    { "Star", new string[] { "Yellow", "Purple", "Green", "Pink" } },
+    { "Coin", new string[] { "Purple", "Green", "Orange" } },
+    { "Alien", new string[] { "Blue", "Orange", "Purple", "Green", "Pink" } },
+    { "Ufo", new string[] { "Green", "Blue", "Purple" } },
+    { "Rocket", new string[] { "Yellow", "Green" } }
+};
+
 
     private List<string> objects = new List<string>();
     private List<GameObject> errors = new List<GameObject>();
     private string[] spriteArrays = {"","","","","",""};
     public GameObject objectsUI;
     public GameObject errorUI;
+    private bool crossLost = false, win = false;
+    private int objsCompleted = 0;
     public static int calificación;
 
     private int indexGame = 0;
@@ -31,61 +55,15 @@ public class EarthLevel : MonoBehaviour
     public static string currObj;
     private void Start()
     {
-        controlarTiempo.ActivarTemporizador();
-        int listSize = Random.Range(minListSize, maxListSize + 1);
-        switch (difficultyLevel)
-        {
-            case DifficultyLevel.Easy:
-                objects.Add("Asteroid_Gray_" + Random.Range(1, maxCounts[GetTagIndex("Asteroid")] + 1));
-                objects.Add("Planet_Blue_" + Random.Range(1, maxCounts[GetTagIndex("Planet")] + 1));
-                objects.Add("Planet_Pink_" + Random.Range(1, maxCounts[GetTagIndex("Planet")] + 1));
-                objects.Add("Star_Yellow_" + Random.Range(1, maxCounts[GetTagIndex("Star")] + 1));
-                objects.Add("Coin_Purple_" + Random.Range(1, maxCounts[GetTagIndex("Coin")] + 1));
-                objects.Add("Alien_Blue_" + Random.Range(1, maxCounts[GetTagIndex("Alien")] + 1));
-                break;
-
-            case DifficultyLevel.Medium:
-                objects.Add("Asteroid_Gray_" + Random.Range(1, maxCounts[GetTagIndex("Asteroid")] + 1));
-                objects.Add("Planet_Blue_" + Random.Range(1, maxCounts[GetTagIndex("Planet")] + 1));
-                objects.Add("Planet_Pink_" + Random.Range(1, maxCounts[GetTagIndex("Planet")] + 1));
-                objects.Add("Star_" + colors[Random.Range(4, 6)] + "_" + Random.Range(1, maxCounts[GetTagIndex("Star")] + 1));
-                objects.Add("Coin_Purple_" + Random.Range(1, maxCounts[GetTagIndex("Coin")] + 1));
-                objects.Add("Alien_" + colors[Random.Range(1, 3)] + "_" + Random.Range(1, maxCounts[GetTagIndex("Alien")] + 1));
-                break;
-
-            case DifficultyLevel.Hard:
-                for (int i = 0; i < 2; i++)
-                {
-                    List<string> tempList = new List<string>();
-                    tempList.Add("Asteroid_Gray_" + Random.Range(1, maxCounts[GetTagIndex("Asteroid")] + 1));
-                    tempList.Add("Planet_Blue_" + Random.Range(1, maxCounts[GetTagIndex("Planet")] + 1));
-                    tempList.Add("Planet_Pink_" + Random.Range(1, maxCounts[GetTagIndex("Planet")] + 1));
-                    tempList.Add("Star_" + colors[Random.Range(4, 6)] + "_" + Random.Range(1, maxCounts[GetTagIndex("Star")] + 1));
-                    tempList.Add("Coin_Purple_" + Random.Range(1, maxCounts[GetTagIndex("Coin")] + 1));
-                    tempList.Add("Alien_" + colors[Random.Range(1, 3)] + "_" + Random.Range(1, maxCounts[GetTagIndex("Alien")] + 1));
-                    objects.AddRange(tempList);
-                }
-                break;
-        }
-
-        while (objects.Count < listSize)
-        {
-            string tag = tags[Random.Range(0, tags.Length)];
-            int maxCount = maxCounts[GetTagIndex(tag)];
-
-            if (maxCount > 0 && CountObjects(objects, tag) < maxCount)
-            {
-                string color = (tag == "Asteroid") ? "verde" : colors[Random.Range(0, colors.Length)];
-                int count = Random.Range(1, maxCount - CountObjects(objects, tag) + 1);
-                objects.Add(tag + "_" + color + "_" + count);
-            }
-        }
+        objects = GenerateRandomObjectList(difficultyLevel);
 
         ShuffleList(objects);
         foreach (string obj in objects)
         {
             Debug.Log(obj);
         }
+
+        ActivateSpawners(objects);
 
         List<GameObject> tagObjs = new List<GameObject>();
         int ind = 0;
@@ -112,7 +90,6 @@ public class EarthLevel : MonoBehaviour
             currObjAmount = objects[indexGame][objects[indexGame].Length - 1] - 48;
             currObj = spriteArrays[indexGame];
             Debug.Log("Current Object: " + currObj);
-            Debug.Log(objects.Count);
         }
         foreach (Transform child in errorUI.transform)
         {
@@ -127,10 +104,14 @@ public class EarthLevel : MonoBehaviour
         //Debug.Log("Current object amount: " + currObjAmount);
         if (currObjAmount == 0)
         {
+            objsCompleted++;
+            objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(1).gameObject.SetActive(true);
             indexGame++;
             if(indexGame > objects.Count-1)
             {
                 Debug.Log("YOU WIN");
+                win = true;
             }
             else
             {
@@ -154,37 +135,97 @@ public class EarthLevel : MonoBehaviour
         {
             errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
             errorUI.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
+            crossLost = true;
         }
     }
 
-    private int GetTagIndex(string tag)
+    private List<string> GenerateRandomObjectList(DifficultyLevel difficulty)
     {
-        for (int i = 0; i < tags.Length; i++)
+        List<string> objects = new List<string>();
+
+        // Define the number of objects to include in the list
+        int objectCount = 6;
+
+
+        // Check difficulty level to determine which colors to use
+        Dictionary<string, string[]> colors = objectColors;
+
+        if (difficulty == DifficultyLevel.Easy)
         {
-            if (tags[i] == tag)
-            {
-                return i;
-            }
+            colors = new Dictionary<string, string[]>
+        {
+            { "Asteroid", new string[] { "Gray" } },
+            { "Planet", new string[] { "Blue", "Pink" } },
+            { "Star", new string[] { "Yellow", "Purple" } },
+            { "Coin", new string[] { "Purple", "Green" } },
+            { "Alien", new string[] { "Blue", "Orange" } },
+            { "Ufo", new string[] { "Green", "Blue" } },
+            { "Rocket", new string[] { "Yellow" } }
+        };
+        }
+        else if (difficulty == DifficultyLevel.Medium)
+        {
+            colors = new Dictionary<string, string[]>
+        {
+            { "Asteroid", new string[] { "Gray" } },
+            { "Planet", new string[] { "Blue", "Pink", "Orange" } },
+            { "Star", new string[] { "Yellow", "Purple", "Green" } },
+            { "Coin", new string[] { "Purple", "Green", "Orange" } },
+            { "Alien", new string[] { "Blue", "Orange", "Purple" } },
+            { "Ufo", new string[] { "Green", "Blue", "Purple" } },
+            { "Rocket", new string[] { "Yellow", "Green" } }
+        };
+        }
+        else if (difficulty == DifficultyLevel.Hard)
+        {
+            colors = objectColors;
         }
 
-        return -1;
+        // Loop through the tags and select a color randomly from the available colors
+        for (int i = 0; i < objectCount; i++)
+        {
+            string tag = tags[i];
+            string[] availableColors = colors[tag];
+            string color = availableColors[Random.Range(0, availableColors.Length)];
+            int count = Random.Range(1, maxCounts[tag] + 1);
+
+            objects.Add(tag + "_" + color + "_" + count);
+        }
+
+        return objects;
     }
 
-    private int CountObjects(List<string> objects, string tag)
+    public static void ActivateSpawners(List<string> objects)
     {
-        int count = 0;
+        // Find the GameObject that contains the spawners
+        GameObject spawnerParent = GameObject.Find("Spawners");
+        if (spawnerParent == null)
+        {
+            Debug.LogError("No se pudo encontrar el GameObject que contiene los spawners.");
+            return;
+        }
 
+        // Enable the spawners for the objects in the list
         foreach (string obj in objects)
         {
-            if (obj.StartsWith(tag))
+            string[] objInfo = obj.Split('_');
+            string tag = objInfo[0];
+            string color = objInfo[1];
+
+            // Find the spawner for the object
+            string spawnerName = tag + "_" + color + "_Spawner";
+            Transform spawner = spawnerParent.transform.Find(spawnerName);
+
+            if (spawner != null)
             {
-                count++;
+                spawner.gameObject.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning("No se pudo encontrar el spawner para el objeto " + obj);
             }
         }
-
-        return count;
     }
-
     private void ShuffleList<T>(List<T> list)
     {
         for (int i = list.Count - 1; i > 0; i--)
@@ -193,6 +234,19 @@ public class EarthLevel : MonoBehaviour
             T temp = list[i];
             list[i] = list[j];
             list[j] = temp;
+        }
+    }
+
+    private void getCalificación()
+    {
+        if(!crossLost && !FuelBehaviour.outOfFuel && win) { 
+
+        }else if(objsCompleted < 5)
+        {
+
+        }else if(objsCompleted < 3)
+        {
+
         }
     }
 }
