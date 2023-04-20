@@ -32,22 +32,22 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/JupiterLevels/JupiterMedium.unity
     guid: 8a2ba9f641432b64287a6dde71cfcb64
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MarsLevels/MarsEasy.unity
     guid: 2d7a926bbc8cd89409185b158811e1d4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MarsLevels/MarsHard.unity
     guid: 1668cdb367162964d959ce03c7395fb4
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MarsLevels/MarsMedium.unity
     guid: 056c0619c0b78584882265ba2fdb7d45
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MercuryLevels/MercuryEasy.unity
     guid: f71759ea709cd2147a6258f720441291
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MercuryLevels/MercuryHard.unity
     guid: 50957a8047fc67d48a99c06a1e1cb777
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MercuryLevels/MercuryMedium.unity
     guid: caa0ae2b1b072d446bbf26d991debe29
   - enabled: 0
