@@ -1777,6 +1777,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7629483984077867848}
     m_Modifications:
+    - target: {fileID: 37923251271856400, guid: 4df53fbaec4fd2b4dabf08b6273f464c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 37923253044117354, guid: 4df53fbaec4fd2b4dabf08b6273f464c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 37923253285082265, guid: 4df53fbaec4fd2b4dabf08b6273f464c, type: 3}
       propertyPath: m_Name
       value: ShipGUI

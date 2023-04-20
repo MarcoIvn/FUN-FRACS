@@ -55,6 +55,10 @@ public class EarthLevel : MonoBehaviour
     public static string currObj;
     private void Start()
     {
+        errorUI.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
+        errorUI.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
+        errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(false);
+
         objects = GenerateRandomObjectList(difficultyLevel);
 
         ShuffleList(objects);
@@ -136,6 +140,7 @@ public class EarthLevel : MonoBehaviour
             errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
             errorUI.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
             crossLost = true;
+            Debug.Log("Perdiste");
         }
     }
 

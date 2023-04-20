@@ -18,6 +18,9 @@ public class FuelBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fuelSubs = 100;
+        fuelText.text = "Power %";
+        outOfFuel = false;
     }
 
     // Update is called once per frame
@@ -36,7 +39,11 @@ public class FuelBehaviour : MonoBehaviour
             currFuel = Math.Round(fuelSubs, 0);
             fuelText.text = Math.Round(fuelSubs, 0).ToString() + " %";
             if (fuelBar.rectTransform.sizeDelta.x < 0)
+            {
                 outOfFuel = true;
+                Debug.Log("Perdiste");
+            }
+           
         }
     }
 }
