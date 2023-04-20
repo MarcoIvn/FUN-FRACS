@@ -23,7 +23,7 @@ public class SendToServer : MonoBehaviour
         
     }
 
-    public const string baseURL = "http://20.83.162.38:8000/";
+    public const string baseURL = "http://127.0.0.1:8000/";
     private const string LOGOUT_URL = baseURL + "api/dologout/"; // Replace with your actual login URL
     private const string LVLCOMP_URL = baseURL + "api/lvlcomplete/"; // Replace with your actual login URL
     private const string COMPLTD_LVLS_URL = baseURL + "api/completed_levels/"; // Replace with your actual login URL
@@ -34,9 +34,11 @@ public class SendToServer : MonoBehaviour
         PlayerData pd = px.GetComponent<PlayerData>();
         string message = JsonUtility.ToJson(pd.player);
         Debug.Log(message);
+        LevelComplete();
         StartCoroutine(SendLogoutData(message));
 
     }
+    
     public void LevelComplete()
     {
         GameObject px = GameObject.Find("PlayerX");
@@ -44,7 +46,6 @@ public class SendToServer : MonoBehaviour
         string message = JsonUtility.ToJson(pd.player);
         Debug.Log(message);
         StartCoroutine(SendLevelComplete(message));
-
     }
     public void Completed_Levels()
     {
@@ -53,7 +54,6 @@ public class SendToServer : MonoBehaviour
         string message = JsonUtility.ToJson(pd.player);
         Debug.Log(message);
         StartCoroutine(GetCompletedLvls(message));
-
     }
     
     IEnumerator SendLogoutData(string data)
@@ -112,8 +112,6 @@ public class SendToServer : MonoBehaviour
                 // Set default values of 1 (Easy, first level) if anything goes wrong.
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
-                pd.player.dificultad = 1;
-                pd.player.nivel = 1;
             }
             else
             {

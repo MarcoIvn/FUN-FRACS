@@ -38,6 +38,13 @@ public class TriggerH : MonoBehaviour
                 {
                     Debug.Log("Asteroids destruidos: " + gunScript.asteroidsDestroyed);
                     Debug.Log("You Win");
+                    //!
+                    GameObject po = GameObject.Find("PlayerX");
+                    PlayerData pd = po.GetComponent<PlayerData>();
+                    pd.player.nivel = 3;
+                    pd.player.dificultad = 1;
+                    pd.player.calificacion = 100;
+                    //!
                     win.SetActive(true);
                     Invoke("CargarNuevaEscena", 5.0f);
                 }
@@ -45,6 +52,15 @@ public class TriggerH : MonoBehaviour
                 {
                     Debug.Log("Asteroids destruidos: " + gunScript.asteroidsDestroyed);
                     Debug.Log("You lose");
+                    //!
+                    GameObject po = GameObject.Find("PlayerX");
+                    PlayerData pd = po.GetComponent<PlayerData>();
+                    pd.player.nivel = 3;
+                    pd.player.dificultad = 1;
+                    pd.player.calificacion = gunScript.asteroidsDestroyed * 100 / gunScript.asteroidsToDestroy;
+                    
+                    Debug.Log("Calificacion: " + pd.player.calificacion);
+                    //!
                     lose.SetActive(true);
                     Invoke("CargarMismaEscena", 5.0f);
                 }

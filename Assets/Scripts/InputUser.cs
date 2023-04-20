@@ -37,7 +37,7 @@ public class InputUser : MonoBehaviour
         form.AddField("numList", nl);
         form.AddField("grupo", gr);
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.8.238:8000/api/dologin", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8000/api/dologin", form))
         {
             yield return www.SendWebRequest();
             if(www.result != UnityWebRequest.Result.Success)
