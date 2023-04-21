@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class MercuryLevel : MonoBehaviour
 {
     public enum DifficultyLevel { Easy, Medium, Hard }
@@ -153,4 +153,4 @@ public struct Fraction
     }
 
 
-}
+}*/

@@ -5,15 +5,19 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EarthLevel : MonoBehaviour
 {
+     public  GameObject LosePanel;
+     public  GameObject WinPanel;
     [SerializeField] private static ControladorTiempo controlarTiempo;
     public enum DifficultyLevel { Easy, Medium, Hard }
 
     public DifficultyLevel difficultyLevel;
     public int minListSize;
     public int maxListSize;
+
 
     // List of tags
     private readonly List<string> tags = new List<string> { "Asteroid", "Planet", "Star", "Coin", "Alien", "Ufo", "Rocket" };
@@ -55,6 +59,8 @@ public class EarthLevel : MonoBehaviour
     public static string currObj;
     private void Start()
     {
+        LosePanel.SetActive(false);
+        WinPanel.SetActive(false);
         errorUI.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
         errorUI.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
         errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(false);
@@ -114,8 +120,12 @@ public class EarthLevel : MonoBehaviour
             indexGame++;
             if(indexGame > objects.Count-1)
             {
+                WinPanel.SetActive(true);
+                
                 Debug.Log("YOU WIN");
                 win = true;
+
+
             }
             else
             {
@@ -140,11 +150,12 @@ public class EarthLevel : MonoBehaviour
             errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
             errorUI.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
             crossLost = true;
+            LosePanel.SetActive(true);
             Debug.Log("Perdiste");
         }
     }
 
-    private List<string> GenerateRandomObjectList(DifficultyLevel difficulty)
+    public List<string> GenerateRandomObjectList(DifficultyLevel difficulty)
     {
         List<string> objects = new List<string>();
 
@@ -166,6 +177,7 @@ public class EarthLevel : MonoBehaviour
             { "Alien", new string[] { "Blue", "Orange" } },
             { "Ufo", new string[] { "Green", "Blue" } },
             { "Rocket", new string[] { "Yellow" } }
+
         };
         }
         else if (difficulty == DifficultyLevel.Medium)
@@ -244,9 +256,33 @@ public class EarthLevel : MonoBehaviour
 
     private void getCalificación()
     {
-        if(!crossLost && !FuelBehaviour.outOfFuel && win) { 
+        if(!crossLost && !FuelBehaviour.outOfFuel && win) {
+            if (difficultyLevel == DifficultyLevel.Easy) {
+                GameObject po = GameObject.Find("PlayerX");
+                PlayerData pd = po.GetComponent<PlayerData>();
+                pd.player.nivel = 1;
+                pd.player.dificultad = 1;
+                pd.player.calificacion = 100;
+            }
+            if (difficultyLevel == DifficultyLevel.Medium)
+            {
+                GameObject po = GameObject.Find("PlayerX");
+                PlayerData pd = po.GetComponent<PlayerData>();
+                pd.player.nivel = 1;
+                pd.player.dificultad = 2;
+                pd.player.calificacion = 100;
+            }
+            if (difficultyLevel == DifficultyLevel.Hard)
+            {
+                GameObject po = GameObject.Find("PlayerX");
+                PlayerData pd = po.GetComponent<PlayerData>();
+                pd.player.nivel = 1;
+                pd.player.dificultad = 3;
+                pd.player.calificacion = 100;
+            }
 
-        }else if(objsCompleted < 5)
+        }
+        else if(objsCompleted < 5)
         {
 
         }else if(objsCompleted < 3)

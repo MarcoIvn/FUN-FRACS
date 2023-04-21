@@ -72,7 +72,7 @@ public class PausaB : MonoBehaviour
         Time.timeScale = 1f;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Destroy(GameObject.FindWithTag("opciones"));
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
 
 
 

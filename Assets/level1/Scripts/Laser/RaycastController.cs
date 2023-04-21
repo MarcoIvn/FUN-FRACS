@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RaycastController : MonoBehaviour
 {
+    public AudioSource audioLaser;
     public float raycastDistance = 5000f; // la distancia del raycast
     public float objectDistance = 130f; // la distancia a la que se puede arrastrar el planeta
     public LayerMask layerMask; // la capa de objetos con la que colisionará el raycast
@@ -15,10 +16,12 @@ public class RaycastController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             isFiring = true; // activa el raycast
+
         }
         else
         {
             isFiring = false; // desactiva el raycast
+
             if (currentObject != null)
             {
                 // Detiene el movimiento del objeto que estaba siendo arrastrado
@@ -31,6 +34,17 @@ public class RaycastController : MonoBehaviour
             }
             currentObject = null; // limpia la variable del objeto arrastrado
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            audioLaser.Play(); //laser
+            audioLaser.volume = 0.2f;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            audioLaser.Stop(); //laser
+
+        }
+
     }
 
     void FixedUpdate()
@@ -42,6 +56,8 @@ public class RaycastController : MonoBehaviour
             // Genera el raycast desde la posición de la nave en la dirección en la que está mirando
             if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance, layerMask))
             {
+
+                
                 Debug.DrawLine(transform.position, hit.point, Color.red); // Dibuja el raycast
                                                                           // Comprueba la etiqueta del objeto colisionado
                 //if (hit.collider.gameObject.CompareTag("Planet") || hit.collider.CompareTag("Asteroid") || hit.collider.CompareTag("Star") || hit.collider.CompareTag("Coin") || hit.collider.CompareTag("Rocket") || hit.collider.CompareTag("Ufo") || hit.collider.CompareTag("Alien"))
@@ -65,6 +81,7 @@ public class RaycastController : MonoBehaviour
                     Vector3 objectPosition = transform.position + transform.forward * objectDistance;
                     currentObject.transform.position = objectPosition;
                 //}
+
             }
             else
             {

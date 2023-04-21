@@ -15,32 +15,39 @@ public class LogicaEsceanas : MonoBehaviour
     // Start is called before the first frame update
     public void Restart()
     {
-        Time.timeScale = 0f;
-        Win.SetActive(true);
-        Lose.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        CursorController.setDefaultCursor();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        Lose.SetActive(true);
+        if (Cursor.visible == false)
+        {
+            CursorController.setDefaultCursor();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            SceneManager.LoadScene(NumEscenaSig);
+        }
+
     }
+
     public void Siguiente()
     {
-        Time.timeScale = 0f;
-        Win.SetActive(false);
-        Lose.SetActive(true);
-        SceneManager.LoadScene(NumEscenaSig);
-        CursorController.setDefaultCursor();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        
+        Win.SetActive(true);
+        if (Cursor.visible == false)
+        {
+            CursorController.setDefaultCursor();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            SceneManager.LoadScene(NumEscenaSig);
+        }
+
+       
     }
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
