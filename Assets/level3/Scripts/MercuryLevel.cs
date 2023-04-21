@@ -1,25 +1,131 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.PackageManager;
 using UnityEngine;
+<<<<<<< Updated upstream
 /*
+=======
+using UnityEngine.UI;
+
+>>>>>>> Stashed changes
 public class MercuryLevel : MonoBehaviour
 {
     public enum DifficultyLevel { Easy, Medium, Hard }
 
-    public DifficultyLevel difficultyLevel;
+    public DifficultyLevel difficulty;
     public GameObject bubbleFrac;
-    public Game
+    public GameObject frac1,frac2,frac3,frac4;
+    public static GameObject frac1UI,frac2UI, OperatorUI;
+    public static Fraction currResult;
+    private List<GameObject> fracs = new List<GameObject>();
+    private List<string> operators = new List<string>();
+    public static List<Fraction> possibleResults = new List<Fraction>();
+    public static int operationsComplete = 0;
     // Start is called before the first frame update
     void Start()
     {
-        List<Fraction> possibleResults = GetRandomFractions("*");
-        Debug.Log(possibleResults[0].ToString() + "   " + possibleResults[1].ToString() + "  " + possibleResults[2].ToString() + "  " + possibleResults[3].ToString());
+        currResult= new Fraction();
+        fracs.Add(frac1);
+        fracs.Add(frac2);
+        fracs.Add(frac3);
+        if (difficulty == DifficultyLevel.Hard)
+        {
+            fracs.Add(frac4);
+            operators.Add("/");
+            operators.Add("-");
+            operators.Add("+");
+            operators.Add("*");
+            operators.Add("-");
+        }
+        else if(difficulty == DifficultyLevel.Easy)
+        {
+            operators.Add("*");
+            operators.Add("+");
+            operators.Add("*");
+            operators.Add("+");
+        }
+        else
+        {
+            operators.Add("+");
+            operators.Add("-");
+            operators.Add("*");
+            operators.Add("/");
+        }
+        fracs.Add(bubbleFrac);
+        operationsComplete = 0;
+        foreach (Transform child in bubbleFrac.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        foreach (Transform child in frac1.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        foreach (Transform child in frac2.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        foreach (Transform child in frac3.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        foreach (Transform child in frac4.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        bool operationComplete = false;
+        //if(operationsComplete > 3)
+        //{
+        if(operationsComplete == 0)
+        {
+            possibleResults = GetRandomFractions("+");
+            currResult = possibleResults[possibleResults.Count- 1];
+            Debug.Log(possibleResults[0].ToString() + "   " + possibleResults[1].ToString() + "  " + possibleResults[2].ToString() + "  " + possibleResults[3].ToString());
+            int index = 0;
+            foreach (GameObject frac in fracs)
+            {
 
+                if (possibleResults[index].numerator.ToString().Length > 1)
+                {
+                    frac.transform.GetChild(0).gameObject.SetActive(false);
+                    frac.transform.GetChild(1).gameObject.SetActive(true);
+                    frac.transform.GetChild(1).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(possibleResults[index].numerator.ToString()[0].ToString());
+                    frac.transform.GetChild(1).transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(possibleResults[index].numerator.ToString()[1].ToString());
+                }
+                else
+                {
+                    frac.transform.GetChild(0).gameObject.SetActive(true);
+                    frac.transform.GetChild(1).gameObject.SetActive(false);
+                    frac.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(possibleResults[index].numerator.ToString());
+                }
+                if (possibleResults[index].denominator.ToString().Length > 1)
+                {
+                    frac.transform.GetChild(2).gameObject.SetActive(false);
+                    frac.transform.GetChild(3).gameObject.SetActive(true);
+                    frac.transform.GetChild(3).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(possibleResults[index].denominator.ToString()[0].ToString());
+                    frac.transform.GetChild(3).transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(possibleResults[index].denominator.ToString()[1].ToString());
+                }
+                else
+                {
+                    frac.transform.GetChild(2).gameObject.SetActive(true);
+                    frac.transform.GetChild(3).gameObject.SetActive(false);
+                    frac.transform.GetChild(2).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(possibleResults[index].denominator.ToString());
+                }
+                index++;
+            }
+            
+            operationsComplete++;
+        }
+
+
+        //}
     }
     private Fraction GetRandomFraction()
     {
@@ -57,6 +163,12 @@ public class MercuryLevel : MonoBehaviour
         fractions.Add(frac1);
         fractions.Add(frac2);
         fractions.Add(frac3);
+        if (difficulty == DifficultyLevel.Hard)
+        {
+            Fraction frac = GetRandomFraction();
+            fractions.Add(frac);
+            frac4.SetActive(true);
+        }
         ShuffleList(fractions);
         fractions.Add(fracResult);
         return fractions;
@@ -151,6 +263,10 @@ public struct Fraction
         }
         return a;
     }
+<<<<<<< Updated upstream
 
 
 }*/
+=======
+}
+>>>>>>> Stashed changes
