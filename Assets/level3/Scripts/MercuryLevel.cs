@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.PackageManager;
 using UnityEngine;
-<<<<<<< Updated upstream
-/*
-=======
 using UnityEngine.UI;
 
->>>>>>> Stashed changes
 public class MercuryLevel : MonoBehaviour
 {
     public enum DifficultyLevel { Easy, Medium, Hard }
 
     public DifficultyLevel difficulty;
     public GameObject bubbleFrac;
-    public GameObject frac1,frac2,frac3,frac4;
-    public static GameObject frac1UI,frac2UI, OperatorUI;
+    public GameObject frac1, frac2, frac3, frac4;
+    public static GameObject frac1UI, frac2UI, OperatorUI;
     public static Fraction currResult;
     private List<GameObject> fracs = new List<GameObject>();
     private List<string> operators = new List<string>();
@@ -25,7 +21,7 @@ public class MercuryLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currResult= new Fraction();
+        currResult = new Fraction();
         fracs.Add(frac1);
         fracs.Add(frac2);
         fracs.Add(frac3);
@@ -38,7 +34,7 @@ public class MercuryLevel : MonoBehaviour
             operators.Add("*");
             operators.Add("-");
         }
-        else if(difficulty == DifficultyLevel.Easy)
+        else if (difficulty == DifficultyLevel.Easy)
         {
             operators.Add("*");
             operators.Add("+");
@@ -79,14 +75,14 @@ public class MercuryLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         bool operationComplete = false;
         //if(operationsComplete > 3)
         //{
-        if(operationsComplete == 0)
+        if (operationsComplete == 0)
         {
             possibleResults = GetRandomFractions("+");
-            currResult = possibleResults[possibleResults.Count- 1];
+            currResult = possibleResults[possibleResults.Count - 1];
             Debug.Log(possibleResults[0].ToString() + "   " + possibleResults[1].ToString() + "  " + possibleResults[2].ToString() + "  " + possibleResults[3].ToString());
             int index = 0;
             foreach (GameObject frac in fracs)
@@ -120,7 +116,7 @@ public class MercuryLevel : MonoBehaviour
                 }
                 index++;
             }
-            
+
             operationsComplete++;
         }
 
@@ -142,7 +138,7 @@ public class MercuryLevel : MonoBehaviour
         Fraction frac1 = GetRandomFraction();
         Fraction frac2 = GetRandomFraction();
         Fraction frac3 = GetRandomFraction();
-        Fraction fracResult = new Fraction(1,1);
+        Fraction fracResult = new Fraction(1, 1);
         if (op == "+")
         {
             fracResult = frac1 + frac2;
@@ -263,10 +259,4 @@ public struct Fraction
         }
         return a;
     }
-<<<<<<< Updated upstream
-
-
-}*/
-=======
 }
->>>>>>> Stashed changes
