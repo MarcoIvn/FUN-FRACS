@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class TriggerH : MonoBehaviour
 {
     
@@ -10,13 +12,14 @@ public class TriggerH : MonoBehaviour
 
     public GameObject win;
     public GameObject lose;
-
+    public SendToServer script;
     public RaycastGunH gunScript; // agregar una referencia a RaycastGun
 
     // Start is called before the first frame update
     void Start()
     {
         // asignar el valor de la instancia de RaycastGun a gunScript
+        
         gunScript = FindObjectOfType<RaycastGunH>();
     }
 
@@ -36,6 +39,7 @@ public class TriggerH : MonoBehaviour
                 activated = true;
                 if (gunScript.asteroidsDestroyed == gunScript.asteroidsToDestroy) // Nuevo: si se han destruido suficientes asteroides, imprimir "You Win" en la consola
                 {
+                    
                     Debug.Log("Asteroids destruidos: " + gunScript.asteroidsDestroyed);
                     Debug.Log("You Win");
                     win.SetActive(true);
@@ -43,9 +47,10 @@ public class TriggerH : MonoBehaviour
                     //!
                     GameObject po = GameObject.Find("PlayerX");
                     PlayerData pd = po.GetComponent<PlayerData>();
-                    pd.player.nivel = 3;
-                    pd.player.dificultad = 1;
+                    pd.player.nivel = 2;
+                    pd.player.dificultad = 3;
                     pd.player.calificacion = 100;
+                    script.LevelComplete();
                     //!
 
                 }
@@ -58,10 +63,10 @@ public class TriggerH : MonoBehaviour
                     //!
                     GameObject po = GameObject.Find("PlayerX");
                     PlayerData pd = po.GetComponent<PlayerData>();
-                    pd.player.nivel = 3;
-                    pd.player.dificultad = 1;
+                    pd.player.nivel = 2;
+                    pd.player.dificultad = 2;
                     pd.player.calificacion = gunScript.asteroidsDestroyed * 100 / gunScript.asteroidsToDestroy;
-                    
+                    script.LevelComplete();
                     Debug.Log("Calificacion: " + pd.player.calificacion);
                     //!
 

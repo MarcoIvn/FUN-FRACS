@@ -5,6 +5,7 @@ using UnityEngine;
 public class PortalEarthLevel : MonoBehaviour
 {
     [SerializeField]
+
     private Transform spawnPoint;
     public Camera cam;
     /*[SerializeField]

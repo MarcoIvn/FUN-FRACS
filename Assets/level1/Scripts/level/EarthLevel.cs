@@ -9,8 +9,9 @@ using UnityEngine.SceneManagement;
 
 public class EarthLevel : MonoBehaviour
 {
-     public  GameObject LosePanel;
-     public  GameObject WinPanel;
+    public SendToServer script;
+    public  GameObject LosePanel;
+    public  GameObject WinPanel;
     [SerializeField] private static ControladorTiempo controlarTiempo;
     public enum DifficultyLevel { Easy, Medium, Hard }
 
@@ -124,6 +125,35 @@ public class EarthLevel : MonoBehaviour
                 
                 Debug.Log("YOU WIN");
                 win = true;
+                if (difficultyLevel == DifficultyLevel.Easy)
+                {
+                    GameObject po = GameObject.Find("PlayerX");
+                    PlayerData pd = po.GetComponent<PlayerData>();
+                    pd.player.nivel = 1;
+                    pd.player.dificultad = 1;
+                    pd.player.calificacion = 100;
+                    script.LevelComplete();
+                }
+                if (difficultyLevel == DifficultyLevel.Medium)
+                {
+                    GameObject po = GameObject.Find("PlayerX");
+                    PlayerData pd = po.GetComponent<PlayerData>();
+                    pd.player.nivel = 1;
+                    pd.player.dificultad = 2;
+                    pd.player.calificacion = 100;
+                    script.LevelComplete();
+                }
+                if (difficultyLevel == DifficultyLevel.Hard)
+                {
+                    GameObject po = GameObject.Find("PlayerX");
+                    PlayerData pd = po.GetComponent<PlayerData>();
+                    pd.player.nivel = 1;
+                    pd.player.dificultad = 3;
+                    pd.player.calificacion = 100;
+                    script.LevelComplete();
+                }
+
+
 
 
             }
@@ -152,6 +182,7 @@ public class EarthLevel : MonoBehaviour
             crossLost = true;
             LosePanel.SetActive(true);
             Debug.Log("Perdiste");
+            getCalificación();
         }
     }
 
@@ -256,29 +287,32 @@ public class EarthLevel : MonoBehaviour
 
     private void getCalificación()
     {
-        if(!crossLost && !FuelBehaviour.outOfFuel && win) {
+        if(crossLost || FuelBehaviour.outOfFuel || !win) {
             if (difficultyLevel == DifficultyLevel.Easy) {
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.nivel = 1;
-                pd.player.dificultad = 1;
-                pd.player.calificacion = 100;
+                pd.player.dificultad = 0;
+                pd.player.calificacion = 10;
+                script.LevelComplete();
             }
             if (difficultyLevel == DifficultyLevel.Medium)
             {
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.nivel = 1;
-                pd.player.dificultad = 2;
-                pd.player.calificacion = 100;
+                pd.player.dificultad = 1;
+                pd.player.calificacion = 10;
+                script.LevelComplete();
             }
             if (difficultyLevel == DifficultyLevel.Hard)
             {
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.nivel = 1;
-                pd.player.dificultad = 3;
-                pd.player.calificacion = 100;
+                pd.player.dificultad = 2;
+                pd.player.calificacion = 10;
+                script.LevelComplete();
             }
 
         }

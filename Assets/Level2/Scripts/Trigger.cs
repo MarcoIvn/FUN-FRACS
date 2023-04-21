@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Trigger : MonoBehaviour
 {
     private bool activated = false;
-
+    public SendToServer script;
     public GameObject win;
     public GameObject lose;
 
@@ -39,6 +39,13 @@ public class Trigger : MonoBehaviour
                     Debug.Log("You Win");
                     win.SetActive(true);
                     Invoke("CargarSiguienteEscena", 5.0f);
+
+                    GameObject po = GameObject.Find("PlayerX");
+                    PlayerData pd = po.GetComponent<PlayerData>();
+                    pd.player.nivel = 2;
+                    pd.player.dificultad = 3;
+                    pd.player.calificacion = 100;
+                    script.LevelComplete();
                 }
                 else  // "You lose" en la consola
                 {
@@ -46,6 +53,14 @@ public class Trigger : MonoBehaviour
                     Debug.Log("You lose");
                     lose.SetActive(true);
                     Invoke("CargarMismaEscena", 5.0f);
+
+                    GameObject po = GameObject.Find("PlayerX");
+                    PlayerData pd = po.GetComponent<PlayerData>();
+                    pd.player.nivel = 2;
+                    pd.player.dificultad = 2;
+                    pd.player.calificacion = gunScript.asteroidsDestroyed * 100 / gunScript.asteroidsToDestroy;
+                    script.LevelComplete();
+                    Debug.Log("Calificacion: " + pd.player.calificacion);
                 }
             }
         }

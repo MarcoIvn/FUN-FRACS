@@ -23,7 +23,7 @@ public class SendToServer : MonoBehaviour
         
     }
 
-    public const string baseURL = "http://127.0.0.1:8000/";
+    public const string baseURL = "http://20.83.162.38:8000/";
     private const string LOGOUT_URL = baseURL + "api/dologout/"; // Replace with your actual login URL
     private const string LVLCOMP_URL = baseURL + "api/lvlcomplete/"; // Replace with your actual login URL
     private const string COMPLTD_LVLS_URL = baseURL + "api/completed_levels/"; // Replace with your actual login URL
@@ -45,7 +45,9 @@ public class SendToServer : MonoBehaviour
         PlayerData pd = px.GetComponent<PlayerData>();
         string message = JsonUtility.ToJson(pd.player);
         Debug.Log(message);
+        Debug.Log("iniciando el server");
         StartCoroutine(SendLevelComplete(message));
+        Debug.Log("Termino el server");
     }
     public void Completed_Levels()
     {
