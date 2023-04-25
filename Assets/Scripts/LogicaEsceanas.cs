@@ -21,7 +21,7 @@ public class LogicaEsceanas : MonoBehaviour
             CursorController.setDefaultCursor();
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
-            SceneManager.LoadScene(NumEscenaSig);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
     }

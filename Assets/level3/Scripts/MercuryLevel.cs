@@ -22,7 +22,8 @@ public class MercuryLevel : MonoBehaviour
     private int operationsComplete = 0;
     private int operations = 4;
     private int operatorIndex = 0;
-
+    private int calification = 0;
+    private int maxCalification = 4;
     //Mouth
     public static int errorCount = 0;
     public GameObject frac1UI, frac2UI, frac3UI;
@@ -33,6 +34,7 @@ public class MercuryLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        errorCount = 0;
         initPosf1 = frac1.transform.parent.gameObject.transform.position;
         initPosf2 = frac2.transform.parent.gameObject.transform.position;
         initPosf3 = frac3.transform.parent.gameObject.transform.position;
@@ -60,6 +62,7 @@ public class MercuryLevel : MonoBehaviour
         fracs.Add(frac4);
         if (difficulty == DifficultyLevel.Hard)
         {
+            maxCalification = 5;
             operations = 5;
             fracs.Add(frac5);
             operators.Add("div");
@@ -84,6 +87,7 @@ public class MercuryLevel : MonoBehaviour
         }
         fracs.Add(bubbleFrac);
         operationsComplete = 0;
+        operatorIndex = 0;
         /*foreach (Transform child in bubbleFrac.transform)
         {
             child.gameObject.SetActive(false);
@@ -114,36 +118,14 @@ public class MercuryLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currOperator == "+")
-        {
-            result = currFrac1 + currFrac2;
-        }
-        else if (currOperator == "-")
-        {
-            result = currFrac1 - currFrac2;
-        }
-        else if (currOperator == "x")
-        {
-            result = currFrac1 * currFrac2;
-        }
-        else if (currOperator == "div")
-        {
-            result = currFrac1 / currFrac2;
-        }
-        if ((result).Equals(currResult))
-        {
-            //Debug.Log("Correct" + result.ToString());
-            checkUI.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("GreenCheck");
-        }
-        else
-        {
-            //Debug.Log("Incorrect" + result.ToString());
-            checkUI.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
-        }
+        
     }
 
     private void generateSublevel()
     {
+        currFrac1 = new Fraction(0, 0);
+        currFrac2 = new Fraction(0, 0);
+        result = new Fraction(0, 0);
         frac1UI.transform.GetChild(0).gameObject.SetActive(false);
         frac1UI.transform.GetChild(1).gameObject.SetActive(false);
         frac2UI.transform.GetChild(0).gameObject.SetActive(false);
@@ -174,11 +156,8 @@ public class MercuryLevel : MonoBehaviour
         if (operationsComplete < operations)
         {
             currOperator = operators[operatorIndex];
+            Debug.Log(operatorIndex);
             possibleResults = GetRandomFractions(currOperator);
-            foreach(Fraction frac in possibleResults)
-            {
-                Debug.Log(frac.ToString());
-            }
             OperatorUI.GetComponent<Image>().sprite = Resources.Load<Sprite>(currOperator);
             currResult = possibleResults[possibleResults.Count - 1];
             int index = 0;
@@ -216,11 +195,15 @@ public class MercuryLevel : MonoBehaviour
             operatorIndex++;
             //Mouth.operationComplete = false;
         }
+        else
+        {
+            calification = (maxCalification - errorCount);
+            Debug.Log("Calification: " + calification + "/"+ maxCalification);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Object detected");
         other.gameObject.SetActive(false);
         string name = other.name;
         if (!firstObjectDestroyed)
@@ -232,7 +215,6 @@ public class MercuryLevel : MonoBehaviour
             currFrac1.numerator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].numerator;
             currFrac1.denominator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].denominator;
             firstObjectDestroyed = true;
-            Debug.Log(currFrac1.ToString());
         }
         else
         {
@@ -243,7 +225,34 @@ public class MercuryLevel : MonoBehaviour
             currFrac2.numerator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].numerator;
             currFrac2.denominator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].denominator;
             firstObjectDestroyed = false;
-            //result.Simplify();
+            if (currOperator == "+")
+            {
+                result = currFrac1 + currFrac2;
+            }
+            else if (currOperator == "-")
+            {
+                result = currFrac1 - currFrac2;
+            }
+            else if (currOperator == "x")
+            {
+                result = currFrac1 * currFrac2;
+            }
+            else if (currOperator == "div")
+            {
+                result = currFrac1 / currFrac2;
+            }
+            if ((result).Equals(currResult))
+            {
+                //Debug.Log("Correct" + result.ToString());
+                checkUI.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("GreenCheck");
+            }
+            else
+            {
+                //Debug.Log("Incorrect" + result.ToString());
+                checkUI.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
+                errorCount++;
+            }
+            result.Simplify();
             if (result.numerator.ToString().Length > 1)
             {
                 frac3UI.transform.GetChild(0).gameObject.SetActive(false);
@@ -271,8 +280,10 @@ public class MercuryLevel : MonoBehaviour
                 frac3UI.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.denominator.ToString());
             }
             checkUI.gameObject.SetActive(true);
+            currFrac1 = new Fraction(0, 0);
+            currFrac2 = new Fraction(0, 0);
+            result = new Fraction(0, 0);
             Invoke("generateSublevel", 5f);
-            Debug.Log(currFrac2.ToString());
         }
     }
     private Fraction GetRandomFraction()
@@ -398,9 +409,17 @@ public struct Fraction
     //Simplificar fracciones
     public void Simplify()
     {
-        int mcd = MCD(numerator, denominator);
-        numerator /= mcd;
-        denominator /= mcd;
+        if(numerator == 0 || denominator == 0)
+        {
+            numerator = 0;
+            denominator = 0;
+        }
+        else
+        {
+            int mcd = MCD(numerator, denominator);
+            numerator /= mcd;
+            denominator /= mcd;
+        }
     }
 
     private static int MCD(int a, int b)

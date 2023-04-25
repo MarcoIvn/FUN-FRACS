@@ -37,7 +37,7 @@ public class RaycastController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             audioLaser.Play(); //laser
-            audioLaser.volume = 0.2f;
+            
         }
         if (Input.GetMouseButtonUp(0))
         {
