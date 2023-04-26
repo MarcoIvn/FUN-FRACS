@@ -15,28 +15,18 @@ public class LogicaEsceanas : MonoBehaviour
     // Start is called before the first frame update
     public void Restart()
     {
-        Lose.SetActive(true);
-        if (Cursor.visible == false)
-        {
-            CursorController.setDefaultCursor();
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
 
     public void Siguiente()
     {
         
-        Win.SetActive(true);
-        if (Cursor.visible == false)
-        {
-            CursorController.setDefaultCursor();
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-            SceneManager.LoadScene(NumEscenaSig);
-        }
+        
+
+        SceneManager.LoadScene(NumEscenaSig);
+        
 
        
     }

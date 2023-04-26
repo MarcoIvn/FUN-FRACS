@@ -328,7 +328,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &2163515545071385807
 MonoBehaviour:
@@ -763,7 +763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lose: {fileID: 1079433630556261310}
   Win: {fileID: 4431871875558399635}
-  NumEscenaSig: 0
+  NumEscenaSig: 3
 --- !u!1 &4431871875558399635
 GameObject:
   m_ObjectHideFlags: 0

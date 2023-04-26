@@ -55,7 +55,7 @@ public class PausaB : MonoBehaviour
     }
     public void Restart()
     {
-        Time.timeScale = 1f;
+        juegoPausado = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
 

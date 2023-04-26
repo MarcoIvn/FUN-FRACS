@@ -60,6 +60,7 @@ public class EarthLevel : MonoBehaviour
     public static string currObj;
     private void Start()
     {
+        Time.timeScale = 1f;
         LosePanel.SetActive(false);
         WinPanel.SetActive(false);
         errorUI.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
@@ -121,6 +122,10 @@ public class EarthLevel : MonoBehaviour
             indexGame++;
             if(indexGame > objects.Count-1)
             {
+                Time.timeScale = 0f;
+                CursorController.setDefaultCursor();
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
                 WinPanel.SetActive(true);
                 
                 Debug.Log("YOU WIN");
@@ -180,10 +185,48 @@ public class EarthLevel : MonoBehaviour
             errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
             errorUI.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
             crossLost = true;
+            Time.timeScale = 0f;
+            CursorController.setDefaultCursor();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
             LosePanel.SetActive(true);
             Debug.Log("Perdiste");
-            getCalificación();
+            if (crossLost || FuelBehaviour.outOfFuel || !win)
+            {
+                if (difficultyLevel == DifficultyLevel.Easy)
+                {
+                    GameObject po = GameObject.Find("PlayerX");
+                    PlayerData pd = po.GetComponent<PlayerData>();
+                    pd.player.nivel = 1;
+                    pd.player.dificultad = 0;
+                    pd.player.calificacion = 10;
+                    script.LevelComplete();
+                }
+                if (difficultyLevel == DifficultyLevel.Medium)
+                {
+                    GameObject po = GameObject.Find("PlayerX");
+                    PlayerData pd = po.GetComponent<PlayerData>();
+                    pd.player.nivel = 1;
+                    pd.player.dificultad = 1;
+                    pd.player.calificacion = 10;
+                    script.LevelComplete();
+                }
+                if (difficultyLevel == DifficultyLevel.Hard)
+                {
+                    GameObject po = GameObject.Find("PlayerX");
+                    PlayerData pd = po.GetComponent<PlayerData>();
+                    pd.player.nivel = 1;
+                    pd.player.dificultad = 2;
+                    pd.player.calificacion = 10;
+                    script.LevelComplete();
+                }
+
+            }
+
         }
+    }
+    private void Lose(bool crossLost) { 
+        
     }
 
     public List<string> GenerateRandomObjectList(DifficultyLevel difficulty)

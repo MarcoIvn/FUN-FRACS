@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class FuelBehaviour : MonoBehaviour
 {
+    
+    public GameObject LosePanel;
     public Image fuelBar;
     public TextMeshProUGUI fuelText;
     public float fuelConsuption = 0.05f;
@@ -42,7 +44,12 @@ public class FuelBehaviour : MonoBehaviour
             if (fuelBar.rectTransform.sizeDelta.x < 0)
             {
                 outOfFuel = true;
-                
+                Time.timeScale = 0f;
+                CursorController.setDefaultCursor();
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                LosePanel.SetActive(true);
+
                 Debug.Log("Perdiste");
             }
            
