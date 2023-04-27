@@ -49,18 +49,23 @@ public class EarthLevel : MonoBehaviour
     private List<string> objects = new List<string>();
     private List<GameObject> errors = new List<GameObject>();
     private string[] spriteArrays = {"","","","","",""};
+    private int totalObjects = 0;
+    private int Losepoints = 0;
     public GameObject objectsUI;
     public GameObject errorUI;
     private bool crossLost = false, win = false;
     private int objsCompleted = 0;
     public static int calificación;
-
+    private bool gameFinished = false;
     private int indexGame = 0;
     public static int currObjAmount;
     public static string currObj;
     private void Start()
     {
         Time.timeScale = 1f;
+        objsCompleted = 0;
+        totalObjects = 0;
+        Losepoints = 0;
         LosePanel.SetActive(false);
         WinPanel.SetActive(false);
         errorUI.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
@@ -68,7 +73,6 @@ public class EarthLevel : MonoBehaviour
         errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(false);
 
         objects = GenerateRandomObjectList(difficultyLevel);
-
         ShuffleList(objects);
         foreach (string obj in objects)
         {
@@ -103,130 +107,73 @@ public class EarthLevel : MonoBehaviour
             currObj = spriteArrays[indexGame];
             Debug.Log("Current Object: " + currObj);
         }
+        
         foreach (Transform child in errorUI.transform)
         {
             errors.Add(child.gameObject);
         }
     }
-
+   
     private void Update()
     {
-        if (indexGame <= objects.Count -1)
-            objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currObjAmount.ToString();
-        //Debug.Log("Current object amount: " + currObjAmount);
-        if (currObjAmount == 0)
+        if (gameFinished == false)
         {
-            objsCompleted++;
-            objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            indexGame++;
-            if(indexGame > objects.Count-1)
+
+            if (indexGame <= objects.Count - 1)
+                objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currObjAmount.ToString();
+            //Debug.Log("Current object amount: " + currObjAmount);
+            if (currObjAmount == 0)
             {
-                Time.timeScale = 0f;
-                CursorController.setDefaultCursor();
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
-                WinPanel.SetActive(true);
-                
-                Debug.Log("YOU WIN");
-                win = true;
-                if (difficultyLevel == DifficultyLevel.Easy)
+                objsCompleted++;
+                objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                indexGame++;
+                if (indexGame > objects.Count - 1)
                 {
-                    GameObject po = GameObject.Find("PlayerX");
-                    PlayerData pd = po.GetComponent<PlayerData>();
-                    pd.player.nivel = 1;
-                    pd.player.dificultad = 1;
-                    pd.player.calificacion = 100;
-                    script.LevelComplete();
+
+                    Debug.Log("YOU WIN");
+
+                    win = true;
+                    gameFinished = true;
                 }
-                if (difficultyLevel == DifficultyLevel.Medium)
+                else
                 {
-                    GameObject po = GameObject.Find("PlayerX");
-                    PlayerData pd = po.GetComponent<PlayerData>();
-                    pd.player.nivel = 1;
-                    pd.player.dificultad = 2;
-                    pd.player.calificacion = 100;
-                    script.LevelComplete();
+                    currObjAmount = objects[indexGame][objects[indexGame].Length - 1] - 48;
+                    currObj = spriteArrays[indexGame];
+                    /*Debug.Log("New Current object: " + currObj);
+                    Debug.Log("New current object amount: " + currObjAmount);*/
                 }
-                if (difficultyLevel == DifficultyLevel.Hard)
-                {
-                    GameObject po = GameObject.Find("PlayerX");
-                    PlayerData pd = po.GetComponent<PlayerData>();
-                    pd.player.nivel = 1;
-                    pd.player.dificultad = 3;
-                    pd.player.calificacion = 100;
-                    script.LevelComplete();
-                }
+            }
+            if (PortalEarthLevel.errorCount == 1)
+            {
+                errorUI.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
+                errorUI.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
+
+            }
+            else if (PortalEarthLevel.errorCount == 2)
+            {
+                errorUI.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(true);
+                errorUI.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
+
+            }
+            else if (PortalEarthLevel.errorCount == 3)
+            {
+                errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
+                errorUI.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
+
+                crossLost = true;
+                gameFinished = true;
 
 
+
+
+                Debug.Log("Perdiste");
 
 
             }
-            else
-            {
-                currObjAmount = objects[indexGame][objects[indexGame].Length - 1] - 48;
-                currObj = spriteArrays[indexGame];
-                /*Debug.Log("New Current object: " + currObj);
-                Debug.Log("New current object amount: " + currObjAmount);*/
-            }
+            if (crossLost || win)
+                getCalificación();
         }
-        if(PortalEarthLevel.errorCount == 1)
-        {
-            errorUI.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
-            errorUI.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
-        }
-        else if(PortalEarthLevel.errorCount == 2)
-        {
-            errorUI.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(true);
-            errorUI.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
-        }
-        else if(PortalEarthLevel.errorCount == 3)
-        {
-            errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
-            errorUI.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
-            crossLost = true;
-            Time.timeScale = 0f;
-            CursorController.setDefaultCursor();
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-            LosePanel.SetActive(true);
-            Debug.Log("Perdiste");
-            if (crossLost || FuelBehaviour.outOfFuel || !win)
-            {
-                if (difficultyLevel == DifficultyLevel.Easy)
-                {
-                    GameObject po = GameObject.Find("PlayerX");
-                    PlayerData pd = po.GetComponent<PlayerData>();
-                    pd.player.nivel = 1;
-                    pd.player.dificultad = 0;
-                    pd.player.calificacion = 10;
-                    script.LevelComplete();
-                }
-                if (difficultyLevel == DifficultyLevel.Medium)
-                {
-                    GameObject po = GameObject.Find("PlayerX");
-                    PlayerData pd = po.GetComponent<PlayerData>();
-                    pd.player.nivel = 1;
-                    pd.player.dificultad = 1;
-                    pd.player.calificacion = 10;
-                    script.LevelComplete();
-                }
-                if (difficultyLevel == DifficultyLevel.Hard)
-                {
-                    GameObject po = GameObject.Find("PlayerX");
-                    PlayerData pd = po.GetComponent<PlayerData>();
-                    pd.player.nivel = 1;
-                    pd.player.dificultad = 2;
-                    pd.player.calificacion = 10;
-                    script.LevelComplete();
-                }
-
-            }
-
-        }
-    }
-    private void Lose(bool crossLost) { 
-        
     }
 
     public List<string> GenerateRandomObjectList(DifficultyLevel difficulty)
@@ -279,7 +226,7 @@ public class EarthLevel : MonoBehaviour
             string[] availableColors = colors[tag];
             string color = availableColors[Random.Range(0, availableColors.Length)];
             int count = Random.Range(1, maxCounts[tag] + 1);
-
+            totalObjects += count;
             objects.Add(tag + "_" + color + "_" + count);
         }
 
@@ -330,13 +277,30 @@ public class EarthLevel : MonoBehaviour
 
     private void getCalificación()
     {
-        if(crossLost || FuelBehaviour.outOfFuel || !win) {
+
+
+        Debug.Log("get calificacion");
+        Time.timeScale = 0f;
+        CursorController.setDefaultCursor();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        GameObject spaceShip = GameObject.Find("PlayerShip");
+        spaceShip.gameObject.SetActive(false);
+
+        if (win) { WinPanel.SetActive(true); }
+        else { LosePanel.SetActive(true); }
+        if (PortalEarthLevel.errorCount == 1) { Losepoints = 15; }
+        else if(PortalEarthLevel.errorCount == 2) { Losepoints = 30; }
+        if (FuelBehaviour.outOfFuel == false) { Losepoints = Losepoints-10; }
+        
+        if (crossLost || !win) {
             if (difficultyLevel == DifficultyLevel.Easy) {
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.nivel = 1;
-                pd.player.dificultad = 0;
-                pd.player.calificacion = 10;
+                pd.player.dificultad = 1;
+                pd.player.calificacion =( (objsCompleted*100)/totalObjects) - Losepoints;
+                
                 script.LevelComplete();
             }
             if (difficultyLevel == DifficultyLevel.Medium)
@@ -344,8 +308,8 @@ public class EarthLevel : MonoBehaviour
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.nivel = 1;
-                pd.player.dificultad = 1;
-                pd.player.calificacion = 10;
+                pd.player.dificultad = 2;
+                pd.player.calificacion = ((objsCompleted * 100) / totalObjects) - Losepoints;
                 script.LevelComplete();
             }
             if (difficultyLevel == DifficultyLevel.Hard)
@@ -353,19 +317,45 @@ public class EarthLevel : MonoBehaviour
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.nivel = 1;
-                pd.player.dificultad = 2;
-                pd.player.calificacion = 10;
+                pd.player.dificultad = 3;
+                pd.player.calificacion = ((objsCompleted * 100) / totalObjects) - Losepoints;
                 script.LevelComplete();
             }
 
         }
-        else if(objsCompleted < 5)
-        {
-
-        }else if(objsCompleted < 3)
-        {
-
+        if (!crossLost && win) {
+            if (difficultyLevel == DifficultyLevel.Easy)
+            {
+                GameObject po = GameObject.Find("PlayerX");
+                PlayerData pd = po.GetComponent<PlayerData>();
+                pd.player.nivel = 1;
+                pd.player.dificultad = 1;
+                pd.player.calificacion = ((objsCompleted * 100) / totalObjects )- Losepoints;
+                script.LevelComplete();
+            }
+            if (difficultyLevel == DifficultyLevel.Medium)
+            {
+                GameObject po = GameObject.Find("PlayerX");
+                PlayerData pd = po.GetComponent<PlayerData>();
+                pd.player.nivel = 1;
+                pd.player.dificultad =2 ;
+                pd.player.calificacion = ((objsCompleted * 100) / totalObjects) -Losepoints;
+                script.LevelComplete();
+            }
+            if (difficultyLevel == DifficultyLevel.Hard)
+            {
+                GameObject po = GameObject.Find("PlayerX");
+                PlayerData pd = po.GetComponent<PlayerData>();
+                pd.player.nivel = 1;
+                pd.player.dificultad = 3;
+                pd.player.calificacion = ((objsCompleted * 100) / totalObjects ) - Losepoints;
+                script.LevelComplete();
+            }
         }
+
+        crossLost = false;
+        win = false;
+        gameFinished = true;
     }
 }
 

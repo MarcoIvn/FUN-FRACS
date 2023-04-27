@@ -13,6 +13,7 @@ public class PortalEarthLevel : MonoBehaviour
     public Transform SpawnPoint { get { return spawnPoint; } }*/
     public static int asteroidCount = 0, bluePlanetCount = 0, pinkPlanetCount = 0, yellowStarCount = 0, blueAlienCount = 0, purpleCoinCount = 0;
     public static int errorCount = 0;
+
     // Start is called before the first frame update
     void Start()
     {
