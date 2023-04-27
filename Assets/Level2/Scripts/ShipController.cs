@@ -15,7 +15,6 @@ public class ShipController : MonoBehaviour
     private float rollSpeed = 90f, rollAccelearion = 3.5f;
 
     public bool isColliding = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +50,7 @@ public class ShipController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, activeForwardSpeed * Time.deltaTime))
         {
-            if (hit.collider.gameObject.tag == "Cube" || hit.collider.gameObject.tag == "Asteroid")
+            if (hit.collider.gameObject.tag == "Cube" || hit.collider.gameObject.tag == "Asteroid" || hit.collider.gameObject.tag == "Asteroid_Gray")
             {
                 isColliding = true;
             }

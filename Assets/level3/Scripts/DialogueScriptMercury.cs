@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class DialogueScriptEarth : MonoBehaviour
+public class DialogueScriptMercury : MonoBehaviour
 {
     public TextMeshProUGUI dialougueText;
     public string[] lines;
@@ -16,11 +16,12 @@ public class DialogueScriptEarth : MonoBehaviour
     void Start()
     {
         showText = FindObjectOfType<RaycastGun>();
-        lines = new string[] { "Bienvenido al Nivel 1. (Preciona L para continuar)",
-            "Para este nivel tienes una barra arriba que indica los objetos que debes arrastrar al portal,\" en orden de izquierda a derecha.",
-            "Para agarrar objetos puedes disparar un rayo y mantenerlo con (Click izquierdo).",
-            "Para moverte, apreta w para avanzar y s para frenar, con el mouse puedes ir de izquierda a derecha.\" Manten espacio para activar un pequeño turbo.", 
-            "Tienes un limite del tiempo para coompletar todos los objetos."};
+        lines = new string[] { "Bienvenido al Nivel 3. (Preciona L para continuar)",
+            "Para este nivel aparecio un Monstruo que esta \" hambriento de fracciones, y tienes que darle de comer.",
+             "Tienes que completar la operacion correspondiente \" que aparece abajo de la pantalla de modo que el \" resultado de la fracción que el monstruo exige",
+            "Para agarrar un bloque de fración puedes disparar un rayo y mantenerlo con (Click izquierdo).",
+            "Para moverte, apreta w para avanzar y s para frenar, con el mouse puedes ir de izquierda a derecha.\" Manten espacio para activar un pequeño turbo.",
+            "Tienes un limite del tiempo para completar las operaciones."};
         dialougueText.text = string.Empty;
         startDialougue();
     }

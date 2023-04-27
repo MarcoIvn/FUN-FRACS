@@ -32,6 +32,7 @@ TagManager:
   - Planet_Pink
   - Cube
   - Start
+  - Fracs
   layers:
   - Default
   - TransparentFX

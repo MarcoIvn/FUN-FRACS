@@ -31,9 +31,11 @@ public class MercuryLevel : MonoBehaviour
     public GameObject checkUI;
     public static Fraction currFrac1, currFrac2, result;
     public static bool operationComplete = false;
+    public GameObject MonsterTongue;
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         errorCount = 0;
         initPosf1 = frac1.transform.parent.gameObject.transform.position;
         initPosf2 = frac2.transform.parent.gameObject.transform.position;
@@ -204,86 +206,91 @@ public class MercuryLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.SetActive(false);
-        string name = other.name;
-        if (!firstObjectDestroyed)
+        if (other.gameObject.CompareTag("Fracs"))
         {
-            frac1UI.transform.GetChild(0).gameObject.SetActive(true);
-            frac1UI.transform.GetChild(1).gameObject.SetActive(true);
-            frac1UI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].numerator.ToString());
-            frac1UI.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].denominator.ToString());
-            currFrac1.numerator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].numerator;
-            currFrac1.denominator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].denominator;
-            firstObjectDestroyed = true;
-        }
-        else
-        {
-            frac2UI.transform.GetChild(0).gameObject.SetActive(true);
-            frac2UI.transform.GetChild(1).gameObject.SetActive(true);
-            frac2UI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].numerator.ToString());
-            frac2UI.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].denominator.ToString());
-            currFrac2.numerator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].numerator;
-            currFrac2.denominator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].denominator;
-            firstObjectDestroyed = false;
-            if (currOperator == "+")
+            MonsterTongue.SetActive(true);
+            other.gameObject.SetActive(false);
+            string name = other.name;
+            if (!firstObjectDestroyed)
             {
-                result = currFrac1 + currFrac2;
-            }
-            else if (currOperator == "-")
-            {
-                result = currFrac1 - currFrac2;
-            }
-            else if (currOperator == "x")
-            {
-                result = currFrac1 * currFrac2;
-            }
-            else if (currOperator == "div")
-            {
-                result = currFrac1 / currFrac2;
-            }
-            if ((result).Equals(currResult))
-            {
-                //Debug.Log("Correct" + result.ToString());
-                checkUI.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("GreenCheck");
+                frac1UI.transform.GetChild(0).gameObject.SetActive(true);
+                frac1UI.transform.GetChild(1).gameObject.SetActive(true);
+                frac1UI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].numerator.ToString());
+                frac1UI.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].denominator.ToString());
+                currFrac1.numerator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].numerator;
+                currFrac1.denominator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].denominator;
+                firstObjectDestroyed = true;
             }
             else
             {
-                //Debug.Log("Incorrect" + result.ToString());
-                checkUI.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
-                errorCount++;
+                frac2UI.transform.GetChild(0).gameObject.SetActive(true);
+                frac2UI.transform.GetChild(1).gameObject.SetActive(true);
+                frac2UI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].numerator.ToString());
+                frac2UI.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].denominator.ToString());
+                currFrac2.numerator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].numerator;
+                currFrac2.denominator = possibleResults[int.Parse(name[name.Length - 1].ToString()) - 1].denominator;
+                firstObjectDestroyed = false;
+                if (currOperator == "+")
+                {
+                    result = currFrac1 + currFrac2;
+                }
+                else if (currOperator == "-")
+                {
+                    result = currFrac1 - currFrac2;
+                }
+                else if (currOperator == "x")
+                {
+                    result = currFrac1 * currFrac2;
+                }
+                else if (currOperator == "div")
+                {
+                    result = currFrac1 / currFrac2;
+                }
+                if ((result).Equals(currResult))
+                {
+                    //Debug.Log("Correct" + result.ToString());
+                    checkUI.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("GreenCheck");
+                }
+                else
+                {
+                    //Debug.Log("Incorrect" + result.ToString());
+                    checkUI.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
+                    errorCount++;
+                }
+                result.Simplify();
+                if (result.numerator.ToString().Length > 1)
+                {
+                    frac3UI.transform.GetChild(0).gameObject.SetActive(false);
+                    frac3UI.transform.GetChild(1).gameObject.SetActive(true);
+                    frac3UI.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.numerator.ToString()[0].ToString());
+                    frac3UI.transform.GetChild(1).transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.numerator.ToString()[1].ToString());
+                }
+                else
+                {
+                    frac3UI.transform.GetChild(0).gameObject.SetActive(true);
+                    frac3UI.transform.GetChild(1).gameObject.SetActive(false);
+                    frac3UI.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.numerator.ToString());
+                }
+                if (result.denominator.ToString().Length > 1)
+                {
+                    frac3UI.transform.GetChild(2).gameObject.SetActive(false);
+                    frac3UI.transform.GetChild(3).gameObject.SetActive(true);
+                    frac3UI.transform.GetChild(3).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.denominator.ToString()[0].ToString());
+                    frac3UI.transform.GetChild(3).transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.denominator.ToString()[1].ToString());
+                }
+                else
+                {
+                    frac3UI.transform.GetChild(2).gameObject.SetActive(true);
+                    frac3UI.transform.GetChild(3).gameObject.SetActive(false);
+                    frac3UI.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.denominator.ToString());
+                }
+                checkUI.gameObject.SetActive(true);
+                currFrac1 = new Fraction(0, 0);
+                currFrac2 = new Fraction(0, 0);
+                result = new Fraction(0, 0);
+                Invoke("generateSublevel", 5f);
             }
-            result.Simplify();
-            if (result.numerator.ToString().Length > 1)
-            {
-                frac3UI.transform.GetChild(0).gameObject.SetActive(false);
-                frac3UI.transform.GetChild(1).gameObject.SetActive(true);
-                frac3UI.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.numerator.ToString()[0].ToString());
-                frac3UI.transform.GetChild(1).transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.numerator.ToString()[1].ToString());
-            }
-            else
-            {
-                frac3UI.transform.GetChild(0).gameObject.SetActive(true);
-                frac3UI.transform.GetChild(1).gameObject.SetActive(false);
-                frac3UI.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.numerator.ToString());
-            }
-            if (result.denominator.ToString().Length > 1)
-            {
-                frac3UI.transform.GetChild(2).gameObject.SetActive(false);
-                frac3UI.transform.GetChild(3).gameObject.SetActive(true);
-                frac3UI.transform.GetChild(3).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.denominator.ToString()[0].ToString());
-                frac3UI.transform.GetChild(3).transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.denominator.ToString()[1].ToString());
-            }
-            else
-            {
-                frac3UI.transform.GetChild(2).gameObject.SetActive(true);
-                frac3UI.transform.GetChild(3).gameObject.SetActive(false);
-                frac3UI.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(result.denominator.ToString());
-            }
-            checkUI.gameObject.SetActive(true);
-            currFrac1 = new Fraction(0, 0);
-            currFrac2 = new Fraction(0, 0);
-            result = new Fraction(0, 0);
-            Invoke("generateSublevel", 5f);
+            Invoke("disappearTongue", 0.3f);
         }
     }
     private Fraction GetRandomFraction()
@@ -346,6 +353,11 @@ public class MercuryLevel : MonoBehaviour
             list[i] = list[j];
             list[j] = temp;
         }
+    }
+
+    private void disappearTongue()
+    {
+        MonsterTongue.SetActive(false);
     }
 }
 public struct Fraction

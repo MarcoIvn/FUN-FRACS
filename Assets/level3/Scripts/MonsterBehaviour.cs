@@ -7,6 +7,7 @@ public class MonsterBehaviour : MonoBehaviour
     public float hoverAmp;
     public float hoverFreq;
     Vector3 initPos;
+    public Transform target;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,8 @@ public class MonsterBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.LookAt(target);
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y + 90, transform.eulerAngles.z);
         transform.position = new Vector3(initPos.x, Mathf.Sin(hoverFreq * Time.time) * hoverAmp + initPos.y, initPos.z);
     }
 
