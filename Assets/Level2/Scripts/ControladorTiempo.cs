@@ -10,6 +10,7 @@ public class ControladorTiempo : MonoBehaviour
     [SerializeField] private Slider slider;
     public float tiempoActual;
     public static bool tiempoActivado = false;
+    public GameObject LosePanel;
 
     /*
     private void Start()
@@ -35,6 +36,11 @@ public class ControladorTiempo : MonoBehaviour
         }
         if (tiempoActual <= 0)
         {
+            Time.timeScale = 0f;
+            CursorController.setDefaultCursor();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            LosePanel.SetActive(true);
             Debug.Log("Derrota por tiempo");
             CambiarTemporizador(false);
         }
