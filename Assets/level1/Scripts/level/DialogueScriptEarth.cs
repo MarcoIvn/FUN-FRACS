@@ -16,7 +16,7 @@ public class DialogueScriptEarth : MonoBehaviour
     void Start()
     {
         showText = FindObjectOfType<RaycastGun>();
-        lines = new string[] { "Bienvenido al Nivel 1. (Preciona L para continuar)",
+        lines = new string[] { "Bienvenido al Nivel 1. (Presiona L para continuar)",
             "Para este nivel tienes una barra arriba que indica los objetos que debes arrastrar al portal,\" en orden de izquierda a derecha.",
             "Para agarrar objetos puedes disparar un rayo y mantenerlo con (Click izquierdo).",
             "Para moverte, apreta w para avanzar y s para frenar, con el mouse puedes ir de izquierda a derecha.\" Manten espacio para activar un pequeño turbo.", 

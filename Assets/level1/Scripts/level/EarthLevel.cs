@@ -68,6 +68,7 @@ public class EarthLevel : MonoBehaviour
         Losepoints = 0;
         LosePanel.SetActive(false);
         WinPanel.SetActive(false);
+
         errorUI.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
         errorUI.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
         errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(false);
@@ -118,8 +119,8 @@ public class EarthLevel : MonoBehaviour
     {
         if (gameFinished == false)
         {
-            Debug.Log(PortalEarthLevel.correctObjetcs);
-            Debug.Log(totalObjects);
+            //Debug.Log(PortalEarthLevel.correctObjetcs);
+            //Debug.Log(totalObjects);
             if (indexGame <= objects.Count - 1)
                 objectsUI.transform.GetChild(indexGame).gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = currObjAmount.ToString();
             //Debug.Log("Current object amount: " + currObjAmount);

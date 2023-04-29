@@ -11,19 +11,26 @@ public class ControladorTiempo : MonoBehaviour
     public float tiempoActual;
     public static bool tiempoActivado = false;
     public GameObject LosePanel;
+    public static bool tiempoAcabado = false;
 
-    /*
+    
     private void Start()
     {
-        ActivarTemporizador();
+        tiempoActivado = false;
+        tiempoAcabado = false;
+        //ActivarTemporizador();
+        LosePanel.SetActive(false);
+
     }
-    */
+    
 
     private void Update()
     {
-        if (tiempoActivado)
-        {
-            CambiarContador();
+        if(!tiempoAcabado){
+            if (tiempoActivado)
+            {
+                CambiarContador();
+            }
         }
     }
 
@@ -43,6 +50,7 @@ public class ControladorTiempo : MonoBehaviour
             LosePanel.SetActive(true);
             Debug.Log("Derrota por tiempo");
             CambiarTemporizador(false);
+            tiempoAcabado = true;
         }
     }
 
