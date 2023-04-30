@@ -22,8 +22,12 @@ public class TriggerM : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-
+    {/*
+        if (PausaB.juegoPausado == true) {
+            CursorController.setDefaultCursor();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,8 +42,10 @@ public class TriggerM : MonoBehaviour
                 {
                     Debug.Log("Asteroids destruidos: " + gunScript.asteroidsDestroyed);
                     Debug.Log("You Win");
+                    Time.timeScale = 0f;
                     win.SetActive(true);
-                    Invoke("CargarNuevaEscena", 5.0f);
+                    //PausaB.juegoPausado = true;
+                    //Invoke("CargarNuevaEscena", 5.0f);
 
                     GameObject po = GameObject.Find("PlayerX");
                     PlayerData pd = po.GetComponent<PlayerData>();
@@ -52,8 +58,10 @@ public class TriggerM : MonoBehaviour
                 {
                     Debug.Log("Asteroids destruidos: " + gunScript.asteroidsDestroyed);
                     Debug.Log("You lose");
+                    Time.timeScale = 0f;
                     lose.SetActive(true);
-                    Invoke("CargarMismaEscena", 5.0f);
+                    //PausaB.juegoPausado = true;
+                    //Invoke("CargarMismaEscena", 5.0f);
 
                     GameObject po = GameObject.Find("PlayerX");
                     PlayerData pd = po.GetComponent<PlayerData>();

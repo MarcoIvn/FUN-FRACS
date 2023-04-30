@@ -5,7 +5,8 @@ using UnityEngine;
 public class PortalEarthLevel : MonoBehaviour
 {
     [SerializeField]
-
+    public AudioSource audioCorrect;
+    public AudioSource audioIncorrect;
     private Transform spawnPoint;
     public Camera cam;
     /*[SerializeField]
@@ -41,12 +42,14 @@ public class PortalEarthLevel : MonoBehaviour
             }
             else if (other.CompareTag(EarthLevel.currObj))
             {
+                audioCorrect.Play();
                 EarthLevel.currObjAmount--;
                 correctObjetcs++;
                 Destroy(other.gameObject);
             }
             else
             {
+                audioIncorrect.Play();
                 errorCount++;
                 Destroy(other.gameObject);
             }

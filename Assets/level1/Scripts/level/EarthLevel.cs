@@ -62,6 +62,9 @@ public class EarthLevel : MonoBehaviour
     public static string currObj;
     private void Start()
     {
+        PausaB.juegoPausado = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         objsCompleted = 0;
         totalObjects = 0;
@@ -162,19 +165,24 @@ public class EarthLevel : MonoBehaviour
             {
                 errorUI.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
                 errorUI.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
-
                 crossLost = true;
                 gameFinished = true;
-
-
-
-                
                 Debug.Log("Perdiste");
 
-
             }
-            if (crossLost || win)
+            if (crossLost || win) {
+                Time.timeScale = 0f;
+                GameObject spaceShip = GameObject.Find("PlayerShip");
+                spaceShip.gameObject.SetActive(false);
+                PausaB.juegoPausado = true;
                 getCalificación();
+            }
+        }
+        if (PausaB.juegoPausado == true)
+        {
+            CursorController.setDefaultCursor();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 
@@ -279,16 +287,7 @@ public class EarthLevel : MonoBehaviour
 
     private void getCalificación()
     {
-
-
-        Debug.Log("get calificacion");
-        Time.timeScale = 0f;
-        CursorController.setDefaultCursor();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
-        GameObject spaceShip = GameObject.Find("PlayerShip");
-        spaceShip.gameObject.SetActive(false);
-
+        Debug.Log("Mandando calificacion");
         if (win) { WinPanel.SetActive(true); }
         else { LosePanel.SetActive(true); }
         if (PortalEarthLevel.errorCount == 1) { Losepoints = 15; }

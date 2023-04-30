@@ -33,6 +33,11 @@ TagManager:
   - Cube
   - Start
   - Fracs
+  - Explosion
+  - AsteroidPlus
+  - AsteroidSad
+  - Asteroid
+  - source
   layers:
   - Default
   - TransparentFX

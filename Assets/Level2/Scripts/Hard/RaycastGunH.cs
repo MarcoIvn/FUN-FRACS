@@ -34,6 +34,8 @@ public class RaycastGunH : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
+        PausaB.juegoPausado = false;
         GenerateMathProblem();
     }
 

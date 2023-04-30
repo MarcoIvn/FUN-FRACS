@@ -52,6 +52,9 @@ public class PausaB : MonoBehaviour
         botonControles.SetActive(true);
         menuPausa.SetActive(false);
         menuControles.SetActive(false);
+        CursorController.setDefaultCursor();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void Restart()
     {

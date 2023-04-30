@@ -1328,11 +1328,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 137241759588702309, guid: 9a2f0061791715d4797cf8e9b4b56e54, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 476250618514316893, guid: 9a2f0061791715d4797cf8e9b4b56e54, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 993412556890632391, guid: 9a2f0061791715d4797cf8e9b4b56e54, type: 3}
       propertyPath: m_SortingOrder
@@ -1385,6 +1385,10 @@ PrefabInstance:
     - target: {fileID: 6669943329842175977, guid: 9a2f0061791715d4797cf8e9b4b56e54, type: 3}
       propertyPath: m_Name
       value: PantallaWinLose
+      objectReference: {fileID: 0}
+    - target: {fileID: 8077885544521843010, guid: 9a2f0061791715d4797cf8e9b4b56e54, type: 3}
+      propertyPath: NumEscenaSig
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a2f0061791715d4797cf8e9b4b56e54, type: 3}
@@ -5396,6 +5400,7 @@ MonoBehaviour:
   tiempoMaximo: 120
   slider: {fileID: 1474459988}
   tiempoActual: 0
+  LosePanel: {fileID: 0}
 --- !u!4 &2141178366
 Transform:
   m_ObjectHideFlags: 0
