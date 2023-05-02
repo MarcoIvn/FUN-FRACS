@@ -151,10 +151,10 @@ public class LevelSelector : MonoBehaviour
             planetText.text = "Tierra";
         else if (currentLevel.name == "Venus2")
             planetText.text = "Venus";
-        else if (currentLevel.name == "Mars3")
-            planetText.text = "Marte";
-        else if (currentLevel.name == "Mercury4")
+        else if (currentLevel.name == "Mercury3")
             planetText.text = "Mercurio";
+        else if (currentLevel.name == "Mars4")
+            planetText.text = "Marte";
         else if (currentLevel.name == "Uran5")
             planetText.text = "Urano";
         else if (currentLevel.name == "Jupiter6")
@@ -225,9 +225,9 @@ public class LevelSelector : MonoBehaviour
             }
         }
             
-        else if (currentLevel.name == "Mars3")
+        else if (currentLevel.name == "Mercury3")
         {
-            sceneToLoad = "Assets/Scenes/MarsLevels/" + "Mars" + levelChoice + ".unity";
+            sceneToLoad = "Assets/Scenes/MercuryLevels/" + "Mercury" + levelChoice + ".unity";
 
             if (pd.player.nivel == 2 && pd.player.dificultad == 3){ // Edge case
                 if (choice_int == 1){
@@ -245,9 +245,9 @@ public class LevelSelector : MonoBehaviour
                 }
             }
         }
-        else if (currentLevel.name == "Mercury4")
+        else if (currentLevel.name == "Mars4")
         {
-            sceneToLoad = "Assets/Scenes/MercuryLevels/" + "Mercury" + levelChoice + ".unity";
+            sceneToLoad = "Assets/Scenes/MarsLevels/" + "Mars" + levelChoice + ".unity";
             SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
         }
         else if (currentLevel.name == "Uran5")
