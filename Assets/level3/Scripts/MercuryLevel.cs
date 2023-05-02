@@ -32,6 +32,7 @@ public class MercuryLevel : MonoBehaviour
     public static Fraction currFrac1, currFrac2, result;
     public static bool operationComplete = false;
     public GameObject MonsterTongue;
+    private bool canFeed = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +43,7 @@ public class MercuryLevel : MonoBehaviour
         initPosf3 = frac3.transform.parent.gameObject.transform.position;
         initPosf4 = frac4.transform.parent.gameObject.transform.position;
         initPosf5 = frac5.transform.parent.gameObject.transform.position;
-
+        canFeed = true;
         checkUI.SetActive(false);
         frac1UI.transform.GetChild(0).gameObject.SetActive(false);
         frac1UI.transform.GetChild(1).gameObject.SetActive(false);
@@ -125,6 +126,7 @@ public class MercuryLevel : MonoBehaviour
 
     private void generateSublevel()
     {
+        canFeed= true;
         currFrac1 = new Fraction(0, 0);
         currFrac2 = new Fraction(0, 0);
         result = new Fraction(0, 0);
@@ -206,7 +208,7 @@ public class MercuryLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Fracs"))
+        if (other.gameObject.CompareTag("Fracs") && canFeed)
         {
             MonsterTongue.SetActive(true);
             other.gameObject.SetActive(false);
@@ -289,6 +291,7 @@ public class MercuryLevel : MonoBehaviour
                 currFrac2 = new Fraction(0, 0);
                 result = new Fraction(0, 0);
                 Invoke("generateSublevel", 5f);
+                canFeed = false;
             }
             Invoke("disappearTongue", 0.3f);
         }

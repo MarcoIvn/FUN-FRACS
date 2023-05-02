@@ -13,6 +13,7 @@ public class Inicio : MonoBehaviour
         if (other.CompareTag("source") || other.CompareTag("Player"))
         {
             controlarTimpo.ActivarTemporizador();
+            transform.parent.gameObject.SetActive(false);
         }
     }
 }
