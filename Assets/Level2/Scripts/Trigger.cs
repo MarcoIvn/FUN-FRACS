@@ -44,7 +44,7 @@ public class Trigger : MonoBehaviour
                     GameObject po = GameObject.Find("PlayerX");
                     PlayerData pd = po.GetComponent<PlayerData>();
                     pd.player.nivel = 2;
-                    pd.player.dificultad = 3;
+                    pd.player.dificultad = 1;
                     pd.player.calificacion = 100;
                     script.LevelComplete();
                 }
@@ -58,8 +58,8 @@ public class Trigger : MonoBehaviour
 
                     GameObject po = GameObject.Find("PlayerX");
                     PlayerData pd = po.GetComponent<PlayerData>();
-                    pd.player.nivel = 2;
-                    pd.player.dificultad = 2;
+                    pd.player.nivel = 1;
+                    pd.player.dificultad = 3;
                     pd.player.calificacion = gunScript.asteroidsDestroyed * 100 / gunScript.asteroidsToDestroy;
                     script.LevelComplete();
                     Debug.Log("Calificacion: " + pd.player.calificacion);

@@ -166,25 +166,84 @@ public class LevelSelector : MonoBehaviour
     }
     private void LoadLevel(GameObject currentLevel , string levelChoice)
     {
+        GameObject po = GameObject.Find("PlayerX");
+        PlayerData pd = po.GetComponent<PlayerData>();
+        int choice_int = 1;
+        if (levelChoice == "Easy"){
+            choice_int = 1;
+        }
+        else if (levelChoice == "Medium"){
+            choice_int = 2;
+        }
+        else if (levelChoice == "Hard"){
+            choice_int = 3;
+        }
+
         string sceneToLoad;
         //Disable the level selector to avoid further interaction
         this.enabled = false;
         // Load scene
         if (currentLevel.name == "Earth1")
-        {
+        {   
             sceneToLoad = "Assets/Scenes/EarthLevels/" + "Earth" + levelChoice +".unity";
-            SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+            
+            if (pd.player.nivel > 1){
+                SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single); 
+
+            } else {
+                if (pd.player.dificultad == choice_int -1 || pd.player.dificultad >= choice_int){
+                    SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+                }
+                else{
+                    Debug.Log("Necesitas completar todos los niveles anteriores. ");
+                }
+            }
+
         }
         else if (currentLevel.name == "Venus2")
         {
+            // DB: 1-3
             sceneToLoad = "Assets/Scenes/VenusLevels/" + "Venus" + levelChoice + ".unity";
-            SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+            
+            if (pd.player.nivel > 2){
+                SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single); 
+
+            } else if (pd.player.nivel == 1 && pd.player.dificultad == 3){ // Edge case
+                if (choice_int == 1){
+                    SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single); 
+                }else{
+                    Debug.Log("Necesitas completar todos los niveles anteriores. ");
+                }
+            }
+            else if (pd.player.nivel == 2){
+                if (pd.player.dificultad == choice_int -1 || pd.player.dificultad >= choice_int){
+                    SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+                }
+                else{
+                    Debug.Log("Necesitas completar todos los niveles anteriores. ");
+                }
+            }
         }
             
         else if (currentLevel.name == "Mars3")
         {
             sceneToLoad = "Assets/Scenes/MarsLevels/" + "Mars" + levelChoice + ".unity";
-            SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+
+            if (pd.player.nivel == 2 && pd.player.dificultad == 3){ // Edge case
+                if (choice_int == 1){
+                    SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single); 
+                }else{
+                    Debug.Log("Necesitas completar todos los niveles anteriores. ");
+                }
+            }
+            else if (pd.player.nivel == 3) {
+                if (pd.player.dificultad == choice_int -1 || pd.player.dificultad >= choice_int){
+                    SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+                }
+                else{
+                    Debug.Log("Necesitas completar todos los niveles anteriores. ");
+                }
+            }
         }
         else if (currentLevel.name == "Mercury4")
         {

@@ -55,7 +55,7 @@ public class EarthLevel : MonoBehaviour
     public GameObject errorUI;
     private bool crossLost = false, win = false;
     private int objsCompleted = 0;
-    public static int calificación;
+    public static int calificacion;
     private bool gameFinished = false;
     private int indexGame = 0;
     public static int currObjAmount;
@@ -175,7 +175,7 @@ public class EarthLevel : MonoBehaviour
                 GameObject spaceShip = GameObject.Find("PlayerShip");
                 spaceShip.gameObject.SetActive(false);
                 PausaB.juegoPausado = true;
-                getCalificación();
+                getCalificacion();
             }
         }
         if (PausaB.juegoPausado == true)
@@ -285,7 +285,7 @@ public class EarthLevel : MonoBehaviour
         }
     }
 
-    private void getCalificación()
+    private void getCalificacion()
     {
         Debug.Log("Mandando calificacion");
         if (win) { WinPanel.SetActive(true); }
@@ -340,7 +340,7 @@ public class EarthLevel : MonoBehaviour
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.nivel = 1;
-                pd.player.dificultad =2 ;
+                pd.player.dificultad =2;
                 pd.player.calificacion = ((PortalEarthLevel.correctObjetcs * 100) / totalObjects) -Losepoints;
                 script.LevelComplete();
             }

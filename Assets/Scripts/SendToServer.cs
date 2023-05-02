@@ -48,6 +48,7 @@ public class SendToServer : MonoBehaviour
         Debug.Log("iniciando el server");
         StartCoroutine(SendLevelComplete(message));
         Debug.Log("Termino el server");
+        Completed_Levels();
     }
     public void Completed_Levels()
     {
