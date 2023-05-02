@@ -181,7 +181,6 @@ public class LevelSelector : MonoBehaviour
 
         string sceneToLoad;
         //Disable the level selector to avoid further interaction
-        this.enabled = false;
         // Load scene
         if (currentLevel.name == "Earth1")
         {   
@@ -189,10 +188,12 @@ public class LevelSelector : MonoBehaviour
             
             if (pd.player.nivel > 1){
                 SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single); 
+                this.enabled = false;
 
             } else {
                 if (pd.player.dificultad == choice_int -1 || pd.player.dificultad >= choice_int){
                     SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+                    this.enabled = false;
                 }
                 else{
                     Debug.Log("Necesitas completar todos los niveles anteriores. ");
@@ -207,10 +208,12 @@ public class LevelSelector : MonoBehaviour
             
             if (pd.player.nivel > 2){
                 SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single); 
+                this.enabled = false;
 
             } else if (pd.player.nivel == 1 && pd.player.dificultad == 3){ // Edge case
                 if (choice_int == 1){
                     SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single); 
+                    this.enabled = false;
                 }else{
                     Debug.Log("Necesitas completar todos los niveles anteriores. ");
                 }
@@ -218,6 +221,7 @@ public class LevelSelector : MonoBehaviour
             else if (pd.player.nivel == 2){
                 if (pd.player.dificultad == choice_int -1 || pd.player.dificultad >= choice_int){
                     SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+                    this.enabled = false;
                 }
                 else{
                     Debug.Log("Necesitas completar todos los niveles anteriores. ");
@@ -232,6 +236,7 @@ public class LevelSelector : MonoBehaviour
             if (pd.player.nivel == 2 && pd.player.dificultad == 3){ // Edge case
                 if (choice_int == 1){
                     SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single); 
+                    this.enabled = false;
                 }else{
                     Debug.Log("Necesitas completar todos los niveles anteriores. ");
                 }
@@ -239,6 +244,7 @@ public class LevelSelector : MonoBehaviour
             else if (pd.player.nivel == 3) {
                 if (pd.player.dificultad == choice_int -1 || pd.player.dificultad >= choice_int){
                     SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+                    this.enabled = false;
                 }
                 else{
                     Debug.Log("Necesitas completar todos los niveles anteriores. ");
