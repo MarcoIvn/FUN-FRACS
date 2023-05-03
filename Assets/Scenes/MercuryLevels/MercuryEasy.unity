@@ -46414,6 +46414,8 @@ MonoBehaviour:
   velocity: 0
   angularVelocity: 10
   scaleMass: 1
+  isEarthLevel: 0
+  exclusionArea: {fileID: 0}
 --- !u!198 &524572398017879613
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -62133,7 +62135,7 @@ MonoBehaviour:
   tiempoMaximo: 1200
   slider: {fileID: 7715912037304396619}
   tiempoActual: 0
-  LosePanel: {fileID: 0}
+  LosePanel: {fileID: 1407722556}
 --- !u!4 &3648423798202253914
 Transform:
   m_ObjectHideFlags: 0
