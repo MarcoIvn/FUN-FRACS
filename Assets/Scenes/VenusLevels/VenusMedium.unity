@@ -5400,7 +5400,7 @@ MonoBehaviour:
   tiempoMaximo: 120
   slider: {fileID: 1474459988}
   tiempoActual: 0
-  LosePanel: {fileID: 0}
+  LosePanel: {fileID: 912265566}
 --- !u!4 &2141178366
 Transform:
   m_ObjectHideFlags: 0

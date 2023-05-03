@@ -295,13 +295,18 @@ public class EarthLevel : MonoBehaviour
         if (FuelBehaviour.outOfFuel == false && (PortalEarthLevel.correctObjetcs * 100) / totalObjects < 90) { Losepoints = Losepoints-10; }
 
         Debug.Log(((PortalEarthLevel.correctObjetcs * 100) / totalObjects) - Losepoints);
+        int f = (PortalEarthLevel.correctObjetcs * 100) / totalObjects;
+
+        if (f <= 50) { f = 50; }
+        
+
         if (crossLost) {
             if (difficultyLevel == DifficultyLevel.Easy) {
                 GameObject po = GameObject.Find("PlayerX");
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.nivel = 1;
                 pd.player.dificultad = 1;
-                pd.player.calificacion =((PortalEarthLevel.correctObjetcs * 100)/totalObjects) - 50;
+                pd.player.calificacion = f - 50;
                 
                 script.LevelComplete();
             }
@@ -311,7 +316,7 @@ public class EarthLevel : MonoBehaviour
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.nivel = 1;
                 pd.player.dificultad = 2;
-                pd.player.calificacion = ((PortalEarthLevel.correctObjetcs * 100) / totalObjects) - 50 ;
+                pd.player.calificacion = f - 50 ;
                 script.LevelComplete();
             }
             if (difficultyLevel == DifficultyLevel.Hard)
@@ -320,7 +325,7 @@ public class EarthLevel : MonoBehaviour
                 PlayerData pd = po.GetComponent<PlayerData>();
                 pd.player.nivel = 1;
                 pd.player.dificultad = 3;
-                pd.player.calificacion = ((PortalEarthLevel.correctObjetcs * 100) / totalObjects) - 50;
+                pd.player.calificacion = f - 50;
                 script.LevelComplete();
             }
 

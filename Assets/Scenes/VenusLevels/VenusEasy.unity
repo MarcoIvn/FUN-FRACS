@@ -3430,6 +3430,10 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 1474459988}
+    - target: {fileID: 4805322774176523228, guid: 7b0e8823c95486949b50e2a3ba3c8dfd, type: 3}
+      propertyPath: LosePanel
+      value: 
+      objectReference: {fileID: 559941259}
     - target: {fileID: 4805322774176523229, guid: 7b0e8823c95486949b50e2a3ba3c8dfd, type: 3}
       propertyPath: m_Name
       value: Time
