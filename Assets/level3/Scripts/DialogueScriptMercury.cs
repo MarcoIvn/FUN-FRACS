@@ -16,7 +16,7 @@ public class DialogueScriptMercury : MonoBehaviour
     void Start()
     {
         showText = FindObjectOfType<RaycastGun>();
-        lines = new string[] { "Bienvenido al Nivel 3. (Preciona L para continuar)",
+        lines = new string[] { "Bienvenido al Nivel 3. (Presiona L para continuar)",
             "Para este nivel aparecio un Monstruo que esta \" hambriento de fracciones, y tienes que darle de comer.",
              "Tienes que completar la operacion correspondiente \" que aparece abajo de la pantalla de modo que el \" resultado de la fracción que el monstruo exige",
             "Para agarrar un bloque de fración puedes disparar un rayo y mantenerlo con (Click izquierdo).",

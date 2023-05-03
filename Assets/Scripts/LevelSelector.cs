@@ -22,6 +22,7 @@ public class LevelSelector : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        Time.timeScale = 1f;
     }
     private void Awake()
     {

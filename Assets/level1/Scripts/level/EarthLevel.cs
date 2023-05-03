@@ -292,7 +292,7 @@ public class EarthLevel : MonoBehaviour
         else { LosePanel.SetActive(true); }
         if (PortalEarthLevel.errorCount == 1) { Losepoints = 15; }
         else if(PortalEarthLevel.errorCount == 2) { Losepoints = 30; }
-        if (FuelBehaviour.outOfFuel == false) { Losepoints = Losepoints-10; }
+        if (FuelBehaviour.outOfFuel == false && (PortalEarthLevel.correctObjetcs * 100) / totalObjects < 90) { Losepoints = Losepoints-10; }
 
         Debug.Log(((PortalEarthLevel.correctObjetcs * 100) / totalObjects) - Losepoints);
         if (crossLost) {
