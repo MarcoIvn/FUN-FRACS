@@ -33,10 +33,23 @@ public class MercuryLevel : MonoBehaviour
     public static bool operationComplete = false;
     public GameObject MonsterTongue;
     private bool canFeed = true;
+
+    public SendToServer script;
+    public GameObject LosePanel;
+    public GameObject WinPanel;
+    public static int notaFinal = 0;
+    public static bool gamecomplete = false;
+    public AudioSource dorime;
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1f;
+        PausaB.juegoPausado = false;
+        gamecomplete = false;
+        notaFinal = 0;
+        
+        LosePanel.SetActive(false);
+        WinPanel.SetActive(false);
         errorCount = 0;
         initPosf1 = frac1.transform.parent.gameObject.transform.position;
         initPosf2 = frac2.transform.parent.gameObject.transform.position;
@@ -121,7 +134,13 @@ public class MercuryLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (PausaB.juegoPausado == true)
+        {
+            CursorController.setDefaultCursor();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+
     }
 
     private void generateSublevel()
@@ -195,6 +214,7 @@ public class MercuryLevel : MonoBehaviour
                 }
                 index++;
             }
+            
             operationsComplete++;
             operatorIndex++;
             //Mouth.operationComplete = false;
@@ -202,7 +222,42 @@ public class MercuryLevel : MonoBehaviour
         else
         {
             calification = (maxCalification - errorCount);
-            Debug.Log("Calification: " + calification + "/"+ maxCalification);
+            notaFinal = calification;
+            PausaB.juegoPausado = true;
+            Time.timeScale = 0f;
+            if ((notaFinal * 100) / maxCalification >= 60) { WinPanel.SetActive(true); }
+            else { LosePanel.SetActive(true); }
+            calification = (maxCalification  - errorCount);
+            notaFinal = calification;
+            Debug.Log("calificacion final: " + (notaFinal * 100) / maxCalification);
+            if (difficulty == DifficultyLevel.Easy)
+            {
+                GameObject po = GameObject.Find("PlayerX");
+                PlayerData pd = po.GetComponent<PlayerData>();
+                pd.player.nivel = 3;
+                pd.player.dificultad = 1;
+                pd.player.calificacion = ((notaFinal * 100) / maxCalification);
+
+                script.LevelComplete();
+            }
+            if (difficulty == DifficultyLevel.Medium)
+            {
+                GameObject po = GameObject.Find("PlayerX");
+                PlayerData pd = po.GetComponent<PlayerData>();
+                pd.player.nivel = 3;
+                pd.player.dificultad = 2;
+                pd.player.calificacion = ((notaFinal * 100) / maxCalification);
+                script.LevelComplete();
+            }
+            if (difficulty == DifficultyLevel.Hard)
+            {
+                GameObject po = GameObject.Find("PlayerX");
+                PlayerData pd = po.GetComponent<PlayerData>();
+                pd.player.nivel = 3;
+                pd.player.dificultad = 3;
+                pd.player.calificacion = ((notaFinal * 100) / maxCalification);
+                script.LevelComplete();
+            }
         }
     }
 
@@ -210,6 +265,7 @@ public class MercuryLevel : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fracs") && canFeed)
         {
+            dorime.Play();
             MonsterTongue.SetActive(true);
             other.gameObject.SetActive(false);
             string name = other.name;
@@ -448,4 +504,5 @@ public struct Fraction
         }
         return a;
     }
+
 }
