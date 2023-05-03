@@ -11,12 +11,17 @@ public class APIConnection : MonoBehaviour
     public const string baseURL = "http://20.83.162.38:8000/";
     private const string LOGIN_URL = baseURL + "api/dologin/"; // Replace with your actual login URL
     public TMP_InputField group, numberList;
+    public SendToServer script;
 
     void Start(){}
 
     // Update is called once per frame
     void Update(){}
-
+    void OnApplicationQuit()
+    {
+        script.SendToServerF();
+        
+    }
     private int int_ify(string str){
         int strToInt = -1;  
         if (int.TryParse(str, out strToInt)) {

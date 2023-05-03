@@ -50,7 +50,7 @@ public class ShipController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, activeForwardSpeed * Time.deltaTime))
         {
-            if (hit.collider.gameObject.tag == "Cube" || hit.collider.gameObject.tag == "Asteroid" || hit.collider.gameObject.tag == "Asteroid_Gray" || hit.collider.gameObject.tag == "Fracs")
+            if (hit.collider.gameObject.tag == "Monster" || hit.collider.gameObject.tag == "Cube" || hit.collider.gameObject.tag == "Asteroid" || hit.collider.gameObject.tag == "Asteroid_Gray" || hit.collider.gameObject.tag == "Fracs")
             {
                 isColliding = true;
             }

@@ -90,7 +90,7 @@ public class LevelSelector : MonoBehaviour
         if (quitClicked) 
         {
             Debug.Log("salir del juego");
-            Application.Quit();
+            //Application.Quit();
             quitClicked = false;
         }
         if (difficultyClicked)
@@ -154,6 +154,7 @@ public class LevelSelector : MonoBehaviour
             planetText.text = "Venus";
         else if (currentLevel.name == "Mercury3")
             planetText.text = "Mercurio";
+        /*
         else if (currentLevel.name == "Mars4")
             planetText.text = "Marte";
         else if (currentLevel.name == "Uran5")
@@ -163,7 +164,7 @@ public class LevelSelector : MonoBehaviour
         else if (currentLevel.name == "Neptune7")
             planetText.text = "Neptuno";
         else if (currentLevel.name == "Saturn8")
-            planetText.text = "Saturno";
+            planetText.text = "Saturno";*/
     }
     private void LoadLevel(GameObject currentLevel , string levelChoice)
     {
@@ -251,7 +252,7 @@ public class LevelSelector : MonoBehaviour
                     Debug.Log("Necesitas completar todos los niveles anteriores. ");
                 }
             }
-        }
+        }/*
         else if (currentLevel.name == "Mars4")
         {
             sceneToLoad = "Assets/Scenes/MarsLevels/" + "Mars" + levelChoice + ".unity";
@@ -276,7 +277,7 @@ public class LevelSelector : MonoBehaviour
         {
             sceneToLoad = "Assets/Scenes/SaturnLevels/" + "Saturn" + levelChoice + ".unity";
             SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
-        }
+        }*/
         //
     }
 

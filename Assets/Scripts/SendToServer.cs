@@ -10,17 +10,21 @@ public class SendToServer : MonoBehaviour
         public string message;
         public int last_level;
         public int last_diff;
+        
     }
     // Start is called before the first frame update
+    
+    public bool logout = false;
     void Start()
     {
+        logout = false;
         Completed_Levels();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (logout == true) { Application.Quit(); } 
     }
 
     public const string baseURL = "http://20.83.162.38:8000/";
@@ -36,9 +40,12 @@ public class SendToServer : MonoBehaviour
         Debug.Log(message);
         LevelComplete();
         StartCoroutine(SendLogoutData(message));
-
+        
     }
-    
+    public void OnApplicationQuit()
+    {
+        SendToServerF(); 
+    }
     public void LevelComplete()
     {
         GameObject px = GameObject.Find("PlayerX");
@@ -70,15 +77,19 @@ public class SendToServer : MonoBehaviour
             if(www.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError(www.error);
+                
             }
             else
             {
                 string txt = www.downloadHandler.text;
                 Debug.Log(txt);
-                Application.Quit();
+                logout = true;
+                
             }
+            
         }
     }
+
 
     IEnumerator SendLevelComplete(string data)
     {
@@ -96,7 +107,6 @@ public class SendToServer : MonoBehaviour
             {
                 string txt = www.downloadHandler.text;
                 Debug.Log(txt);
-                Application.Quit();
             }
         }
     }
