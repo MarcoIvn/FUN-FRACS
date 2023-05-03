@@ -24,13 +24,13 @@ public class EarthLevel : MonoBehaviour
     private readonly List<string> tags = new List<string> { "Asteroid", "Planet", "Star", "Coin", "Alien", "Ufo", "Rocket" };
     private readonly Dictionary<string, int> maxCounts = new Dictionary<string, int>
 {
-    { "Asteroid", 1 },
-    { "Planet", 1 },
-    { "Star", 1 },
-    { "Coin", 1 },
-    { "Alien", 1 },
-    { "Ufo", 1 },
-    { "Rocket", 1 }
+    { "Asteroid", 2 },
+    { "Planet", 4 },
+    { "Star", 3 },
+    { "Coin", 2 },
+    { "Alien", 4 },
+    { "Ufo", 3 },
+    { "Rocket", 2 }
 };
 
     // Dictionary to store the colors for each object type
