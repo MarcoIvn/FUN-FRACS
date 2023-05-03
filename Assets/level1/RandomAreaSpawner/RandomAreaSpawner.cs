@@ -43,6 +43,8 @@ public class RandomAreaSpawner : MonoBehaviour
     [Tooltip("If true, raise the mass of the object based on its scale.")]
     public bool scaleMass = true;
 
+    public bool isEarthLevel;
+    public Collider exclusionArea;
     // Use this for initialization
     void Start()
     {
@@ -56,21 +58,56 @@ public class RandomAreaSpawner : MonoBehaviour
     private void CreateAsteroid()
     {
         Vector3 spawnPos = Vector3.zero;
-         
+
         // Create random position based on specified shape and range.
-        if (spawnShape == RandomSpawnerShape.Box)
+        if (isEarthLevel)
         {
-            spawnPos.x = Random.Range(-range, range) * shapeModifiers.x;
-            spawnPos.y = Random.Range(-range, range) * shapeModifiers.y;
-            spawnPos.z = Random.Range(-range, range) * shapeModifiers.z;
+            if (spawnShape == RandomSpawnerShape.Box)
+            {
+                spawnPos.x = Random.Range(-range, range) * shapeModifiers.x;
+                spawnPos.y = Random.Range(-range, range) * shapeModifiers.y;
+                spawnPos.z = Random.Range(-range, range) * shapeModifiers.z;
+            }
+            else if (spawnShape == RandomSpawnerShape.Sphere)
+            {
+                spawnPos = Random.insideUnitSphere * range;
+                spawnPos.x *= shapeModifiers.x;
+                spawnPos.y *= shapeModifiers.y;
+                spawnPos.z *= shapeModifiers.z;
+            }
+            while (exclusionArea.bounds.Contains(spawnPos)){
+                if (spawnShape == RandomSpawnerShape.Box)
+                {
+                    spawnPos.x = Random.Range(-range, range) * shapeModifiers.x;
+                    spawnPos.y = Random.Range(-range, range) * shapeModifiers.y;
+                    spawnPos.z = Random.Range(-range, range) * shapeModifiers.z;
+                }
+                else if (spawnShape == RandomSpawnerShape.Sphere)
+                {
+                    spawnPos = Random.insideUnitSphere * range;
+                    spawnPos.x *= shapeModifiers.x;
+                    spawnPos.y *= shapeModifiers.y;
+                    spawnPos.z *= shapeModifiers.z;
+                }
+            }
         }
-        else if (spawnShape == RandomSpawnerShape.Sphere)
+        else
         {
-            spawnPos = Random.insideUnitSphere * range;
-            spawnPos.x *= shapeModifiers.x;
-            spawnPos.y *= shapeModifiers.y;
-            spawnPos.z *= shapeModifiers.z;
+            if (spawnShape == RandomSpawnerShape.Box)
+            {
+                spawnPos.x = Random.Range(-range, range) * shapeModifiers.x;
+                spawnPos.y = Random.Range(-range, range) * shapeModifiers.y;
+                spawnPos.z = Random.Range(-range, range) * shapeModifiers.z;
+            }
+            else if (spawnShape == RandomSpawnerShape.Sphere)
+            {
+                spawnPos = Random.insideUnitSphere * range;
+                spawnPos.x *= shapeModifiers.x;
+                spawnPos.y *= shapeModifiers.y;
+                spawnPos.z *= shapeModifiers.z;
+            }
         }
+        
 
         // Offset position to match position of the parent gameobject.
         spawnPos += transform.position;

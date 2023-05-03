@@ -38,6 +38,8 @@ TagManager:
   - AsteroidSad
   - Asteroid
   - source
+  - Platform
+  - Portal
   layers:
   - Default
   - TransparentFX

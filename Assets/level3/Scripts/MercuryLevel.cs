@@ -39,7 +39,7 @@ public class MercuryLevel : MonoBehaviour
     public GameObject WinPanel;
     public static int notaFinal = 0;
     public static bool gamecomplete = false;
-    public AudioSource dorime;
+    public AudioSource crunch, correct, incorrect;
     // Start is called before the first frame update
     void Start()
     {
@@ -265,7 +265,7 @@ public class MercuryLevel : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fracs") && canFeed)
         {
-            dorime.Play();
+            crunch.Play();
             MonsterTongue.SetActive(true);
             other.gameObject.SetActive(false);
             string name = other.name;
@@ -307,11 +307,13 @@ public class MercuryLevel : MonoBehaviour
                 if ((result).Equals(currResult))
                 {
                     //Debug.Log("Correct" + result.ToString());
+                    correct.Play();
                     checkUI.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("GreenCheck");
                 }
                 else
                 {
                     //Debug.Log("Incorrect" + result.ToString());
+                    incorrect.Play();
                     checkUI.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("RedCross");
                     errorCount++;
                 }
