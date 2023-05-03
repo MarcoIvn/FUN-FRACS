@@ -27,24 +27,27 @@ EditorBuildSettings:
     path: Assets/Scenes/VenusLevels/VenusMedium.unity
     guid: 4b9fb074b8a0eff42a6c3d10e78873b4
   - enabled: 1
+    path: Assets/Scenes/VenusLevels/VenusHard.unity
+    guid: ec4af8d4f2d29594089d287a0e0f1bef
+  - enabled: 1
     path: Assets/Scenes/MercuryLevels/MercuryEasy.unity
     guid: c5ad0a9b06df65240946f9f7bbbc1ee4
   - enabled: 1
     path: Assets/Scenes/MercuryLevels/MercuryMedium.unity
-    guid: f71759ea709cd2147a6258f720441291
+    guid: caa0ae2b1b072d446bbf26d991debe29
   - enabled: 1
     path: Assets/Scenes/MercuryLevels/MercuryHard.unity
     guid: 952ea49178bfc32409798b875d24d1f2
-  - enabled: 1
-    path: Assets/Scenes/VenusLevels/VenusHard.unity
-    guid: ec4af8d4f2d29594089d287a0e0f1bef
-  - enabled: 1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/MarsLevels/MarsEasy.unity
     guid: 2d7a926bbc8cd89409185b158811e1d4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MarsLevels/MarsHard.unity
     guid: 1668cdb367162964d959ce03c7395fb4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MarsLevels/MarsMedium.unity
     guid: 056c0619c0b78584882265ba2fdb7d45
   - enabled: 0
