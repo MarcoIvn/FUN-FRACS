@@ -4093,7 +4093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8077885544521843010, guid: 9a2f0061791715d4797cf8e9b4b56e54, type: 3}
       propertyPath: NumEscenaSig
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a2f0061791715d4797cf8e9b4b56e54, type: 3}
